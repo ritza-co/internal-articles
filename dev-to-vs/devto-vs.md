@@ -1,8 +1,6 @@
 # DEV.to vs Medium vs Hashnode vs Hackernoon
 
-![A graph showing interest over time between: dev.to, Medium, Hashnode and Hackernoon](https://i.ritzastatic.com/images/ritza-content/MediumVSdevGraph-t.png)
-
-Medium as one of the first online publishing services has always been in the lead but you can see the new kids on the block are steadily climbing. Keep in mind that Medium caters to all topics where the others are mainly for software developers. This data was sourced from https://trends.google.com/.
+![Medium as one of the first online publishing services has always been in the lead but you can see the new kids on the block are steadily climbing. Keep in mind that Medium caters to all topics where the others are mainly for software developers. *This data was sourced from https://trends.google.com/.*](https://i.ritzastatic.com/images/ritza-content/MediumVSdevGraph-t.png)
 
 ## Introduction
 
@@ -30,9 +28,9 @@ Before we dive into detailed comparisons, here’s a quick overview of each plat
 ### DEv.to
 - **Dev.to** is one of the largest online communities of software developers. It is a place where developers and aspiring developers meet to share their knowledge and stories. They don’t have paywalls or adverts, but instead make their revenue from    sponsors, listings and the DEV shop. 
 
-    Their text editor uses Markdown formatting with built-in syntax highlighting which makes it easy to embed code snippets, tables and other media. They also have a public API that developers can use to automate their publishing workflow. Below is an example of the Dev.to reading experience (left) and the text editor (right).
+    Their text editor uses Markdown formatting with built-in syntax highlighting which makes it easy to embed code snippets, tables and other media. They also have a public API that developers can use to automate their publishing workflow. 
 
-![An image showing the reading and text editing experience on Dev.to](https://i.ritzastatic.com/images/ritza-content/dev-to-tiny.png)
+![Above is an example of the Dev.to reading experience (left) and the text editor (right).](https://i.ritzastatic.com/images/ritza-content/dev-to-tiny.png)
 
 ### Medium
 
@@ -40,9 +38,9 @@ Before we dive into detailed comparisons, here’s a quick overview of each plat
 
     As Medium caters to all types of writers their text editor is plain and simple; however, because they don’t support Markdown and syntax highlighting it is not the best place for developers to write technical articles where code snippets or tables are needed. They don’t allow API integration, so for redistribution your only route is using their import tool which is much like copy-pasting as you’ll always have to manually tweak the article to work in the Medium editor. 
 
-    They opted for a revenue model where readers have to pay a monthly subscription fee to read articles. This is great if you are writing for an income but it’s not so great if you merely want to freely share knowledge. Below is an example of the Medium reading experience (left) and the text editor (right).
+    They opted for a revenue model where readers have to pay a monthly subscription fee to read articles. This is great if you are writing for an income but it’s not so great if you merely want to freely share knowledge. 
 
-![An image showing the reading and text editing experience on Medium](https://i.ritzastatic.com/images/ritza-content/medium-tiny.png)
+![Above is an example of the Medium reading experience (left) and the text editor (right).](https://i.ritzastatic.com/images/ritza-content/medium-tiny.png)
 
 ### Hashnode
 
@@ -50,9 +48,9 @@ Before we dive into detailed comparisons, here’s a quick overview of each plat
 
     Hashnode allows you to completely customize your blog page with built-in features, widgets and integrations. They have also released a custom CSS feature that will allow you even more flexibility as to the look and feel of your blog page.
 
-    It’s easy to sign up and get started with a custom blog and they promise to be free forever. They don’t support adverts or have a paywall of any kind. They have an easy to use text editor that supports Markdown so code embeds and syntax highlighting is not a problem. They are working on a public API that will enable developers to automate their publishing workflow and they have a GitHub integration where a Markdown version of your article will be pushed to your repo when hitting the publish button. Below is an example of the Hashnode reading experience (left) and the text editor (right).
+    It’s easy to sign up and get started with a custom blog and they promise to be free forever. They don’t support adverts or have a paywall of any kind. They have an easy to use text editor that supports Markdown so code embeds and syntax highlighting is not a problem. They are working on a public API that will enable developers to automate their publishing workflow and they have a GitHub integration where a Markdown version of your article will be pushed to your repo when hitting the publish button. 
 
-![An image showing the reading and text editing experience on Hashnode](https://i.ritzastatic.com/images/ritza-content/hashnode-tiny.png)
+![Above is an example of the Hashnode reading experience (left) and the text editor (right).](https://i.ritzastatic.com/images/ritza-content/hashnode-tiny.png)
 
 ### Hackernoon
 
@@ -60,9 +58,9 @@ Before we dive into detailed comparisons, here’s a quick overview of each plat
 
     Hackernoon has a lengthy signup process where you choose to write either as an individual or as a brand. The individual option allows you to publish articles for free whereas publishing as a brand will cost you $199 per published article. 
 
-    You will have to jump through a few hoops and work with editors but because of this Hackernoon has higher quality content that will help you gain traction as a professional writer when you get published. All articles are subject to approval by their editors before publishing and the process takes up to 4 days. Below is an example of the Hackernoon reading experience (left) and the text editor (right).
+    You will have to jump through a few hoops and work with editors but because of this Hackernoon has higher quality content that will help you gain traction as a professional writer when you get published. All articles are subject to approval by their editors before publishing and the process takes up to 4 days. 
 
-![An image showing the reading and text editing experience on Hackernoon](https://i.ritzastatic.com/images/ritza-content/Hackernoon-tiny.png)
+![Above is an example of the Hackernoon reading experience (left) and the text editor (right).](https://i.ritzastatic.com/images/ritza-content/Hackernoon-tiny.png)
 
 ## Dev.to vs Medium
 

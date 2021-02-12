@@ -1,4 +1,4 @@
-@SHL  @jasonfried discuss deadlines
+# [@shl](https://twitter.com/shl)  [@jasonfried](https://twitter.com/jasonfried) discuss deadlines
 
 *This is a summary of a Clubhouse conversation between several people, but predominantly @shl from Gumroad and @jasonfried from Basecamp.*
 

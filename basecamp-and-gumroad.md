@@ -1,6 +1,6 @@
 # **Clubhouse summaries**: @shl and @jasonfried discuss deadlines
 
-*This is a summary of a Clubhouse conversation between several people, but predominantly [@shl](https://twitter.com/shl) from [Gumroad](https://gumroad.com) and [@jasonfried](https://twitter.com/jasonfried) from [Basecamp](https://basecamp.com.*
+*This is a summary of a Clubhouse conversation between several people, but predominantly [@shl](https://twitter.com/shl) from [Gumroad](https://gumroad.com) and [@jasonfried](https://twitter.com/jasonfried) from [Basecamp](https://basecamp.com).*
 
 ## ⏰ Are deadlines good or bad?
 

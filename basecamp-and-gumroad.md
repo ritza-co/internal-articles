@@ -1,4 +1,4 @@
-# **Clubhouse summaries**: [@shl](https://twitter.com/shl)  [@jasonfried] and (https://twitter.com/jasonfried) discuss deadlines
+# **Clubhouse summaries**: [@shl](https://twitter.com/shl)  and [@jasonfried](https://twitter.com/jasonfried) discuss deadlines
 
 *This is a summary of a Clubhouse conversation between several people, but predominantly @shl from Gumroad and @jasonfried from Basecamp.*
 

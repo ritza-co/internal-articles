@@ -6,7 +6,7 @@
 
 The conversation started as a debate. 
 
-* 🚫 **No deadlines:** Gumroad has no deadlines; people simply work that looks fun from a queue. 
+* 🚫 **No deadlines:** Gumroad has no deadlines; people simply take work that looks fun from a queue. 
 * ✅ **Deadlines:** Basecamp uses deadlines not to put pressure on people but to be explicit about what their "appetite" is for any given project.
 
 **Conclusion:** Both agreed that there's no "One True System". Many systems can work for you – pick one that you like and use it.

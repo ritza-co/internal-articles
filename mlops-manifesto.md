@@ -6,10 +6,10 @@ We have a manifesto for MLOps. This is what we care about and why we get out of 
 
 It consists of four tests:
 
-* ♻️ *Reproducible:* Other people and teams should be able to reproduce your work months or years later without talking to you directly.
-* 👩‍🏫 *Accountable:* 
-* 👥 *Collaborative*
-* 👉 *Continuous*
+* ♻️ **Reproducible:** Other people and teams should be able to reproduce your work months or years later without talking to you directly.
+* 👩‍🏫 **Accountable:** We (and others) can trust the results of our model by recording exactly what data was used and how a decision was reached
+* 👥 **Collaborative:** People can asynchronously fork and work on different models without creating a mess.
+* 👉 **Continuous:** 
 
 ![The four tests for MLOps](https://cln.sh/YOsDpQ+)
 

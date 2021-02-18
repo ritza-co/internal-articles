@@ -42,38 +42,25 @@ trained on so you need to be able to track the model back to the program where t
 next point and it's especially pertinent at the moment is this 
 
 ## Collaboration
-collaboration  requirement so he has to be possible to do asynchronous collaboration and this is something that software DevOps has got sorted and MLOps doesn't 
-yet mostly and this means that I need to be able to if for example if if my colleague Chris is working on a model I need to be able to make a fork of that model 
-and I need to be able to make changes to it without treading on Chris's toes so we both need to be able to collaborate asynchronously and and get useful work done 
-now this has kind of influenced the design of what we're building to a large extent because because we believe very much in the sort of github pull request style 
-of collaboration that the data scientists are familiar with and and there are some challenges in in making that possible for for ml and then finally the 
-model development process has to be continuous and so there are a couple of things that I mean by this the first one is that the development process must 
-be automatic the deployment process or it must be automatic so it must be possible to automatically deploy a model into a staging environment or 
-production environment without manually emailing Jupiters and notebooks or or tensorflow files serialized test flow models 
-around because as soon as you start doing things manually then it introduces this possibility for the human error and the other piece is that you have to be able 
-to statistically monitor your models and this is interesting because monitoring models is specifically is quite different to monitoring regular software that 
-you might deploy it as micro services and the reason for that is that when you monitor software you can monitor things like Layton sees an error 
+We want to do asynchronous collaboration. This is something that software DevOps has got sorted and MLOps doesn't yet.
 
-rate but when you monitor Mike Rosario when you monitor models machine learning models they can be giving you perfectly normal latencies and perfectly normal error rates and the model can have gone 
+For example, my colleague Chris is working on a model I need to be able to make a fork of that model and I make changes to it without treading on Chris's toes.
 
-completely haywire and the reason for that is basically if you already knew the right answer for what the model was predicting then you wouldn't need the 
+We need to collaborate asynchronously and and get useful work done. DevOps does this with a GitHub pull request style 
+of collaboration that the data scientists are familiar with, but there are some challenges in making that possible for ML. 
 
-model in other words the production data is unlabeled and so this means that it's challenging to understand the behavior room of your model once it's running in production so an example might be that I 
 
-might have deployed a model for four autonomous vehicles that classify road signs and so you might have a bunch of cars driving around with models running on hardware in the cars and sensors 
+## Continuous 
+* Development should lead to **automatic deployment**: we should automatically deploy a model into a staging environment or 
+production environment without manually emailing Jupiters and notebooks or TensorFlow files, or serialized test flow models, 
+around because as soon as you start doing things manually then it introduces this possibility for human error.
 
-cameras basically on the cars that are looking around for the road signs and if you already knew what road sign the sensor was looking at then you wouldn't need the model right but at the same time it means that it's hard to understand the behavior of the model of 
+* You have to be able to **statistically monitor** your models, and this is interesting because monitoring models is specifically is quite different to 
+monitoring regular software. With regular software, you can monitor things like error-rates and know immediately if something is wrong. With machine learning 
+models, they might give you perfectly normal latencies and error rates but the model itself has gone haywire. You can't verify a models **predictions** because 
+if you could, you wouldn't need the model in the first place. That is, productdion data is **unlabeled**, so it's challenging to understand the behaviour 
+of your model once it's running in production. You need to look statistically at e.g. the number of predictions it makes in certain classes, and if then 
+page a human if the distribution varies from an expected distribution to make a call on if the world has chnaged or if the model has broken.
 
-production and there are some solutions to this including looking at the statistical distribution of the classifications the model is making if it's a classifier and then you can say well if the actual distribution of classifications drifts very 
-
-significantly from my expected distribution like the distribution that I used in training in the training set then maybe Paige a human like fire and alert and get a human to look at what's 
-
-going on because either you deployed a bad model in which case well you need to know about it so that so that you can roll back and so that you can figure out what went wrong with the new deployed model or the world changed and 
-
-especially with things like computer vision it's it's often surprising like how the models actually distinguish features in the data and and you can get stupid things like I 
-
-the computer vision model might never have classified any or never it never be trained on any stop signs in the snow and for some reason it can't classify stop signs in the snow so suddenly it snows over a large part of the country and then your stop sign classifier stops 
-
-working and obviously you're in trouble so you need to have that statistical monitoring so those are the requirements and and so I'm going to talk about how 
-
-how we can try and address those requirements using ml ops tools 
+This is especially a problem in computer vision where you get stupid things like suddenly it starts snowing and now your self-driving car can't recognise stop
+signs any more because it was never trained on identifying stop signs with snow in the background.

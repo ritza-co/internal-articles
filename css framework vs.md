@@ -1,12 +1,14 @@
-## Bootstrap vs. Tailwind CSS
+# Tailwind CSS vs. Bootstrap vs. Material UI vs. Styled Components vs. Bulma vs. SASS
+When it comes to CSS frameworks, the sheer number of available options can sometimes be a major obstacle in itself. Let's take a look at some of the choices and the major differences between them to help you decide on a framework that works for you. 
 
-For good reason, *Bootstrap* is the most popular CSS framework in this comparison. With many years and versions behind bootstrap, it is a trusted go-to framework that has kept itself up to date.
+## Bootstrap vs. Tailwind CSS
+*Bootstrap* is a popular CSS framework that has been around for a decade(at the time of this article). Bootstrap takes on a responsive, mobile-first approach.
 
 *Tailwind CSS* is a relatively newer framework and way of styling HTML that challenges established conventions.
 
-Consider *Bootstrap* if you prefer an established design system that comes with predefined design choices.
+Consider *Bootstrap* if you prefer an established design system that comes with predefined design templates.
 
-Consider *Tailwind CSS* if you are welcoming of using a newer rapid approach that essentially populates your markup in an effort to create custom UI components.  
+Consider *Tailwind CSS* if you are welcoming of using a newer approach that essentially populates your markup in an effort to create custom UI components.  
 
 ## Material UI vs. Tailwind CSS
 *Material UI* is a React components library based on Google's Material design.
@@ -15,14 +17,14 @@ On the other hand, *Tailwind CSS* is a CSS framework that comes with predefined 
 
 Consider *Material UI* if you are an avid React user and do not have the time to build a custom UI from scratch.
 
-Consider *Tailwind CSS* if you want to build a custom UI within your markup whilst writing almost no custom css. 
+Consider *Tailwind CSS* if you want to build a custom UI within your markup whilst writing almost no custom css.
 
 ## Styled Components vs. Tailwind CSS
-*Styled Components* is a React CSS-in-JavaScript framework you can use to write custom css using JavaScript. 
+*Styled Components* is a React CSS-in-JavaScript framework you can use to write custom css using JavaScript.
 
-*Tailwind CSS* allows you to build UIs using multiple abbreviated class names as opposed to semantic classes.   
+*Tailwind CSS* allows you to build UIs using multiple abbreviated class names as opposed to semantic classes.
 
-Consider *Styled Components* if you're looking to create custom React components whilst staying within the React ecosystem. 
+Consider *Styled Components* if you're looking to stay within the React ecosystem and create custom React/CSS components.
 
 Consider *Tailwind CSS* if you have no experience with JavaScript/React but still looking to create reusable custom components.
 
@@ -31,18 +33,18 @@ Although *Bulma* is a mobile-first CSS framework similar to Bootstrap, it is lig
 
 *Tailwind CSS* employs a different methodology that places best-practices on the back-burner in favour of flexible UI designing.
 
-Consider *Bulma* if you want to build responsive sites with a gentle learning curve.
+Consider *Bulma* if you want to use CSS components to build responsive sites with a gentle learning curve.
 
-Consider *Tailwind CSS* for an un-opinionated approach to design using a fairly new framework and method.
+Consider *Tailwind CSS* for an un-opinionated approach to design using a fairly new framework and method utilizing micro classes in your markup.
 
 ## Sass vs. Tailwind CSS
 *Sass* generates CSS for you using it's own scripted language. Sass aims at being a concise way of writing CSS. 
 
-With *Tailwind* you are not likely to write any CSS and but rather abbreviated classes such as `flex`, `m-4` and `bg-red-100` etc. on your markup file.
+With *Tailwind* you are not likely to write any CSS and but rather abbreviated classes such as `flex`, `m-4` and `bg-red-100` etc. in your markup file.
 
 Consider *Sass* if you would like to write much of the CSS yourself only with a more stable syntax.
  
-Consider *Tailwind CSS* if you want to quickly create designs using micro classes that would all be contained within your markup. Keep in mind this may be unreadable for non-Tailwind users.
+Consider *Tailwind CSS* if you want to quickly create designs using micro classes. Keep in mind this may be unreadable for non-Tailwind users.
 
 ## Bootstrap vs. Material UI
 *Bootstrap* is a beginner friendly framework that comes with pre-packaged UI components and JavaScript plugins that will do most of the heavy lifting when designing and building a website. 
@@ -75,7 +77,7 @@ Bootstrap is a framework that has been around for far longer and so has built up
 
 *Bulma* can be seen as a smaller version of bootstrap with less complexities, providing beginners with comparable benefits to it's much larger -bootstrap- counterpart. 
 
-Consider *Bootstrap* if you're looking to step up to a much larger design palette using an up-to-date framework built on Sass. Keep in mind that bootstrap can sometimes be overly complex and encumbered leading to a bulky app/website.
+Consider *Bootstrap* if you're looking to step up to a much larger design palette using a framework built on Sass. Keep in mind that bootstrap can *sometimes* be overly complex and encumbered leading to bulky apps/websites.
 
 Consider *Bulma* if you would much rather do without the complexities of bootstrap(i.e. javascript) whilst having some of the component creation taken care of by a tiny, non-intrusive framework.
 
@@ -96,4 +98,3 @@ Consider *Material UI* if you want a robust, well-documented design system to us
 Consider *Bootstrap* if you don't want to build a custom design from scratch, or just simply learn a popular CSS framework.
 
 Consider *Sass* if you want to  write custom CSS with scripting benefits and tools such as nesting, mixins, and inheritance, whilst keeping your CSS fairly maintainable.
- 

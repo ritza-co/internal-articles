@@ -3,7 +3,7 @@ hide:
   - navigation
 ---
 
-# The Opinionated Guide to Setting Up a Sourcegraph Server for More Productive Advanced Code Search
+# The opinionated guide to setting up a Sourcegraph server for advanced code search
 
 If you've ever written code, you probably know that: 
 
@@ -23,15 +23,15 @@ Specifically, we'll:
 
 This is a tradeoff between running Sourcegraph locally on your dev machine (where features would be limited), and installing it to a cluster (where set up would take longer).
 
-## 🖼 The End Result of Following This Guide
+## 🖼 The end result of following this guide
 
 At the end of this guide, you'll have your own Sourcegraph server set up on a custom domain like `sg.example.com`. It will periodically fetch any repositories you are interested in from GitHub (private, public, or from your entire GitHub org) and update its index so that you have these at your fingertips.
 
 You'll be able to search through all your code using advanced syntax and better defaults.
 
-![The Sourcegraph dashboard](images/sourcegraph-dashboard.png)
+![The Sourcegraph dashboard](../assets/the-opinionated-guide-to-setting-up-a-sourcegraph-server-for-more-productive-advanced-code-search/sourcegraph-dashboard.png)
 
-## ☑️ Requirements to Follow Along
+## ☑️ Requirements to follow along
 
 To follow along, you should:
 
@@ -39,11 +39,11 @@ To follow along, you should:
 * 🌐 Have a custom domain where you can add new subdomains, e.g. through NameCheap or similar.
 * ☁️ Have an account at a cloud provider, such as DigitalOcean or AWS.
 
-## 🔨 Setting Up the VPS and Installing Docker and Sourcegraph
+## 🔨 Setting up the VPS and installing Docker and Sourcegraph
 
 First, we need to set up a VPS running Ubuntu 18.04. On this, we'll install Docker and pull the Sourcegraph Docker image.
 
-![Create Droplet](images/create-droplet.png)
+![Create Droplet](../assets/the-opinionated-guide-to-setting-up-a-sourcegraph-server-for-more-productive-advanced-code-search/create-droplet.png)
 
 Choose Ubuntu 18.04 (20.04 has some issues installing Docker) and a droplet with enough disk space. Here we chose one that costs $40/month – but choose a smaller one if you know you only have a few repositories.
 
@@ -77,7 +77,7 @@ docker run --publish 7080:7080 --publish 127.0.0.1:3370:3370 --rm --volume ~/.so
 
 It will take half a minute or so to pull the dependencies and initialise Sourcegraph and then you'll see Sourcegraph running on port 7080. 
 
-![Sourcegraph running in the terminal](images/running-sourcegraph-cmd.png)
+![Sourcegraph running in the terminal](../assets/the-opinionated-guide-to-setting-up-a-sourcegraph-server-for-more-productive-advanced-code-search/running-sourcegraph-cmd.png)
 
 Press `Ctrl-B` and then tap `d` to detach the Tmux session. This will leave Sourcegraph running in the background even after you close the SSH sessions. 
 
@@ -89,7 +89,7 @@ ssh -L 7080:localhost:7080 root@68.183.10.58
 
 This will forward your local port 7080 through SSH to connect to `localhost:7080` on the DigitalOcean instance where Sourcegraph is running. On your local machine, you can now visit `http://localhost:7080` in your browser and you should see the Sourcegraph welcome page.
 
-![Welcome to Sourcegraph](images/sourcegraph-welcome.png)
+![Welcome to Sourcegraph](../assets/the-opinionated-guide-to-setting-up-a-sourcegraph-server-for-more-productive-advanced-code-search/sourcegraph-welcome.png)
 
 Don't sign up yet – let's first set up a proper connection using a custom domain and SSL.
 
@@ -98,21 +98,21 @@ We could access our server by typing in the IP address, but it's hard to remembe
 
 Instead, we'll point a subdomain of a domain we control – e.g. `sg.example.com` at the DigitalOcean droplet so that we can access the Sourcegraph server by visiting this domain.
 
-![DNS record](images/dns-example.png)
+![DNS record](../assets/the-opinionated-guide-to-setting-up-a-sourcegraph-server-for-more-productive-advanced-code-search/dns-example.png)
 
 In your DNS control panel, add an "A" record that points a subdomain to the IP address (the same one you used to connect to your VPS via SSH). 
 
 In NameCheap, this looks as follows, but this will change depending on your domain registrar or DNS provider:
 
-![Add subdomain DNS record](images/add-dns-record.png)
+![Add subdomain DNS record](../assets/the-opinionated-guide-to-setting-up-a-sourcegraph-server-for-more-productive-advanced-code-search/add-dns-record.png)
 
 Save the changes and wait for the DNS record to propagate. This can take up to 72 hours, but in practice usually takes less than 5 minutes.
 
-## ⌨️ Installing Nginx and Configuring a Reverse Proxy
+## ⌨️ Installing Nginx and configuring a reverse proxy
 
 Instead of having users connect directly to the port opened by Docker, we're going to set up Nginx as a scalable web server in front of Docker. Nginx will be responsible for responding to all requests from end users and proxying them over to our Docker connection.
 
-![Architecture](images/nginx-docker-sourcegraph.png)
+![Architecture](../assets/the-opinionated-guide-to-setting-up-a-sourcegraph-server-for-more-productive-advanced-code-search/nginx-docker-sourcegraph.png)
 
 ```bash
 apt update && apt install nginx
@@ -120,7 +120,7 @@ apt update && apt install nginx
 
 Once installed, you should be able to visit the subdomain we configured in the previous step `sg.example.com` and see the Nginx default welcome page.
 
-![Default Nginx Page](images/welcome-nginx.png)
+![Default Nginx Page](../assets/the-opinionated-guide-to-setting-up-a-sourcegraph-server-for-more-productive-advanced-code-search/welcome-nginx.png)
 
 ### Configuring Nginx
 
@@ -165,7 +165,7 @@ service nginx reload
 
 You should now be able to see the same Source Welcome page running on `http://sg.example.com`.  Note that the secure version (`https`) will not work yet, as we still need to set up an SSL certificate.
 
-## 🎫 Getting an SSL Certificate with LetsEncrypt
+## 🎫 Getting an SSL certificate with LetsEncrypt
 
 Install `certbot` using snap by running the following command:
 
@@ -190,7 +190,7 @@ Certbot will automatically modify the Nginx config file that we edited earlier t
 
 Visit `https://sg.example.com` and now you can finally fill out the form to sign up for Sourcegraph.
 
-## ✏️ Configuring Sourcegraph with the Domain and GitHub
+## ✏️ Configuring Sourcegraph with the custom domain and GitHub
 
 Sourcegraph is very configurable and has many different options. The two most important ones to get started with using it are:
 
@@ -201,7 +201,7 @@ Sourcegraph is very configurable and has many different options. The two most im
 
 Visit https://sg.ritza.co/site-admin/configuration and uncomment the third line (remove the `//` at the start). Then replace the domain with the subdomain that we chose earlier.
 
-![Configuring the external domain](images/sourcegraph-configure-domain.png)
+![Configuring the external domain](../assets/the-opinionated-guide-to-setting-up-a-sourcegraph-server-for-more-productive-advanced-code-search/sourcegraph-configure-domain.png)
 
 Press the green "Save Changes" button and choose "Restart Server" when prompted.
 
@@ -230,11 +230,11 @@ For example, in the configuration below, we clone all public repositories from `
 
 Click the blue "Add repositories" button below the text box and wait for Sourcegraph to clone and index your repositories.
 
-## 🔎 Running Your first Sourcegraph Search
+## 🔎 Running your first Sourcegraph search
 
 While it's doing that, you can go ahead and try out your first Sourcegraph search (which might be incomplete while the repos are still cloning). For example, below you can see all empty print statements in Python files across all code.
 
-![Searching for empty print statements](images/sourcegraph-empty-print.png)
+![Searching for empty print statements](../assets/the-opinionated-guide-to-setting-up-a-sourcegraph-server-for-more-productive-advanced-code-search/sourcegraph-empty-print.png)
 
 Unlike GitHub search, it respects the specials characters and only returns matches including the `()`. It also has easy options to exclude or include forks, match case, and a lot more besides. 
 

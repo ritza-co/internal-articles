@@ -1,0 +1,1037 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://ritza.co/old/css%20framework%20vs/">
+      
+      
+        
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2+insiders-2.12.2">
+    
+    
+      
+        <title>Tailwind CSS vs. Bootstrap vs. Material UI vs. Styled Components vs. Bulma vs. SASS - Ritza Articles</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.98acb380.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.73e53a79.min.css">
+        
+      
+      <link rel="preload" as="style" href="../../assets/stylesheets/vendor/mermaid.733f213f.min.css">
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    <script>function __md_scope(e,t,_){return new URL(_||(t===localStorage?"../..":"../.."),location).pathname+"."+e}function __md_get(e,t=localStorage,_){return JSON.parse(t.getItem(__md_scope(e,t,_)))}function __md_set(e,t,_=localStorage,o){try{_.setItem(__md_scope(e,_,o),JSON.stringify(t))}catch(e){}}</script>
+    
+      
+
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tailwind-css-vs-bootstrap-vs-material-ui-vs-styled-components-vs-bulma-vs-sass" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Ritza Articles" class="md-header__button md-logo" aria-label="Ritza Articles" data-md-component="logo">
+      
+  <img src="../../assets/ritzalogo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ritza Articles
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tailwind CSS vs. Bootstrap vs. Material UI vs. Styled Components vs. Bulma vs. SASS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent=""  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Ritza Articles" class="md-nav__button md-logo" aria-label="Ritza Articles" data-md-component="logo">
+      
+  <img src="../../assets/ritzalogo.png" alt="logo">
+
+    </a>
+    Ritza Articles
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Ritza articles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../best-python-books-for-beginners/" class="md-nav__link">
+        Best Python Books For Beginners
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clubhouse-summaries-shl-and-jasonfried-discuss-deadlines/" class="md-nav__link">
+        **Clubhouse summaries**: @shl and @jasonfried discuss deadlines
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devto-vs-medium-vs-hashnode-vs-hackernoon/" class="md-nav__link">
+        DEV.to vs Medium vs Hashnode vs Hackernoon
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graphql-vs-rest-vs-sql-vs-grpc-vs-odata-vs-mongodb/" class="md-nav__link">
+        GraphQL vs. REST vs. SQL vs. gRPC vs. OData vs. MongoDB
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../heroku-vs-netfliy-vs-vercel-vs-github-pages-vs-firebase-vs-vercel/" class="md-nav__link">
+        Heroku vs Netfliy vs Vercel vs GitHub Pages vs Firebase vs Vercel
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes-vs-docker-vs-openshift-vs-ecs-vs-jenkins-vs-terraform/" class="md-nav__link">
+        Kubernetes vs Docker vs OpenShift vs ECS vs Jenkins vs Terraform
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-piano-vs-learning-guitar-vs-learning-keyboard-vs-learning-violin-vs-learning-cello/" class="md-nav__link">
+        Learning Piano vs Learning Guitar vs Learning Keyboard vs Learning Violin vs Learning Cello
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../opengrok-vs-sourcegraph-vs-github-vs-fisheye-vs-source-insight-vs-elasticsearch/" class="md-nav__link">
+        OpenGrok vs Sourcegraph vs GitHub vs FishEye vs Source Insight vs Elasticsearch
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pycharm-vs-spyder-vs-jupyter-vs-visual-studio-vs-anaconda-vs-intellij/" class="md-nav__link">
+        PyCharm vs Spyder vs Jupyter vs Visual Studio vs Anaconda vs IntelliJ
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../raspberry-pi-vs-arduino/" class="md-nav__link">
+        Raspberry Pi vs Arduino
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scikit-learn-vs-tensorflow-vs-pytorch-vs-keras/" class="md-nav__link">
+        Scikit-Learn vs. TensorFlow vs. PyTorch vs. Keras
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tailwind-css-vs-bootstrap-vs-material-ui-vs-styled-components-vs-bulma-vs-sass/" class="md-nav__link">
+        Tailwind CSS vs. Bootstrap vs. Material UI vs. Styled Components vs. Bulma vs. SASS
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../the-mlops-manifesto/" class="md-nav__link">
+        The MLOps Manifesto
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../the-opinionated-guide-to-setting-up-a-sourcegraph-server-for-more-productive-advanced-code-search/" class="md-nav__link">
+        The Opinionated Guide to Setting Up a Sourcegraph Server for More Productive Advanced Code Search
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_16" type="checkbox" id="__nav_16" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_16">
+          Old
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Old" data-md-level="1">
+        <label class="md-nav__title" for="__nav_16">
+          <span class="md-nav__icon md-icon"></span>
+          Old
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basecamp-and-gumroad/" class="md-nav__link">
+        **Clubhouse summaries**: @shl and @jasonfried discuss deadlines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../best-python-books/" class="md-nav__link">
+        Best Python Books For Beginners
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Tailwind CSS vs. Bootstrap vs. Material UI vs. Styled Components vs. Bulma vs. SASS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Tailwind CSS vs. Bootstrap vs. Material UI vs. Styled Components vs. Bulma vs. SASS
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrap-vs-tailwind-css" class="md-nav__link">
+    Bootstrap vs. Tailwind CSS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#material-ui-vs-tailwind-css" class="md-nav__link">
+    Material UI vs. Tailwind CSS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#styled-components-vs-tailwind-css" class="md-nav__link">
+    Styled Components vs. Tailwind CSS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bulma-vs-tailwind-css" class="md-nav__link">
+    Bulma  vs. Tailwind CSS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sass-vs-tailwind-css" class="md-nav__link">
+    Sass vs. Tailwind CSS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrap-vs-material-ui" class="md-nav__link">
+    Bootstrap vs. Material UI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sass-vs-styled-components" class="md-nav__link">
+    Sass vs. Styled Components
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#material-ui-vs-styled-components" class="md-nav__link">
+    Material UI vs. Styled Components
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrap-vs-bulma" class="md-nav__link">
+    Bootstrap vs. Bulma
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bulma-vs-material-ui" class="md-nav__link">
+    Bulma  vs. Material UI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrap-vs-sass" class="md-nav__link">
+    Bootstrap vs. Sass
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devto-vs/" class="md-nav__link">
+        DEV.to vs Medium vs Hashnode vs Hackernoon
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graphql%20vs/" class="md-nav__link">
+        GraphQL vs. REST vs. SQL vs. gRPC vs. OData vs. MongoDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes-vs/" class="md-nav__link">
+        Kubernetes vs Docker vs OpenShift vs ECS vs Jenkins vs Terraform
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learn-piano-vs/" class="md-nav__link">
+        Learning Piano vs Learning Guitar vs Learning Keyboard vs Learning Violin vs Learning Cello
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml-lib-vs/" class="md-nav__link">
+        Scikit-Learn vs. TensorFlow vs. PyTorch vs. Keras
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mlops-manifesto/" class="md-nav__link">
+        The MLOps Manifesto
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opengrok-vs/" class="md-nav__link">
+        OpenGrok vs Sourcegraph vs GitHub vs FishEye vs Source Insight vs Elasticsearch
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opinionated-guide-to-setting-up-a-sourcegraph-server-for-more-productive-advanced-code-search/" class="md-nav__link">
+        The Opinionated Guide to Setting Up a Sourcegraph Server for More Productive Advanced Code Search
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paas-vs/" class="md-nav__link">
+        Heroku vs Netfliy vs Vercel vs GitHub Pages vs Firebase vs Vercel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pycharm-vs/" class="md-nav__link">
+        PyCharm vs Spyder vs Jupyter vs Visual Studio vs Anaconda vs IntelliJ
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../raspberry-pi-vs-arduino/" class="md-nav__link">
+        Raspberry Pi vs Arduino
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrap-vs-tailwind-css" class="md-nav__link">
+    Bootstrap vs. Tailwind CSS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#material-ui-vs-tailwind-css" class="md-nav__link">
+    Material UI vs. Tailwind CSS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#styled-components-vs-tailwind-css" class="md-nav__link">
+    Styled Components vs. Tailwind CSS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bulma-vs-tailwind-css" class="md-nav__link">
+    Bulma  vs. Tailwind CSS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sass-vs-tailwind-css" class="md-nav__link">
+    Sass vs. Tailwind CSS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrap-vs-material-ui" class="md-nav__link">
+    Bootstrap vs. Material UI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sass-vs-styled-components" class="md-nav__link">
+    Sass vs. Styled Components
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#material-ui-vs-styled-components" class="md-nav__link">
+    Material UI vs. Styled Components
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrap-vs-bulma" class="md-nav__link">
+    Bootstrap vs. Bulma
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bulma-vs-material-ui" class="md-nav__link">
+    Bulma  vs. Material UI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrap-vs-sass" class="md-nav__link">
+    Bootstrap vs. Sass
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                
+                <h1 id="tailwind-css-vs-bootstrap-vs-material-ui-vs-styled-components-vs-bulma-vs-sass">Tailwind CSS vs. Bootstrap vs. Material UI vs. Styled Components vs. Bulma vs. SASS</h1>
+<p>When it comes to CSS frameworks, the sheer number of available options can sometimes be a major obstacle in itself. Let's take a look at some of the choices and the major differences between them to help you decide on a framework that works for you. </p>
+<h2 id="bootstrap-vs-tailwind-css">Bootstrap vs. Tailwind CSS</h2>
+<p><em>Bootstrap</em> is a popular CSS framework that has been around for a decade(at the time of this article). Bootstrap takes on a responsive, mobile-first approach.</p>
+<p><em>Tailwind CSS</em> is a relatively newer framework and way of styling HTML that challenges established conventions.</p>
+<p>Consider <em>Bootstrap</em> if you prefer an established design system that comes with predefined design templates.</p>
+<p>Consider <em>Tailwind CSS</em> if you are welcoming of using a newer approach that essentially populates your markup in an effort to create custom UI components.  </p>
+<h2 id="material-ui-vs-tailwind-css">Material UI vs. Tailwind CSS</h2>
+<p><em>Material UI</em> is a React components library based on Google's Material design.</p>
+<p>On the other hand, <em>Tailwind CSS</em> is a CSS framework that comes with predefined classes (not components) as building blocks to design any UI.</p>
+<p>Consider <em>Material UI</em> if you are an avid React user and do not have the time to build a custom UI from scratch.</p>
+<p>Consider <em>Tailwind CSS</em> if you want to build a custom UI within your markup whilst writing almost no custom css.</p>
+<h2 id="styled-components-vs-tailwind-css">Styled Components vs. Tailwind CSS</h2>
+<p><em>Styled Components</em> is a React CSS-in-JavaScript framework you can use to write custom css using JavaScript.</p>
+<p><em>Tailwind CSS</em> allows you to build UIs using multiple abbreviated class names as opposed to semantic classes.</p>
+<p>Consider <em>Styled Components</em> if you're looking to stay within the React ecosystem and create custom React/CSS components.</p>
+<p>Consider <em>Tailwind CSS</em> if you have no experience with JavaScript/React but still looking to create reusable custom components.</p>
+<h2 id="bulma-vs-tailwind-css">Bulma  vs. Tailwind CSS</h2>
+<p>Although <em>Bulma</em> is a mobile-first CSS framework similar to Bootstrap, it is lightweight with a limited number of components and JavaScript exclusion.</p>
+<p><em>Tailwind CSS</em> employs a different methodology that places best-practices on the back-burner in favour of flexible UI designing.</p>
+<p>Consider <em>Bulma</em> if you want to use CSS components to build responsive sites with a gentle learning curve.</p>
+<p>Consider <em>Tailwind CSS</em> for an un-opinionated approach to design using a fairly new framework and method utilizing micro classes in your markup.</p>
+<h2 id="sass-vs-tailwind-css">Sass vs. Tailwind CSS</h2>
+<p><em>Sass</em> generates CSS for you using it's own scripted language. Sass aims at being a concise way of writing CSS. </p>
+<p>With <em>Tailwind</em> you are not likely to write any CSS and but rather abbreviated classes such as <code>flex</code>, <code>m-4</code> and <code>bg-red-100</code> etc. in your markup file.</p>
+<p>Consider <em>Sass</em> if you would like to write much of the CSS yourself only with a more stable syntax.</p>
+<p>Consider <em>Tailwind CSS</em> if you want to quickly create designs using micro classes. Keep in mind this may be unreadable for non-Tailwind users.</p>
+<h2 id="bootstrap-vs-material-ui">Bootstrap vs. Material UI</h2>
+<p><em>Bootstrap</em> is a beginner friendly framework that comes with pre-packaged UI components and JavaScript plugins that will do most of the heavy lifting when designing and building a website. </p>
+<p><em>Material UI</em> also offers reusable pre-designed components and layouts, however, they are based on Google's Material design.</p>
+<p>Consider <em>Bootstrap</em> if you want to keep complexity low and still have a large number of options to pick from.</p>
+<p>Consider <em>Material UI</em> if you can use React and want a more stable implementation of a design system within React.</p>
+<h2 id="sass-vs-styled-components">Sass vs. Styled Components</h2>
+<p><em>Sass</em>, as a scripting language compiles into plain css which makes it debugging friendly.  </p>
+<p><em>Styled components</em> allows for creating customized and reusable components, but with the drawback of comparatively difficult debugging due to writing CSS in JavaScript. Styled components does have Sass support as well.</p>
+<p>Consider <em>Sass</em> if you essentially <em>do not</em> want to lock yourself into a specialized workflow with a steeper learning curve.
+Consider <em>Styled Components</em> if you want to have significantly less chances of overriding styling as styles are not globally scoped.</p>
+<h2 id="material-ui-vs-styled-components">Material UI vs. Styled Components</h2>
+<p><em>Material UI</em> is a CCS-in-JS framework that provides ready-to-use components, themes and user interfaces.</p>
+<p><em>Styled Components</em> whilst similar to Material UI, gives you the ability to build custom CSS components.</p>
+<p>Consider <em>Material UI</em> if you want to significantly cut production time down by using a UI library with consistent designs and a vast community behind it.</p>
+<p>Consider <em>Styled Components</em> for a more hands on approach to creating custom UIs.</p>
+<h2 id="bootstrap-vs-bulma">Bootstrap vs. Bulma</h2>
+<p>Bootstrap is a framework that has been around for far longer and so has built up an extensive set of design choices and community.</p>
+<p><em>Bulma</em> can be seen as a smaller version of bootstrap with less complexities, providing beginners with comparable benefits to it's much larger -bootstrap- counterpart. </p>
+<p>Consider <em>Bootstrap</em> if you're looking to step up to a much larger design palette using a framework built on Sass. Keep in mind that bootstrap can <em>sometimes</em> be overly complex and encumbered leading to bulky apps/websites.</p>
+<p>Consider <em>Bulma</em> if you would much rather do without the complexities of bootstrap(i.e. javascript) whilst having some of the component creation taken care of by a tiny, non-intrusive framework.</p>
+<h2 id="bulma-vs-material-ui">Bulma  vs. Material UI</h2>
+<p><em>Bulma</em> is mobile-first CSS framework aimed at more simple-usage scenarios. It is pre-packaged a number of ready-to-use components.</p>
+<p><em>Material UI</em> Makes use of a pre-defined Material design system for use in React. Besides basic components, Material UI also comes with UI elements like sliders, drop downs, navigation bars, etc.</p>
+<p>Consider <em>Bulma</em> If you to simply build a usable website with less time and complications. </p>
+<p>Consider <em>Material UI</em> if you want a robust, well-documented design system to use in your React app.</p>
+<h2 id="bootstrap-vs-sass">Bootstrap vs. Sass</h2>
+<p><em>Bootstrap</em>, now built on Sass is a collection of pre designed UI components and best practices.</p>
+<p><em>Sass</em> is a scripting language that provides a clearer, concise approach to writing custom css.</p>
+<p>Consider <em>Bootstrap</em> if you don't want to build a custom design from scratch, or just simply learn a popular CSS framework.</p>
+<p>Consider <em>Sass</em> if you want to  write custom CSS with scripting benefits and tools such as nesting, mixins, and inheritance, whilst keeping your CSS fairly maintainable.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../best-python-books/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Best Python Books For Beginners" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Best Python Books For Beginners
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../devto-vs/" class="md-footer__link md-footer__link--next" aria-label="Next: DEV.to vs Medium vs Hashnode vs Hackernoon" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              DEV.to vs Medium vs Hashnode vs Hackernoon
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Produced by ritza.co - Marketing as Education.
+          </div>
+        
+        
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/ritzaco" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://ritza.co" target="_blank" rel="noopener" title="ritza.co" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M280.37 148.26 96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47 488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.61ac8e46.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.218b5f82.min.js"></script>
+      
+    
+  </body>
+</html>

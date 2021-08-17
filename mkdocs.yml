@@ -1,0 +1,23 @@
+site_name: Ritza Articles
+site_url: https://ritza.co/
+
+theme:
+  name: material
+  logo: assets/ritzalogo.png
+
+  palette:
+    - scheme: default
+      primary: white
+
+markdown_extensions:
+  - meta
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/ritzaco
+    - icon: fontawesome/solid/home
+      link: https://ritza.co 
+copyright: Produced by ritza.co - Marketing as Education.
+

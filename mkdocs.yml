@@ -4,6 +4,7 @@ site_url: https://ritza.co/
 theme:
   name: material
   logo: assets/ritzalogo.png
+  custom_dir: overrides
 
   palette:
     - scheme: default

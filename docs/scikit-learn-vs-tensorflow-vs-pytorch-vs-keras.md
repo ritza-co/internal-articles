@@ -39,11 +39,11 @@ Consider scikit-learn if you require a model for statistical purposes, predictio
 
 ## PyTorch vs. TensorFlow
 
-**PyTorch** is a deep learning framework with a pythonic and object oriented approach. PyTorch debugging is superior to TensorFlow's, with more choices.
+**PyTorch** is a deep learning framework with a pythonic and object oriented approach. PyTorch has more debugging and testing options than TensorFlow.
 
 **TensorFlow** is a low-level deep learning library that provides workflows to high-level APIs such as Keras - albeit with less computational power. TensorFlow is currently more widely used than PyTorch.
 
-Consider PyTorch for its many straightened debugging capabilities, if Python is central to your development.
+Consider PyTorch for its many debugging capabilities, if Python is central to your development.
 
 Consider TensorFlow if you want a library compatible with various coding languages such as C/C++, Java, JavaScript, Go, etc. TensorFlow also has extensive multi-platform support.
 

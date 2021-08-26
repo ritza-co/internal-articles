@@ -1,7 +1,9 @@
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+---
+hide:
+  - navigation
+---
 
 # Better Google Trends graphs using Python and seaborn
-[TOC]
 
 ## Overview
 In this article we'll show you how to generate good-looking graphs with Google Trends. We'll get our data using PyTrends, an unofficial Google Trends API. We'll visualize the data using seaborn, a Matplotlib-based library.

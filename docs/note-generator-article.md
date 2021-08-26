@@ -1,4 +1,10 @@
+---
+hide:
+  - navigation
+---
+
 # Note-generating metronome with Python
+
 Metronome's and random note generators are useful for many reasons, but separately, they are quite limited.
 In this article we'll use Python to combine these two functions to create a custom metronome that generates notes for your practice sessions or curiosity.
 
@@ -114,12 +120,15 @@ If you run the program now, you should hear an A middle tone being played on you
 One thing to keep in mind with Python, is that your code doesn't directly access your hardware, but does so through a lot of layers. So our metronome might not be fully accurate and will drift after some time. The usual approach to creating a metronome is to use Python's built-in `time.sleep()` method. However, since this method varies significantly depending on what other tasks your computer processor could be running at that moment, we'll use a slightly different approach so our metronome can have relatively more accuracy.    
 
 Now, let's build our metronome - You will need to download these two metronome sound files and place them in the same folder as your `notes.py` file: 
-![metronome.wav](./metronome.wav)
-![metronomeup.wav](./metronomeup.wav)
-- The only difference between the two is that one will be played when stressing the beginning of a new beat.
+
+* [metronome.wav](../assets/note-generator-article/metronome.wav)
+* [metronomeup.wav](../assets/note-generator-article/metronomeup.wav)
+
+The only difference between the two is that one will be played when stressing the beginning of a new beat.
 
 Add this code onto your Python file:
-```
+
+```python
 def metronome(bpm):
     print(float(bpm), "bpm")
     delay = 60/bpm

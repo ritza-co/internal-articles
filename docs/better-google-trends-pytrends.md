@@ -15,16 +15,16 @@ Let's get started.
 ## Set up
 We'll begin by installing the modules we need. Type the following into your terminal:
 
-`pip install pytrends` or `python -m pip install pytrends`
+`pip install pytrends`
 
-`pip install seaborn` or `python -m pip install seaborn`
+`pip install seaborn`
 
 Since seaborn is built on top of Matplotlib, it will install the other required dependencies for us (`numpy`, `scipy`, `pandas` and `matplotlib`). We won't get into using all of those, but it is good to be aware of them.
 
 Now create your Python file. Give it a name, like ‘graphs.py’, but don’t name it the same as any of the modules you’re importing (‘seaborn.py’ or ‘pytrends.py’) to avoid attribute and circular import errors.
 
 At the top of your Python file, import the modules with the following code:
-```
+```python
 import seaborn
 import matplotlib.pyplot as plt
 import pytrends
@@ -32,7 +32,7 @@ from pytrends.request import TrendReq
 ```
 
 Let's include a plan of action in our script. Add this basic outline as multi-line comments:
-```
+```python
 '''
 1. Connect to Google Trends using pytrends.
 '''
@@ -53,7 +53,7 @@ We’ll add our code to the relevant sections.
 
 ## Connecting to Google Trends
 Add the following code under the first comment to connect to Google Trends:
-```
+```python
 pytrends = TrendReq()
 ```
 Here we're establishing the connection to Google Trends in order to query Google and retrieve our data. 
@@ -62,7 +62,7 @@ Here we're establishing the connection to Google Trends in order to query Google
 PyTrends uses `pytrends.build_payload()` to fetch our data from Google. Before we can build our payload, we need to supply PyTrends with keywords for the data we want.
 
 We can supply just one or multiple keywords, so let's create a function to dynamically get these keywords from us. Write the following code:
-```
+```python
 kw_list = []
 
 while True:
@@ -77,7 +77,7 @@ Here, the `while` loop with a condition of `True` is automatically activated whe
 
 Now we can build our payload and query the data we need. In this example, we'll query interest over time data. Here's the code:
 
-```
+```python
 pytrends.build_payload(kw_list, geo='', timeframe='2016-01-01 2020-12-31')
 
 keyword_interest = pytrends.interest_over_time()
@@ -88,7 +88,7 @@ When building our payload, we use `geo=''` to specify that we don't want region-
 ## Processing the data
 Next we can clean up our data and make sure it's ready to be plotted. Pytrends conveniently returns our data in a pandas dataframe, essentially a table, which makes it relatively easy to manipulate and plot. Type in the following:
 
-```
+```python
 print(keyword_interest.head())
 del keyword_interest['isPartial']
 ```
@@ -100,7 +100,7 @@ Run the code to confirm. You can then add another `print(time_interest.head())` 
 ## Plotting the data
 Now that our data is ready, let's go ahead and use seaborn to visualize it. Write the following code in the last section:
 
-```
+```python
 seaborn.set_theme(style="darkgrid")
 ax = seaborn.lineplot(data=keyword_interest)
 

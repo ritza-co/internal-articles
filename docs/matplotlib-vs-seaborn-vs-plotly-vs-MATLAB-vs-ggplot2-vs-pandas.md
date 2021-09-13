@@ -21,6 +21,7 @@ Consider matplotlib if you want to create highly customized plots or are looking
 plotting tool behind seaborn.
 Consider seaborn if you want to write concise code and create plots (especially statistical 
 plots) with better-looking default styles in less time.
+![Matplotlib vs. seaborn](assets/matplotlib-vs-article/matplot-vs-seaborn.png)
 
 ## Matplotlib vs. plotly
 Matplotlib is an open-source plotting library for creating visualizations within Python that 
@@ -36,6 +37,7 @@ with similarities to MATLAB if you are switching from MATLAB.
 Consider plotly if you don't mind some closed-source packages or want to have your 
 interactive data visualizations displayed on the web. If you use other programming languages 
 besides Python, plotly's graphing library is more suitable.
+![Matplotlib vs. plotly](assets/matplotlib-vs-article/matplot-vs-plotly.png)
 
 ## MATLAB vs. Matplotlib
 MATLAB is a programming language dedicated to mathematical and technical computing through
@@ -50,6 +52,7 @@ Consider MATLAB if you are an engineer or scientist (not computer scientist) and
 to pay for a MATLAB license.
 Consider Matplotlib if you want an open-source library with versatility to reproduce graphs. 
 Matplotlib also has the added benefit of using and having more algorithms created for Python.
+![MATLAB vs. Matplotlib](assets/matplotlib-vs-article/matlab-vs-matplot.png)
 
 ## ggplot2 vs. Matplotlib
 ggplot2 is a visualization library for the R programming language that lets users intuitively 
@@ -61,6 +64,7 @@ Consider ggplot2 if you are using R and want a declarative or less verbose appro
 creating plots. 
 Consider matplotlib if you are relatively new to data visualization with Python or have more 
 experience with Python rather than R.
+![ggplot vs. Matplotlib](assets/matplotlib-vs-article/ggplot-vs-matplotlib.png)
 
 ## Matplotlib vs. pandas
 Matplotlib is a visualization library that combines other libraries such as numpy and pandas 
@@ -71,6 +75,7 @@ plotting functions that rely on matplotlib.
 Consider matplotlib on top of pandas if you want to have full control over your visualizations.
 Consider only pandas if you want to organize and rearrange your data to create 
 proof-of-concept visualizations without using other libraries explicitly.
+![Matplotlib vs. pandas](assets/matplotlib-vs-article/matplotlib-vs-pandas.png)
 
 ## plotly vs. seaborn
 plotly is half open-source analysis and visualization tool with support for web based, 3-D, 
@@ -84,6 +89,7 @@ Consider plotly if you use languages such as Python, R, MATLAB, Perl and Julia, 
 specifically want interactive or animated, web-based plots.
 Consider seaborn if you want to quickly create visually appealing graphs with matplotlib 
 functionality in the background.
+![plotly vs. seaborn](assets/matplotlib-vs-article/plotly-seaborn.png)
 
 ## ggplot2 vs. seaborn
 ggplot2 is a declarative plotting library for R that uses a layered approach to concisely 
@@ -96,7 +102,7 @@ than to describe the steps to create it. A similar approach for Python is also a
 the "plotnine" package.
 Consider seaborn if you use Python and want to create or have existing matplotlib visualizations. 
 Seaborn will let you utilize matplotlib without having to interact with matplotlib much.
-
+![ggplot vs. seaborn](assets/matplotlib-vs-article/ggplot-seaborn.png)
 
 ## pandas vs. seaborn
 pandas is a Python library that provides a concise way to manipulate data in tabular format 
@@ -108,3 +114,4 @@ Consider only pandas if you want to manipulate your data and quickly build visua
 with no in-depth control over the visualization itself.
 Consider seaborn with pandas if you want a full visualization package with more control and 
 customizability.
+![pandas vs. seaborn](assets/matplotlib-vs-article/pandas-seaborn.png)

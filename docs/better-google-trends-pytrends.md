@@ -6,7 +6,7 @@ hide:
 # Better Google Trends graphs using Python and seaborn
 
 ## Overview
-In this article we'll show you how to generate good-looking graphs with Google Trends. We'll get our data using PyTrends, an unofficial Google Trends API. We'll visualize the data using seaborn, a Matplotlib-based library.
+In this article we'll show you how to generate good-looking graphs with Google Trends. We'll get our data using [PyTrends](https://pypi.org/project/pytrends/), an unofficial Google Trends API. We'll visualize the data using [seaborn](http://seaborn.pydata.org), a Matplotlib-based library.
 
 Some experience with Python and data visualizations will be helpful when you tackle this tutorial, but not essential.
 
@@ -61,7 +61,7 @@ Here we're establishing the connection to Google Trends in order to query Google
 ## Getting the data
 PyTrends uses `pytrends.build_payload()` to fetch our data from Google. Before we can build our payload, we need to supply PyTrends with keywords for the data we want.
 
-We can supply just one or multiple keywords, so let's create a function to dynamically get these keywords from us. Write the following code:
+We can supply just one keyword or multiple keywords, so let's create a function to dynamically get these keywords for us. Write the following code:
 ```python
 kw_list = []
 
@@ -113,12 +113,12 @@ for i in range(len(kw_list)):
 plt.show()
 ```
 
-- Seaborn visualizations are appealing by default. However, here we set a different theme as it might suit the style of our current data more - This of course is personal preference and so, any or no theme at all is okay.    
-- Passing in our data as a parameter we use `seaborn.lineplot()` to plot the data in a way that suits our needs - We then save this plot into an `ax` variable.
-- From our `ax` variable we can access the legend and the line styles. We then use a loop (based on the number of keywords in our `kw_list`) to change every line style -from a dotted line to a straight line- on the plot and legend.
+- Seaborn visualizations are appealing by default. However, here we set a different theme as it might suit the style of our current data more - this of course is personal preference and so, any or no theme at all is okay.    
+- Passing in our data as a parameter, we use `seaborn.lineplot()` to plot the data in a way that suits our needs. We then save this plot into an `ax` variable.
+- From our `ax` variable we can access the legend and the line styles. We then use a loop (based on the number of keywords in our `kw_list`) to change every line style from a dotted line to a straight line on the plot and legend.
 - Finally, we use `plt.show()` to see our plot.
 
 If you run the code now, a graph should appear on your screen.
 
 ## Extra
-Say you get tired of pressing the Enter key after every keyword and you want to enter all of them in one line. How would you go about doing that? What if you want to separate the list using a comma? Or a 'vs.'? Or either? Try that out on your own and see if you can achieve it. 
+Say you get tired of pressing the "Enter" key after every keyword and you want to enter all of them in one line. How would you go about doing that? What if you want to separate the list using a comma? Or a 'vs.'? Or either? Try that out on your own and see if you can achieve it. 

@@ -3,7 +3,7 @@ hide:
   - navigation
 ---
 
-# DEV.to vs Medium vs Hashnode vs Hackernoon
+# Dev.to vs Medium vs Hashnode vs Hackernoon
 
 ![Medium as one of the first online publishing services has always been in the lead but you can see the new kids on the block are steadily climbing. Keep in mind that Medium caters to all topics where the others are mainly for software developers. *This data was sourced from https://trends.google.com/.*](https://i.ritzastatic.com/images/ritza-content/MediumVSdevGraph-t.png)
 
@@ -30,7 +30,7 @@ If you just want to know which to use and get on with it, you should probably us
 
 Before we dive into detailed comparisons, here’s a quick overview of each platform.
 
-### DEv.to
+### Dev.to
 - **Dev.to** is one of the largest online communities of software developers. It is a place where developers and aspiring developers meet to share their knowledge and stories. They don’t have paywalls or adverts, but instead make their revenue from sponsors, listings, and the DEV shop. 
 
     Their text editor uses Markdown formatting with built-in syntax highlighting which makes it easy to embed code snippets, tables and other media. They also have a public API that developers can use to automate their publishing workflow. 

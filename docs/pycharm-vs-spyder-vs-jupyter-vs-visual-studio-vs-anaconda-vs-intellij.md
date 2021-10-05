@@ -5,6 +5,8 @@ hide:
 
 # PyCharm vs Spyder vs Jupyter vs Visual Studio vs Anaconda vs IntelliJ 
 
+![](./assets/jupyter-vs/pycharm-vs-jupyter-vs-spyder-vs-anaconda.jpg)
+
 ## PyCharm vs Spyder
 
 PyCharm and Spyder are both cross-platform IDEs (Integrated Development Environments) featuring many helpful and intelligent features such as code completion, syntax highlighting and style analysis. However, Spyder is a lightweight IDE specifically designed for scientific Python development while PyCharm is more resource-intensive and much more powerful for programming.

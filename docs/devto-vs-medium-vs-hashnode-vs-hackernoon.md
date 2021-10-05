@@ -3,9 +3,10 @@ hide:
   - navigation
 ---
 
-# Dev.to vs Medium vs Hashnode vs Hackernoon
+# DEV vs Medium vs Hashnode vs Hackernoon
 
-![Medium as one of the first online publishing services has always been in the lead but you can see the new kids on the block are steadily climbing. Keep in mind that Medium caters to all topics where the others are mainly for software developers. *This data was sourced from https://trends.google.com/.*](https://i.ritzastatic.com/images/ritza-content/MediumVSdevGraph-t.png)
+![](/assets/dev-to-vs/dev.to-vs-medium.jpg)
+
 
 ## Introduction
 
@@ -17,25 +18,26 @@ If you are running your own blog already, it is still a good idea to take advant
 
 There is a plethora of blogging platforms to choose from, each with their own advantages and disadvantages. In this article, we aim to make the decision a little easier by comparing the top blogging platforms for developers.
 
-## Just Tell Me Which to Use
+## Just tell me which one to use
 
 If you just want to know which to use and get on with it, you should probably use:
 
-- **Dev.to** if you want to exchange knowledge and experience with the largest active developer community, whether you write professionally or not.
+- **DEV** if you want to exchange knowledge and experience with the largest active developer community, whether you write professionally or not.
 - **Hashnode** if you want to completely customise your blog page to represent your brand and link your own domain.
 - **Hackernoon** if you want to work with a professional team of editors and publish to a platform that only accepts high-quality content.
 - **Medium** if you want to write about general topics and monetise your work.
 
-## Quick Overview
+![Medium as one of the first online publishing services has always been in the lead but you can see the new kids on the block are steadily climbing. Keep in mind that Medium caters to all topics where the others are mainly for software developers. *This data was sourced from https://trends.google.com/.*](https://i.ritzastatic.com/images/ritza-content/MediumVSdevGraph-t.png)
+## Quick overview
 
 Before we dive into detailed comparisons, here’s a quick overview of each platform.
 
-### Dev.to
-- **Dev.to** is one of the largest online communities of software developers. It is a place where developers and aspiring developers meet to share their knowledge and stories. They don’t have paywalls or adverts, but instead make their revenue from sponsors, listings, and the DEV shop. 
+### DEV
+- **DEV** (dev.to) is one of the largest online communities of software developers. It is a place where developers and aspiring developers meet to share their knowledge and stories. They don’t have paywalls or adverts, but instead make their revenue from sponsors, listings, and the DEV shop. 
 
     Their text editor uses Markdown formatting with built-in syntax highlighting which makes it easy to embed code snippets, tables and other media. They also have a public API that developers can use to automate their publishing workflow. 
 
-![Above is an example of the Dev.to reading experience (left) and the text editor (right).](https://i.ritzastatic.com/images/ritza-content/dev-to-tiny.png)
+![Above is an example of the DEV reading experience (left) and the text editor (right).](https://i.ritzastatic.com/images/ritza-content/dev-to-tiny.png)
 
 ### Medium
 
@@ -67,24 +69,24 @@ Before we dive into detailed comparisons, here’s a quick overview of each plat
 
 ![Above is an example of the Hackernoon reading experience (left) and the text editor (right).](https://i.ritzastatic.com/images/ritza-content/Hackernoon-tiny.png)
 
-## Dev.to vs Medium
+## DEV.to vs Medium
 
-**Dev.to** is an online community of developers sharing their developer journey from complete beginners to experts through articles, blog posts and discussions while **Medium** is a publishing platform for all kinds of writing where short, opinionated posts seem to be prioritised over more lengthy technical articles.
+**DEV** is an online community of developers sharing their developer journey from complete beginners to experts through articles, blog posts and discussions while **Medium** is a publishing platform for all kinds of writing where short, opinionated posts seem to be prioritised over more lengthy technical articles.
 
-- Consider **Dev.to** if you are a developer of any caliber who wishes to connect with other developers whether through sharing knowledge, learning or taking part in discussions.
+- Consider **DEV** if you are a developer of any caliber who wishes to connect with other developers whether through sharing knowledge, learning or taking part in discussions.
 - Consider **Medium** if you want to write more creative or opinionated articles on various topics and want to monetise your work.
 
-## Dev.to vs Hashnode
-**Dev.to** and **Hashnode** are both blogging platforms that have large developer communities. However, **Dev.to** is an open-source blogging platform that you can use to build your own (although most people just sign up for an account and publish on the dev.to domain). **Hashnode** is a proprietary blogging platform that allows you to easily build your own blog page with custom CSS and link it to your own domain name. 
+## DEV.to vs Hashnode
+**DEV** and **Hashnode** are both blogging platforms that have large developer communities. However, **DEV** is an open-source blogging platform that you can use to build your own (although most people just sign up for an account and publish on the dev.to domain). **Hashnode** is a proprietary blogging platform that allows you to easily build your own blog page with custom CSS and link it to your own domain name. 
 
-- Consider **Dev.to** if you want to be part of an open community of developers and publish content on the fast-growing dev.to domain.
+- Consider **DEV** if you want to be part of an open community of developers and publish content on the fast-growing dev.to domain.
 - Consider **Hashnode** if you want to publish on your own domain while still being able to distribute your content to a developer-focussed community.
 
-## Dev.to vs Hackernoon
+## DEV.to vs Hackernoon
 
-**Dev.to** is an open community where developers can write about anything they wish: they can write technical articles, how-to guides and even start discussions. **Hackernoon** is a developers’ publication that migrated from Medium to their own platform. They don’t allow you to just post what you like: they are a publication so you submit your articles for review by their editors. Once approved, your article will be published to their reader base. 
+**DEV** is an open community where developers can write about anything they wish: they can write technical articles, how-to guides and even start discussions. **Hackernoon** is a developers’ publication that migrated from Medium to their own platform. They don’t allow you to just post what you like: they are a publication so you submit your articles for review by their editors. Once approved, your article will be published to their reader base. 
 
-- Consider **Dev.to** if you want an easy place to write and publish without constraints.
+- Consider **DEV** if you want an easy place to write and publish without constraints.
 - Consider **Hackernoon** if you are willing to submit your articles for approval and work on them with editors. The overall quality is higher on Hackernoon because of their approval process so you will likely get more traction if you get published.
 
 ## Hashnode vs Medium

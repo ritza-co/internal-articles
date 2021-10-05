@@ -5,7 +5,7 @@ hide:
 
 # DEV vs Medium vs Hashnode vs Hackernoon
 
-![](/assets/dev-to-vs/dev.to-vs-medium.jpg)
+![](./assets/dev-to-vs/dev.to-vs-medium.jpg)
 
 
 ## Introduction

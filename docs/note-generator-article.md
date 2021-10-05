@@ -27,7 +27,7 @@ pip install numpy
 - `simpleaudio` is the package we'll use to play our sounds, and `numpy` is the package we'll use to generate audible notes.
 
 Now let's import these packages onto our Python file by typing in the following lines at the top of our `notes.py` file:
-```
+```python
 import simpleaudio
 import numpy
 import random
@@ -39,7 +39,7 @@ import time
 Using a bottom up approach, let's start by creating our note dictionary.
 For this, we'll create a Python dictionary called `notes`. At every index in the dictionary is a list that contains a note and it's frequency. 
 Type the following in your Python file:
-```
+```python
 # Note frequencies
 notes = {
     1: ["A" ,0],
@@ -85,7 +85,7 @@ You can remove the `print(notes[i])` line if the correct notes and frequencies a
 ## Playing the notes
 Now, let's create the note playing function.
 For this we'll use `numpy` and `simpleaudio`. Type the following function into your Python file:
-```
+```python
 def play_note(note, octave=4):
     if octave >= 8:
         octave = 8
@@ -168,7 +168,7 @@ Let's break this code down.
 
 Now, let's create the function that works as the delay between every tick of the metronome.
 Copy this code onto your file:
-```
+```python
 def wait(delay):
     end_time = time.time() + delay
     while end_time > time.time():
@@ -212,7 +212,7 @@ You can use the shortcut ``ctrl+c`` on the terminal, or click on the red stop bu
 ## Putting it together
 Now with the metronome and note playing functions completed, let's combine them to complete this program.
 Add the following function to your file:
-```
+```python
 def generate_notes(sound = True):
     random_note = random.choice(list(notes.values()))
     print("\n\nFind: ",random_note[0])
@@ -225,13 +225,13 @@ def generate_notes(sound = True):
 
 As it is, the function we just created is not being called anywhere, so it isn't working yet. Let's go back to our metronome function and add the code to call this function.
 Add the following code underneath the `# Play metronome audio` section of your metronome function:
-```
+```python
 # Generate notes()
 if beat % 8 == 0 and count == 4:
     generate_notes()
 ```
 Your code should look something like this:
-```
+```python
         # Play metronome audio
         play_obj = wave_obj.play()
         play_obj

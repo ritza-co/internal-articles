@@ -5,6 +5,8 @@ hide:
 
 # Heroku vs Netfliy vs Vercel vs GitHub Pages vs Firebase vs Vercel
 
+![](./assets/heroku-vs/heroku-vs-do.jpg)
+
 ## Heroku vs Netlify
 Heroku is a PaaS provider that offers hosting solutions for backend applications. Most of the popular backend programming languages like Python, Java and Ruby can be deployed on Heroku. Netlify on the other hand provides hosting for static sites and serverless backend services for frontend applications. 
 

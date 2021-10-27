@@ -5,6 +5,8 @@ hide:
 
 # Kubernetes vs Docker vs OpenShift vs ECS vs Jenkins vs Terraform
 
+![](./assets/kubernetes-vs/kubernetes-vs-docker.jpg)
+
 To better understand the differences between these services, let's first look at the difference between **containerization** and **container orchestration**.
 
 In short, **containers** contain code and the resources needed to run the code, while **container orchestration** is the automation of the management tasks of many containers (clusters).

@@ -5,6 +5,8 @@ hide:
 
 # The opinionated guide to setting up a Sourcegraph server for advanced code search
 
+![](./assets/sourcegraph.jpg)
+
 If you've ever written code, you probably know that: 
 
 * 🔍 Searching through examples of code is useful for so many things.

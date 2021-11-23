@@ -5,6 +5,8 @@ hide:
 
 # OpenGrok vs Sourcegraph vs GitHub vs FishEye vs Source Insight vs Elasticsearch
 
+![](./assets/sourcegraph-vs-opengrok-vs-github-vs-fisheye-vs-source-insight-vs-elasticsearch.jpg)
+
 ## OpenGrok vs Sourcegraph
 
 OpenGrok and Sourcegraph are both open-source code search and navigation tools.

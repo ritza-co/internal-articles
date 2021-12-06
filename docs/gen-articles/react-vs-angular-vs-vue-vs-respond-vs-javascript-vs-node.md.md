@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # react vs. angular vs. vue vs. respond vs. javascript vs. node
 ## Angular vs. react
 

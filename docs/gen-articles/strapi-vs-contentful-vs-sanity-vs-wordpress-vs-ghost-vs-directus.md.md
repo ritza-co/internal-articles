@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # strapi vs. contentful vs. sanity vs. wordpress vs. ghost vs. directus
 
 ![](../assets/strapi-vs-contentful-vs-sanity/strapi-vs-contentful-vs-sanity-vs-wordpress-vs-ghost-vs-directus.png)

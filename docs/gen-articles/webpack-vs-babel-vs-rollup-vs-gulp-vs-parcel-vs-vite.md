@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # webpack vs. babel vs. rollup vs. gulp vs. parcel vs. vite
 
 ![](../assets/webpack-vs-babel-vs-rollup/webpack-vs-babel-vs-rollup-vs-gulp-vs-parcel-vs-vite.png)

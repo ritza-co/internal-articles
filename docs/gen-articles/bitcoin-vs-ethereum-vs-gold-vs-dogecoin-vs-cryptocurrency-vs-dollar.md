@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # bitcoin vs. ethereum vs. gold vs. dogecoin vs. cryptocurrency vs. dollar
 
 ![](../assets/bitcoin-vs-ethereum-vs-gold/bitcoin-vs-ethereum-vs-gold-vs-dogecoin-vs-cryptocurrency-vs-dollar.png)

@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # laravel vs. django vs. symfony vs. wordpress vs. react vs. node
 
 ![](../assets/laravel-vs-django-vs-symfony/laravel-vs-django-vs-symfony-vs-wordpress-vs-react-vs-node.png)

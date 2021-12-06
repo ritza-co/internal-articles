@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # flutter vs. react native vs. fibrillation vs. kotlin vs. swift vs. xamarin
 ## Flutter vs. react native
 ![](../assets/flutter-vs-react-native-vs-fibrillation/flutter-vs-react-native-vs-fibrillation-vs-kotlin-vs-swift-vs-xamarin.png)

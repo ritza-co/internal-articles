@@ -1,7 +1,7 @@
 # react vs. angular vs. vue vs. respond vs. javascript vs. node
 ## Angular vs. react
 
-![](assets/react-vs-angular-vs-vue/react-vs-angular-vs-vue-vs-respond-vs-javascript-vs-node.png)
+![](../assets/react-vs-angular-vs-vue/react-vs-angular-vs-vue-vs-respond-vs-javascript-vs-node.png)
 
 
 **Angular** is a framework for building web applications with a focus on data binding, dependency injection, and testing. Angular is a TypeScript-based framework that is open-source and maintained by Google.

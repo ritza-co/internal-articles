@@ -1,6 +1,6 @@
 # flutter vs. react native vs. fibrillation vs. kotlin vs. swift vs. xamarin
 ## Flutter vs. react native
-![](assets/flutter-vs-react-native-vs-fibrillation/flutter-vs-react-native-vs-fibrillation-vs-kotlin-vs-swift-vs-xamarin.png)
+![](../assets/flutter-vs-react-native-vs-fibrillation/flutter-vs-react-native-vs-fibrillation-vs-kotlin-vs-swift-vs-xamarin.png)
 
 **Flutter** is a mobile app SDK for building high-quality native apps on iOS and Android. It is a reactive framework that is based on Dart and is open-source.
 

@@ -1,6 +1,6 @@
 # freecodecamp vs. codecademy vs. bootcamp vs. udemy vs. teamtreehouse vs. coursera
 
-![](assets/freecodecamp-vs-codecademy-vs-bootcamp/freecodecamp-vs-codecademy-vs-bootcamp-vs-udemy-vs-teamtreehouse-vs-coursera.png)
+![](../assets/freecodecamp-vs-codecademy-vs-bootcamp/freecodecamp-vs-codecademy-vs-bootcamp-vs-udemy-vs-teamtreehouse-vs-coursera.png)
 
 ## Codecademy vs. freecodecamp
 

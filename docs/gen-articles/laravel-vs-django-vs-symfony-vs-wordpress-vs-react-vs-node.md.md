@@ -1,6 +1,6 @@
 # laravel vs. django vs. symfony vs. wordpress vs. react vs. node
 
-![](assets/laravel-vs-django-vs-symfony/laravel-vs-django-vs-symfony-vs-wordpress-vs-react-vs-node.png)
+![](../assets/laravel-vs-django-vs-symfony/laravel-vs-django-vs-symfony-vs-wordpress-vs-react-vs-node.png)
 ## Django vs. laravel
 
 **Django** is a free and open-source web framework written in Python. It follows the model-view-template (MVT) architectural pattern and is designed to be a high-level framework that can be used to create a variety of web applications.

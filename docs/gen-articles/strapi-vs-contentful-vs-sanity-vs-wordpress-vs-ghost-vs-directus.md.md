@@ -1,6 +1,6 @@
 # strapi vs. contentful vs. sanity vs. wordpress vs. ghost vs. directus
 
-![](assets/strapi-vs-contentful-vs-sanity/strapi-vs-contentful-vs-sanity-vs-wordpress-vs-ghost-vs-directus.png)
+![](../assets/strapi-vs-contentful-vs-sanity/strapi-vs-contentful-vs-sanity-vs-wordpress-vs-ghost-vs-directus.png)
 
 ## Contentful vs. strapi
 

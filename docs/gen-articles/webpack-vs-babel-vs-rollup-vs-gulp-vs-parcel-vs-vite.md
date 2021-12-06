@@ -1,6 +1,6 @@
 # webpack vs. babel vs. rollup vs. gulp vs. parcel vs. vite
 
-![](assets/webpack-vs-babel-vs-rollup/webpack-vs-babel-vs-rollup-vs-gulp-vs-parcel-vs-vite.png)
+![](../assets/webpack-vs-babel-vs-rollup/webpack-vs-babel-vs-rollup-vs-gulp-vs-parcel-vs-vite.png)
 
 ## Babel vs. webpack
  **Babel** is a JavaScript compiler that allows you to use new features of ECMAScript before they are implemented in browsers. 

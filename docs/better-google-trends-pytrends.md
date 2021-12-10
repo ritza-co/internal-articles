@@ -5,6 +5,8 @@ hide:
 
 # Better Google Trends graphs using Python and seaborn
 
+![](./assets/better-google-trends-pytrends/trends.png)
+
 ## Overview
 In this article we'll show you how to generate good-looking graphs with Google Trends. We'll get our data using [PyTrends](https://pypi.org/project/pytrends/), an unofficial Google Trends API. We'll visualize the data using [seaborn](http://seaborn.pydata.org), a Matplotlib-based library.
 

@@ -1,14 +1,19 @@
 ---
 hide:
   - navigation
+
+title: Scrape Google Trends using Python and seaborn
+
+description: A guide to building and visualizing a simple Google trends scraper using Python and seaborn.
 ---
 
-# Better Google Trends graphs using Python and seaborn
+# Scrape Google Trends using Python and seaborn
 
-![](./assets/better-google-trends-pytrends/trends.png)
+![](./assets/scrape-google-trends/trends.png)
 
 ## Overview
-In this article we'll show you how to generate good-looking graphs with Google Trends. We'll get our data using [PyTrends](https://pypi.org/project/pytrends/), an unofficial Google Trends API. We'll visualize the data using [seaborn](http://seaborn.pydata.org), a Matplotlib-based library.
+In this article we'll show you how to scrape and visualize Google trends data. We'll get our data using [pytrends](https://pypi.org/project/pytrends/),
+ an unofficial Google Trends API. We'll then visualize the data using [seaborn](http://seaborn.pydata.org), a Matplotlib-based library.
 
 Some experience with Python and data visualizations will be helpful when you tackle this tutorial, but not essential.
 
@@ -36,19 +41,19 @@ from pytrends.request import TrendReq
 Let's include a plan of action in our script. Add this basic outline as multi-line comments:
 ```python
 '''
-1. Connect to Google Trends using pytrends.
+1. Connect to Google Trends.
 '''
 
 '''
-2. Get the data we require.
+2. Scrape data.
 '''
 
 '''
-3. Process the data for plotting.
+3. Process and clean data.
 '''
 
 '''
-4. Plotting the data.
+4. Visualize data.
 '''
 ```
 We’ll add our code to the relevant sections.
@@ -60,8 +65,8 @@ pytrends = TrendReq()
 ```
 Here we're establishing the connection to Google Trends in order to query Google and retrieve our data. 
 
-## Getting the data
-PyTrends uses `pytrends.build_payload()` to fetch our data from Google. Before we can build our payload, we need to supply PyTrends with keywords for the data we want.
+## Data scraping
+PyTrends uses `pytrends.build_payload()` to scrape our data from Google. Before we can build our payload, we need to supply PyTrends with keywords for the data we want.
 
 We can supply just one keyword or multiple keywords, so let's create a function to dynamically get these keywords for us. Write the following code:
 ```python
@@ -87,8 +92,8 @@ keyword_interest = pytrends.interest_over_time()
 
 When building our payload, we use `geo=''` to specify that we don't want region-specific data, and specify `timeframe` to 5 years beginning in 2016. PyTrends's `interest_over_time()` is one of the methods we can use to get specific data, in this case the search activity for our keywords.
 
-## Processing the data
-Next we can clean up our data and make sure it's ready to be plotted. Pytrends conveniently returns our data in a pandas dataframe, essentially a table, which makes it relatively easy to manipulate and plot. Type in the following:
+## Data cleanup
+Next we can clean up our data and make sure it's ready to be visualized. Pytrends conveniently returns our data in a pandas dataframe, essentially a table, which makes it relatively easy to manipulate and plot. Type in the following:
 
 ```python
 print(keyword_interest.head())
@@ -99,7 +104,7 @@ First, we print the top part of our table using `.head()`, one of the many panda
 
 Run the code to confirm. You can then add another `print(time_interest.head())` statement to confirm that the extra column is gone.
 
-## Plotting the data
+## Visualization
 Now that our data is ready, let's go ahead and use seaborn to visualize it. Write the following code in the last section:
 
 ```python
@@ -121,6 +126,8 @@ plt.show()
 - Finally, we use `plt.show()` to see our plot.
 
 If you run the code now, a graph should appear on your screen.
+
+![](./assets/scrape-google-trends/scrape-google-trends-figure.png)
 
 ## Extra
 Say you get tired of pressing the "Enter" key after every keyword and you want to enter all of them in one line. How would you go about doing that? What if you want to separate the list using a comma? Or a 'vs.'? Or either? Try that out on your own and see if you can achieve it. 

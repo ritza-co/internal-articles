@@ -5,7 +5,7 @@ hide:
 
 # strapi vs. contentful vs. sanity vs. wordpress vs. ghost vs. directus
 
-![](../assets/strapi-vs-contentful-vs-sanity/strapi-vs-contentful-vs-sanity-vs-wordpress-vs-ghost-vs-directus.png)
+![](../assets/strapi-vs-contentful-vs-sanity/strapi-vs-graphic.png)
 
 ## Contentful vs. strapi
 
@@ -66,6 +66,7 @@ Consider Directus if you want a CMS that is easy to use and has a lot of feature
 
 Consider strapi if you want a CMS that is easy to use and has a lot of features.
 
+![](../assets/strapi-vs-contentful-vs-sanity/strapi-vs-contentful-vs-sanity-vs-wordpress-vs-ghost-vs-directus.png)
 
 ## Contentful vs. wordpress
 

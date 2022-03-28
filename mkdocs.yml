@@ -13,6 +13,8 @@ theme:
 markdown_extensions:
   - meta
   - pymdownx.highlight
+  - pymdownx.superfences 
+
 
 
 extra:

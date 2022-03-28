@@ -12,6 +12,10 @@ theme:
 
 markdown_extensions:
   - meta
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences 
+
 
 extra:
   generator: false

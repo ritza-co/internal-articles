@@ -89,9 +89,9 @@ Both Django and Rails require some other files and configuration to run these ap
 
 ## FastAPI vs Flask
 
-**FastAPI** is a web framework used for developing API’s in Python. FastAPI provides in built features that help save time when creating APIs, like automatic documentation, security, and authentication.
+**FastAPI** is a web framework used for developing API’s in Python. FastAPI provides in built features that help save time when creating APIs, like automatic documentation, security, and authentication.It is mainly used in the machine learning world to serve models more efficiently than Flask. FastAPI was inspired by Flask so it can be very familiar and easy to pick up to those who are familiar with Flask. It is, however, not as mature as Flask and thus does not have as good an ecosystem as Flask. FastAPI can be faster than Flask in many cases as it is async by default. 
 
-**Flask** is a simple web framework used for developing lightweight and customisable web applications in Python
+**Flask** is a simple web framework used for developing lightweight and customisable web applications in Python. Flask is a more mature library than FastAPI and as a result it has a good collection of plugins and libraries that can help you to create database wrappers, HTML5 form components, user authentication, and more. 
 
 
 Consider FastAPI if you are looking to create an API and would like some in-built features to make the experience more efficient.

@@ -13,7 +13,11 @@ Consider Django if you are creating a large project that requires a lot of the c
 
 Consider Flask if you are looking to create a small, unique web application that is highly extendable and customisable.
 
+### Hello World: Django vs Flask
+
 ![DjangoVsFlask-Hello-World](./assets/django-vs-flask-vs-react-vs-node-vs-fastapi-vs-rails/django-vs-flask-hello-world.png)
+
+Django requires some other files and configuration to run this app.
 
 
 ## Django vs React
@@ -24,10 +28,13 @@ Consider Flask if you are looking to create a small, unique web application that
 
 Consider Django if you are looking to quickly create large full-stack web applications with many features.
 
-Consider React if you are familiar with Javascript and are looking for a library to assist in creating UIs for web or mobile applications
+Consider React if you are familiar with Javascript and are looking for a library to assist in creating UIs for web or mobile applications.
+
+### Hello World: Django vs React
 
 ![DjangoVsReact-Hello-World](./assets/django-vs-flask-vs-react-vs-node-vs-fastapi-vs-rails/django-vs-react-hello-world.png)
 
+Django requires some other files and configuration to run this app.
 
 ## Django vs Node.js
 
@@ -39,7 +46,11 @@ Consider Django if you are looking to create a large web application that uses c
 
 Consider Node.js if you are looking for an efficient and asynchronous server environment.
 
+### Hello World: Django vs Node.js
+
 ![DjangoVsNode-Hello-World](./assets/django-vs-flask-vs-react-vs-node-vs-fastapi-vs-rails/django-vs-node-hello-world.png)
+
+Django requires some other files and configuration to run this app.
 
 
 ## Django vs FastAPI
@@ -52,7 +63,11 @@ Consider Django if you are creating a large project that requires a lot of the c
 
 Consider FastAPI if you are looking to create an API and would like some in-built features to make the experience more efficient.
 
+### Hello World: Django vs FastAPI
+
 ![DjangoVsFastAPI-Hello-World](./assets/django-vs-flask-vs-react-vs-node-vs-fastapi-vs-rails/django-vs-fastapi-hello-world.png)
+
+Django requires some other files and configuration to run this app.
 
 
 ## Django vs Rails
@@ -65,7 +80,11 @@ Consider Django if you want to save time on creating infrastructure so that you 
 
 Consider Rails if you are looking to create a large web application and do not want to waste time on building infrastructure, as Rails provides this through built-in features.
 
+### Hello World: Django vs Rails
+
 ![DjangoVsRails-Hello-World](./assets/django-vs-flask-vs-react-vs-node-vs-fastapi-vs-rails/django-vs-rails-hello-world.png)
+
+Both Django and Rails require some other files and configuration to run these apps.
 
 
 ## FastAPI vs Flask
@@ -79,6 +98,8 @@ Consider FastAPI if you are looking to create an API and would like some in-buil
 
 Consider Flask if you are looking to create a small, unique web application that is highly extendable and customisable.
 
+### Hello World: FastAPI vs Flask
+
 ![FastAPIVsFlask-Hello-World](./assets/django-vs-flask-vs-react-vs-node-vs-fastapi-vs-rails/fastapi-vs-flask-hello-world.png)
 
 
@@ -91,7 +112,9 @@ Consider Flask if you are looking to create a small, unique web application that
 
 Consider Flask if you are looking to create a small, unique web application that is highly extendable and customisable.
 
-Consider React if you are familiar with Javascript and are looking for a library to assist in creating UIs for web or mobile applications
+Consider React if you are familiar with Javascript and are looking for a library to assist in creating UIs for web or mobile applications.
+
+### Hello World: Flask vs React
 
 ![FlaskVsReact-Hello-World](./assets/django-vs-flask-vs-react-vs-node-vs-fastapi-vs-rails/flask-vs-react-hello-world.png)
 
@@ -104,7 +127,9 @@ Consider React if you are familiar with Javascript and are looking for a library
 
 Consider Node.js if you are looking for an efficient and asynchronous server environment.
 
-Consider React if you are familiar with Javascript and are looking for a library to assist in creating UIs for web or mobile applications
+Consider React if you are familiar with Javascript and are looking for a library to assist in creating UIs for web or mobile applications.
+
+### Hello World: Node.js vs React
 
 ![NodeVsReact-Hello-World](./assets/django-vs-flask-vs-react-vs-node-vs-fastapi-vs-rails/node-vs-react-hello-world.png)
 
@@ -120,5 +145,8 @@ Consider Rails if you are looking to create a large web application and do not w
 
 Consider React if you are familiar with Javascript and are looking for a library to assist in creating UIs for web or mobile applications.
 
+### Hello World: Rails vs React
+
 ![RailsVsReact-Hello-World](./assets/django-vs-flask-vs-react-vs-node-vs-fastapi-vs-rails/rails-vs-react-hello-world.png)
 
+Rails requires some other files and configuration to run this app.

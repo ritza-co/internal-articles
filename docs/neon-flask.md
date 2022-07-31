@@ -110,7 +110,7 @@ if __name__ == "__main__":
 
 ## Install dependencies and run the app
 
-- In your terminal, install the Python dependencies by running the following (you will need `psql` install locally first):
+- In your terminal, install the Python dependencies by running the following (you will need `psql` installed locally):
 
 ```
 pip3 install psycopg2-binary flask

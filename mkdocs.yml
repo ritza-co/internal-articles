@@ -5,6 +5,8 @@ theme:
   name: material
   logo: assets/ritzalogo.png
   custom_dir: overrides
+  icon:
+    repo: fontawesome/brands/git-alt
 
   palette:
     - scheme: default
@@ -19,10 +21,5 @@ markdown_extensions:
 
 extra:
   generator: false
-  social:
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/ritzaco
-    - icon: fontawesome/solid/home
-      link: https://ritza.co 
 copyright: Produced by ritza.co - Marketing as Education.
 

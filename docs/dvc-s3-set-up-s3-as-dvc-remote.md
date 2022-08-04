@@ -1,3 +1,9 @@
+---
+hide:
+  - navigation
+---
+
+
 # Set up an S3 DVC Remote
 
 Using S3 as [remote storage](https://dvc.org/doc/command-reference/remote) for

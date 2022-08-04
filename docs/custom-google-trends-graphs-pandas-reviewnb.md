@@ -1,18 +1,20 @@
----
+______________________________________________________________________
+
 hide:
-  - navigation
----
+
+- navigation
+
+______________________________________________________________________
 
 # Creating Custom Graphs with Google Trends and pandas
 
 ![](./assets/custom-google-trends-graphs-pandas-reviewnb/reviewnb-pandas.jpg)
 
-
 In this article you will learn how to:
 
-* Get data from Google Trends automatically using Python [Pytrends](https://pypi.org/project/pytrends/) (an unofficial Google Trends library)
-* Visualise this data in Jupyter notebook using Matplotlib and pandas.
-* Source control your notebook with nice diffs using GitHub and ReviewNB.
+- Get data from Google Trends automatically using Python [Pytrends](https://pypi.org/project/pytrends/) (an unofficial Google Trends library)
+- Visualise this data in Jupyter notebook using Matplotlib and pandas.
+- Source control your notebook with nice diffs using GitHub and ReviewNB.
 
 This article assumes you have some prior experience using Python and GitHub.
 
@@ -65,10 +67,9 @@ del time_interest['isPartial']
 
 The `interest_over_time()` method returns data as a pandas dataframe. We can delete the `isPartial` (boolean) column from our dataframe, as we limited the time frame so we know that all our data should be complete. You can run `time_interest.head()` to see a summary of our data.
 
-[Add screenshot]
+\[Add screenshot\]
 
 You can plot this data using `time_interest.plot()`, which returns a graph similar to what you see on the Google Trends website. But we want to customise our visualisation, which we can do as follows.
-
 
 ```python
 time_interest = time_interest.groupby(pd.Grouper(freq='Y')).sum()
@@ -190,10 +191,6 @@ Finally, we can resolve the conversation and merge our WIP branch to main.
 
 We created some basic visualisations with Google Trends data and Pytrends, but there's a lot more you could do. If you're stuck for ideas, maybe try
 
-* Automating the report generation - emailing yourself trends data on a weekly or monthly basis.
-* Trying out different kinds of visualisation - we used a Pie Chart because most people are familiar with them but they are often a bad choice.
-
-
-
-
+- Automating the report generation - emailing yourself trends data on a weekly or monthly basis.
+- Trying out different kinds of visualisation - we used a Pie Chart because most people are familiar with them but they are often a bad choice.
 

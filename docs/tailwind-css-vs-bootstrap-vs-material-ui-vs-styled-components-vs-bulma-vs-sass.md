@@ -4,6 +4,9 @@ hide:
 ---
 
 # Tailwind CSS vs. Bootstrap vs. Material UI vs. Styled Components vs. Bulma vs. SASS
+
+![cover](assets/tailwind-css-vs-bootstrap-vs-material-ui-vs-styled-components-vs-bulma-vs-sass/css-frameworks-cover.png)
+
 Let's take a look at some CSS framework options and the major differences between them to help you decide on one that works for you.
 
 ## Bootstrap vs. Tailwind CSS

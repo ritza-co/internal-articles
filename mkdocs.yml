@@ -17,7 +17,8 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences 
 
-
+plugins:
+  - social
 
 extra:
   generator: false

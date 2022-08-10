@@ -4,6 +4,9 @@ hide:
 ---
 
 # Matplotlib vs. seaborn vs. Plotly vs. MATLAB vs. ggplot2 vs. pandas
+
+![cover](assets/matplotlib-vs-article/matplotlib-vs-cover.png)
+
 Representing data visually has become essential to understanding and interpreting information, and numerous tools and packages have emerged to meet this need. Let's look at the differences and use cases for the most common visualization tools.
 
 ## Matplotlib vs. seaborn

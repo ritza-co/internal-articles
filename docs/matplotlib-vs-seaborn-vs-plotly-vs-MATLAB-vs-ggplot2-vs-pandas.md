@@ -1,7 +1,7 @@
 ---
 title: Matplotlib vs. seaborn vs. Plotly vs. MATLAB vs. ggplot2 vs. pandas
 description: Matplotlib, seaborn, Plotly, MATLAB, ggplot2 and pandas are data visualisation tools. Seaborn is the easiest if you're using Python and want good defaults.
-image: assets/matplotlib-vs-article/matplotlib-vs-cover.png
+image: ./assets/matplotlib-vs-article/matplotlib-vs-cover.png
 hide:
   - navigation
 ---

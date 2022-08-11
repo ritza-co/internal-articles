@@ -9,7 +9,7 @@ Adding a survey form to a website allows you to get feedback from users, custome
 
 In this tutorial, we'll learn how to create a React survey app using [Next.js](https://nextjs.org/) and [Sanity](https://www.sanity.io/). Next.js will be used to create the front end survey form and send the survey responses to Sanity. Sanity, which is a CMS (content management system) platform, will store the survey submissions and we'll be able to view the submissions in Sanity as well. This tutorial assumes that you know the basics of React. It doesn't matter if you haven't used Next.js or Sanity before.
 
-You can find the code for the final React survey app in [our GitHub repository](https://github.com/MattDClarke/React-survey-app_Next.js-and-Sanity).
+You can find the code for the final React survey app in [our GitHub repository](https://github.com/ritza-co/React-survey-app_Next.js-and-Sanity).
 
 ![Survey app - front end form and Sanity Studio CMS](assets/create-survey-app-react/intro-image.png)
 
@@ -17,17 +17,17 @@ You can find the code for the final React survey app in [our GitHub repository](
 
 We'll use [Next.js](https://nextjs.org/), which is popular React framework that has many useful built-in features for building production-ready websites. The feature that's important for our survey app is the [API routes](https://nextjs.org/docs/api-routes/introduction) that provide back end functionality. We'll create an API route that will use a [serverless function](https://vercel.com/docs/concepts/functions/serverless-functions) to send survey data to our Sanity CMS.
 
-Our serverless function will run on the backend in Node. This will allow us to securely use the Sanity access token, which should be kept secret, that we'll need to send API requests to Sanity.
+Our serverless function will run on the backend in Node.js. This will allow us to securely use the Sanity access token, which should be kept secret, that we'll need to send API requests to Sanity.
 
 ## Why use Sanity?
 
 [Sanity](https://www.sanity.io/) is a CMS platform for structured content. The structure is provided by a schema that you create to describe your data content. [Sanity Studio](https://www.sanity.io/studio) creates a UI from the schema that will allow you to easily create content. Sanity Studio is an open-source, easy to use, and highly customizable CMS built with React that's used to manage content on the Sanity platform.
 
-We won't use Sanity Studio to create content, we'll use it to view survey submissions. Sanity studio is a highly customizable React app, we'll modify it to have a custom preview of our survey responses. The Sanity Studio UI updates in real-time without needing to refresh the browser so you'll be able to see survey results as they come in.
+We won't use Sanity Studio to create content, we'll use it to view survey submissions. Sanity Studio is a highly customizable React app, we'll modify it to have a custom preview of our survey responses. The Sanity Studio UI updates in real-time without needing to refresh the browser so you'll be able to see survey results as they come in.
 
 ## Getting started - cloning the starter repository
 
-We'll start this project by cloning the following [starter GitHub repository](https://github.com/MattDClarke/React-survey-app_Next.js-and-Sanity_Tutorial). This repository consists of two folders: `web` and `studio`. The `web` folder is for our Next.js app. We'll deploy it to [Vercel](https://vercel.com/), which is the company that created Next JS. The `studio` folder is for our Sanity Studio CMS code. We'll deploy it to Sanity.
+We'll start this project by cloning the following [starter GitHub repository](https://github.com/ritza-co/React-survey-app_Next.js-and-Sanity_Tutorial). This repository consists of two folders: `web` and `studio`. The `web` folder is for our Next.js app. We'll deploy it to [Vercel](https://vercel.com/), which is the company that created Next.js. The `studio` folder is for our Sanity Studio CMS code. We'll deploy it to Sanity.
 
 ![Survey app overview diagram](assets/create-survey-app-react/app-overview.png)
 
@@ -84,7 +84,7 @@ Formik is especially useful if you have a complex form such as a multi-step form
 
 In the `SurveyForm` component, import the following:
 
-```react
+```javascript
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { JOB_TYPES } from '../constants';
 ```
@@ -139,7 +139,7 @@ Now let's add the rest of the form fields, there will be six in total.
 
 Import the following from `constants.js`:
 
-```react
+```javascript
 import { JOB_TYPES, CODING_EXPERIENCE, WORKSHOP_INTEREST } from '../constants';
 ```
 
@@ -237,7 +237,7 @@ You can change the questions on the form to suit your own needs. Now let's valid
 
 ## Form input validation
 
-We'll first create the Yup validation schema for our form fields. Create a `helpers` folder in the root directory and then create a `validationSchema.js` file inside of it. Add the following code for validating our first form field, `jobType`:
+We'll first create the Yup validation schema for our form fields. Create a `helpers` folder in the web directory and then create a `validationSchema.js` file inside of it. Add the following code for validating our first form field, `jobType`:
 
 ```javascript
 import * as yup from 'yup';
@@ -255,9 +255,9 @@ export const validationSchema = yup.object({
 });
 ```
 
-We use Yup to define a validation schema object. For each field, we use yup methods to parse and test the field values. If any of the fields fail validation, an error will be thrown that'll contain information about the validation error. This validation schema will be used by Formik for validation. The keys should match the `name` properties of the form `Field` components. The `string()` method is used to define a string value. It can coerce an input to a string by calling the `toString` method if the value exists. The `strict()` method sets `strict` to `true`. This prevents coercion, so a number won't be coerced into a string for example. The `required()` method means that the field value can't be `null` or `undefined`. The `test()` method allows us to create a custom validation function. If the value is valid, the function must return `true`. If the value is not valid, the function must return `false` or a `ValidationError`. You can read more about all of the available methods in the [`Yup GitHub repository`](https://github.com/jquense/yup#schematestname-string-message-string--function--any-test-function-schema).
+We use Yup to define a validation schema object. For each field, we use Yup methods to parse and test the field values. If any of the fields fail validation, an error will be thrown that'll contain information about the validation error. This validation schema will be used by Formik for validation. The keys should match the `name` properties of the form `Field` components. The `string()` method is used to define a string value. It can coerce an input to a string by calling the `toString` method if the value exists. The `strict()` method sets `strict` to `true`. This prevents coercion, so a number won't be coerced into a string for example. The `required()` method means that the field value can't be `null` or `undefined`. The `test()` method allows us to create a custom validation function. If the value is valid, the function must return `true`. If the value is not valid, the function must return `false` or a `ValidationError`. You can read more about all of the available methods in the [`Yup GitHub repository`](https://github.com/jquense/yup#schematestname-string-message-string--function--any-test-function-schema).
 
-Now add the rest of the keys for our `validationSchema` yup object below the `jobType` key:
+Now add the rest of the keys for our `validationSchema` Yup object below the `jobType` key:
 
 ```javascript
   yearsProgramming: yup
@@ -319,11 +319,9 @@ In the `Formik` component, add the following property below the `initialValues` 
 validationSchema={validationSchema}
 ```
 
-​
-
 The Formik [`validationSchema`](https://formik.org/docs/guides/validation#validationschema) property is a special configuration property for Yup. It transforms Yup validation error messages into an object that has keys that should match, if we named them correctly, the form field `values` / `initialValues`. If there's a validation error, the error message will be displayed in the `ErrorMessage` component that has a `name` property that matches the error object key.
 
-Now if you try submit the form without filling in a field or if you add an invalid value, you'll get an error message, as defined in `validationSchema.js`:
+Now if you try to submit the form without filling in a field or if you add an invalid value, you'll get an error message, as defined in `validationSchema.js`:
 
 ![Survey app form validation](assets/create-survey-app-react/front-end-form-validation.png)
 
@@ -339,7 +337,7 @@ Import the Sanity Client:
 import { sanityClient } from '../../utils/sanityClient';
 ```
 
-The `sanityClient.js` is part of the starter repo. It uses the [`next-sanity`](https://github.com/sanity-io/next-sanity) library which is a toolkit that will allow us to easily connect with Sanity and add survey submissions as new documents in Sanity Studio. It uses the `createClient` method to connect with Sanity. We'll add the `projectId`, `dataset`, and `token` as environmental variables once we've created a Sanity project later in the tutorial. The `useCdn` property is set to false, you'd set this to true if you wanted to fetch content from Sanity's cache delivery network. You'll be able to see what the latest `apiVersion` is in your Sanity Studio later. You can add the current date (`YY-MM-DD`) to get the newest version of the query API.
+The `sanityClient.js` is part of the starter repo. It uses the [`next-sanity`](https://github.com/sanity-io/next-sanity) library which is a toolkit that will allow us to easily connect with Sanity and add survey submissions as new documents in Sanity Studio. It uses the `createClient` method to connect with Sanity. We'll add the `projectId`, `dataset`, and `token` as environmental variables once we've created a Sanity project later in the tutorial. The `useCdn` property is set to false, you'd set this to true if you wanted to fetch content from Sanity's content delivery network. You'll be able to see what the latest `apiVersion` is in your Sanity Studio later. You can add the current date (`YY-MM-DD`) to get the newest version of the query API.
 
 In the `createResponse` request function, add the following code above the `POST` request `return`:
 
@@ -373,7 +371,7 @@ We'll get the form field values from the `req.body`. We then use the `sanityClie
 
 ## Adding validation to the Next.js API endpoint
 
-When you validate a form, you should validate the input on the client as well as on the server. Client-side validation can be bypassed easily, for example by disabling JavaScript or using [curl](https://en.wikipedia.org/wiki/CURL). Client-side validation is used so that the user can get feedback, such as an error message, quickly if there was a validation error. We're going to use the same Yup `validationSchema` that we used to validate our form client-side. Yup allows us to easily use the same validation for our front end and back end code.
+When you validate a form, you should validate the input on the client as well as on the server. Client-side validation can be bypassed easily, for example by disabling JavaScript or using [curl](https://en.wikipedia.org/wiki/CURL). Client-side validation is used so that the user can get feedback, such as an error message, quickly if there was a validation error. We're going to use the same Yup `validationSchema` that we used to validate our form client-side. Yup allows us to easily use the same validation for our frontend and backend code.
 
 First let's create a function that we'll use to check if our request data is valid. In the `utils` folder, create a file named `isReqValid.js` and add the following code:
 
@@ -388,7 +386,7 @@ export async function isReqValid(schema, body) {
 }
 ```
 
-This function will take in a Yup schema and the request `body` containing our form data. It will try validate the schema using the Yup `validate` method. If there are no validation errors, this `async` function will return `true`. If there are validation errors, Yup will throw an error and the function will return `false`.
+This function will take in a Yup schema and the request `body` containing our form data. It will try to validate the schema using the Yup `validate` method. If there are no validation errors, this `async` function will return `true`. If there are validation errors, Yup will throw an error and the function will return `false`.
 
 Now go back to the `createResponse.js` API route and import the following:
 
@@ -409,9 +407,9 @@ Then add the following above the `req.body` destructuring:
     }
 ```
 
-Our API endpoint will not make a request to Sanity if there's a validation error. Now that we've set up the backend API route, let's set up the front end `fetch` requests that we'll make to pass our form data to our API route.
+Our API endpoint will not make a request to Sanity if there's a validation error. Now that we've set up the backend API route, let's set up the frontend `fetch` requests that we'll make to pass our form data to our API route.
 
-## Sending data to the API endpoint from the front end
+## Sending data to the API endpoint from the frontend
 
 In the starter repo, there's an `apiClient.js` file in the `utils` folder. This contains a `fetch` API wrapper function that we'll use to make HTTP requests to our API endpoint. The [`fetch` API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) is [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) based. This wrapper makes modifying `fetch` requests and handling errors easier. Handling errors with the `fetch` API is a bit tricky because it will only reject a promise if the actual request failed, for example due to a network error. It won't reject a promise if the response returned an error code and message. You need to check the `ok` property of the `Response` object and explicitly reject the promise if the `ok` property is false. The `apiClient` wrapper deals with this.
 
@@ -419,14 +417,14 @@ This wrapper function was copied from the following Kent C. Dodd's article: [Rep
 
 In `SurveyForm.js` import the following:
 
-```react
+```javascript
 import { useState } from 'react';
 import { client } from '../utils/apiClient';
 ```
 
 We're going to use local React state for some form state. Add the following state variables and state variable setters:
 
-```react
+```javascript
   const [hasSubmitCompleted, setHasSubmitCompleted] = useState(false);
   const [responseMessage, setResponseMessage] = useState(false);
 ```
@@ -460,7 +458,7 @@ We obtain the field `values` as well as the `resetForm` method and `setSubmittin
 
 We use the  `fetch` API wrapper function `client` to make the request to our API endpoint. We pass in the API URL and field values as arguments. If the request is successful, we set `hasSubmitCompleted` to `true`, set a success message for the user, and reset the form values.
 
-If there the request is unsuccessful, we set `isSubmitting` to `false`, `hasSubmitCompleted` to `true` and set an error message for the user.
+If the request is unsuccessful, we set `isSubmitting` to `false`, `hasSubmitCompleted` to `true` and set an error message for the user.
 
 To display the `responseMessage` to the user, we'll use some `if` statements to determine what the `SurveyForm` component should render based on the form's `isSubmitting` and `hasSubmitCompleted` state.
 
@@ -508,7 +506,7 @@ npm install -g @sanity/cli
 
 We'll use the Sanity CLI to create a new project.
 
-Then change the current directory to the studio folder and install the dependencies for Sanity Studio:
+Then change the current directory to the `studio` folder and install the dependencies for Sanity Studio:
 
 ```bash
 cd studio
@@ -517,7 +515,7 @@ yarn install
 
 Now we'll set up a new project:
 
-```javascript
+```bash
 sanity init
 ```
 
@@ -529,7 +527,7 @@ You'll get a message in your terminal that says:
 The current folder contains a configured Sanity studio. Would you like to reconfigure it? (Y/n)
 ```
 
-Type `y` and press enter as we're going to reconfigure the existing Sanity Studio boiler plate code from the starter template.
+Type `y` and press enter as we're going to reconfigure the existing Sanity Studio boilerplate code from the starter template.
 
 You'll get a message in your terminal to log in or create a new account. Choose one of the Login types presented:
 
@@ -562,8 +560,8 @@ Type `n` and hit enter. You'll then get a message to name your dataset. Give it 
 
 ```bash
  Choose dataset visibility – this can be changed later (Use arrow keys)
-> Public (world readable) 
-  Private (authenticated requests only) 
+  Public (world readable) 
+> Private (authenticated requests only) 
 ```
 
 Select `Private`. We want a private dataset as we don't want anyone to be able to query the survey results.
@@ -574,7 +572,7 @@ Now let's run our Sanity Studio, which is a React app:
 sanity start
 ```
 
-A browser tab will open and you'll be asked sign in to Sanity:
+A browser tab will open and you'll be asked to sign in to Sanity:
 
 ![Sanity login menu](assets/create-survey-app-react/sanity-login.png)
 
@@ -678,7 +676,7 @@ You'll notice that the list view for our React survey responses in the middle co
 
 In the `studio/schemas/surveyResponse.js` file, import React at the top:
 
-```react
+```javascript
 import React from 'react';
 ```
 
@@ -737,7 +735,7 @@ Our survey app is done! Before we deploy our app, let's learn how to query data 
 
 ## Deleting Sanity data in bulk
 
-The contains a script to delete all of the survey data in the Sanity data store. To use it run:
+The `studio` folder contains a script to delete all of the survey data in the Sanity data store. To use it run:
 
 ```bash
 sanity exec deleteDocsByFilter.js --with-user-token

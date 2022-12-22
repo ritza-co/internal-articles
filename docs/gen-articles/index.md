@@ -15,6 +15,6 @@ These are some articles we created mainly by automation. Specifically, we use
 - [https://ritza.co/articles/gen-articles/freecodecamp-vs-codecademy-vs-bootcamp-vs-udemy-vs-teamtreehouse-vs-coursera.md/](https://ritza.co/articles/gen-articles/freecodecamp-vs-codecademy-vs-bootcamp-vs-udemy-vs-teamtreehouse-vs-coursera.md/)
 - [https://ritza.co/articles/gen-articles/flutter-vs-react%20native-vs-fibrillation-vs-kotlin-vs-swift-vs-xamarin.md/](https://ritza.co/articles/gen-articles/flutter-vs-react%20native-vs-fibrillation-vs-kotlin-vs-swift-vs-xamarin.md/)
 - [https://ritza.co/articles/gen-articles/bitcoin-vs-ethereum-vs-gold-vs-dogecoin-vs-cryptocurrency-vs-dollar/](https://ritza.co/articles/gen-articles/bitcoin-vs-ethereum-vs-gold-vs-dogecoin-vs-cryptocurrency-vs-dollar/)
-
-
+- [https://ritza.co/articles/gen-articles/pipenv-vs-virtualenv-vs-poetry-vs-pyenv-vs-pip/](https://ritza.co/articles/gen-articles/pipenv-vs-virtualenv-vs-poetry-vs-pyenv-vs-pip/)
+- [https://ritza.co/articles/gen-articles/github-vs-gitlab-vs-bitbucket-vs-git/](https://ritza.co/articles/gen-articles/github-vs-gitlab-vs-bitbucket-vs-git/)
 

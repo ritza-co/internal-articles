@@ -9,26 +9,26 @@ hide:
 
 This tutorial will show you how to:
 
-* Import data from a CSV file into SQLite
-* Set up a new Metabase instance on an Ubuntu VPS using Docker and map a volume to your SQLite file (outside Docker)
-* Use Nginx as a reverse proxy with a custom domain to access Metabase on a domain like metabase.example.com
-* Write some custom Metabase queries to visualise the data and build a dashboard
-* Make the dashboard public
+* Import data from a CSV file into SQLite.
+* Set up a new Metabase instance on an Ubuntu VPS using Docker and map a volume to your SQLite file (outside Docker).
+* Use Nginx as a reverse proxy with a custom domain to access Metabase on a domain like metabase.example.com.
+* Write some custom Metabase queries to visualise the data and build a dashboard.
+* Make the dashboard public.
 
 The final system will look like this:
 
-![](https://drafts.cc.ritza.co/uploads/upload_a916f60126aa7a8a6d32f5061e3d445c.png)
+![System setup](assets/metabase-visualisations/final-system.png)
 
 And an example dashboard that you can create with Metabase is [this one on electricity generation metrics](https://metabase.dwyer.co.za/public/dashboard/8a1e3f60-e53f-44c4-b045-cdcb35254ecb).
 
-![](https://drafts.cc.ritza.co/uploads/upload_5ad56b33fbd4dce9e331bc85f27841bc.png)
+![Example dashboard](assets/metabase-visualisations/example-dashboard.png)
 
 ## What you need
 
-* A VPS running Ubuntu Server or your favourite Linux distro
-* A CSV dataset that you want to visualise. For the examples we'll be using [this one](https://github.com/sixhobbits/eskom_scraper/blob/main/ESK2745.csv) that contains five years of data relating to Eskom, South Africa's Electricity provider
-* A domain name, and the ability to configure DNS and add a custom A record to point a subdomain like `metabase.example.com` to the IP address of your VPS
-* Some experience using SSH and command line tools to install and configure software
+* A VPS running Ubuntu Server or your favourite Linux distro.
+* A CSV dataset that you want to visualise. For the examples we'll be using [this one](https://github.com/sixhobbits/eskom_scraper/blob/main/ESK2745.csv) that contains five years of data relating to Eskom, South Africa's Electricity provider.
+* A domain name, and the ability to configure DNS and add a custom A record to point a subdomain like `metabase.example.com` to the IP address of your VPS.
+* Some experience using SSH and command line tools to install and configure software.
 
 ## Importing the CSV data into SQLite
 
@@ -36,22 +36,22 @@ And an example dashboard that you can create with Metabase is [this one on elect
 
 First, make sure you have SQLite installed by running the following.
 
-```
+```bash
 sudo apt update
 sudo apt install sqlite3
 ```
 
 Now we'll create a subdirectory for our metabase data sources and download our CSV file.
 
-```
+```bash
 mkdir metabase-data
 cd metabase-data
-wget https://github.com/sixhobbits/eskom_scraper/blob/main/ESK2745.csv
+wget https://raw.githubusercontent.com/sixhobbits/eskom_scraper/main/ESK2745.csv
 ```
 
 Then we create a new SQLite database. You can use any extension you want, but `.db` or `.sqlite` are conventional.
 
-```
+```bash
 sqlite3 eskom.sqlite
 ```
 
@@ -67,7 +67,7 @@ Let's go into `.csv` mode and import the CSV data. Once it's done (you'll see so
 
 Now type `ls` to confirm that the new database was created as expected. You should see `eskom.sqlite` (or whatever you called your database) in the output.
 
-```
+```bash
 ls
 ```
 
@@ -84,7 +84,7 @@ For Ubuntu 22.04, follow the instructions [available here](https://docs.docker.c
 
 Once Docker is installed, you can run a Metabase container with the following command. This assumes that you created `metabase-data` in your home directory. If you created it somewhere else, change the first part of the volume mapping (`-v ~/metabase-data`) to point to your metabase-data directory.
 
-```
+```bash
 sudo docker run -d -p 3000:3000 \
     -v ~/metabase-data:/metabase-data \
     -e "MB_DB_FILE=/metabase-data/metabase.db" \
@@ -96,15 +96,15 @@ This runs Metabase on port 3000. We map our host `metabase-data` directory to a 
 For production use-cases, you probably want to use Postgres instead as Metabase's database, but that's a bit more tricky to set up and SQLite works well enough.
 
 
-### Nginx configuration
+## Nginx configuration
 
-Now that Docker is running the background, we want to set up an Nginx reverse proxy to allow traffic from the outside world to pass through our domain and pass it on to Metabase.
+Now that Docker is running in the background, we want to set up an Nginx reverse proxy to allow traffic from the outside world to pass through our domain and pass it on to Metabase.
 
-You should already have bought a domain from a provide such as Namecheap and configured it (or a subdomain of it) with an A record to point at the IP address of your VPS.
+You should already have bought a domain from a provider such as Namecheap and configured it (or a subdomain of it) with an A record to point at the IP address of your VPS.
 
 Now install Nginx with the following command.
 
-```
+```bash
 sudo apt install nginx
 ```
 
@@ -112,7 +112,7 @@ And create a configuration file in /etc/nginx/sites-available. If your DNS A rec
 
 Create the file (or use vim or emacs or whatever text editor you like the most):
 
-```
+```bash
 sudo nano /etc/nginx/sites-available/metabase.example.com.conf
 ```
 
@@ -136,16 +136,16 @@ server {
 
 To activate the site, you need to put a symlink in `sites-enabled`. You can do this with the following command, again substituting the filename you used before.
 
-```
+```bash
 sudo ln -s /etc/nginx/sites-available/metabase.example.com.conf /etc/nginx/sites-enabled/
 ```
 
 ## Install certbot and get a certificate
 
-To serve your dashbaord over HTTPS instead of HTTP, get a free SSL certificate from Let's Encrypt. On Ubuntu 22.04, you can do this using `certbot`, which you can install with:
+To serve your dashboard over HTTPS instead of HTTP, get a free SSL certificate from Let's Encrypt. On Ubuntu 22.04, you can do this using `certbot`, which you can install with:
 
 
-```
+```bash
 sudo snap install --classic certbot
 ```
 
@@ -153,16 +153,16 @@ On other platforms, you can get exact instructions for install `certbot` from [c
 
 Once certbot is installed, run:
 
-```
+```bash
 sudo certbot --nginx
 ```
 
-And choose your domain from the list. Certbot will change the Nginx configuratin files you wrote in the previous step to work with HTTPS and the newly generated certificates. If everything works as expected, you should see a message similar to the following.
+And choose your domain from the list. Certbot will change the Nginx configuration files you wrote in the previous step to work with HTTPS and the newly generated certificates. If everything works as expected, you should see a message similar to the following.
 
 ```
 Deploying certificate
-Successfully deployed certificate for metabase.ritza.co to /etc/nginx/sites-enabled/metabase.ritza.co.conf
-Congratulations! You have successfully enabled HTTPS on https://metabase.ritza.co
+Successfully deployed certificate for metabase.example.com to /etc/nginx/sites-enabled/metabase.example.com.conf
+Congratulations! You have successfully enabled HTTPS on https://metabase.example.com
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 If you like Certbot, please consider supporting our work by:
@@ -178,14 +178,14 @@ Before we use Metabase, there's a once-off setup step. Visit your domain, e.g. h
 The first two steps are to set your name and language and a password to access the Metabase admin panel. Then you'll need to link the SQLite database we created in the first step. Search for "sqlite" and select SQLite in step 3.
 
 
-![](https://drafts.cc.ritza.co/uploads/upload_ebcf6fbcd50304113f807e8c83a58b3e.png)
+![Metabase initial setup](assets/metabase-visualisations/metabase-setup.png)
 
 
-Enter the path to your database. If you're using the same data and structure as we did above, this will be `metabase-data/eskom.sqlite`.
+Enter the path to your database. If you're using the same data and structure as we did above, this will be `metabase-data/eskom.sqlite`. Connect to the database.
 
-![](https://drafts.cc.ritza.co/uploads/upload_41f6a0c957280ea19ba86871aca1213a.png)
+![Step 3](assets/metabase-visualisations/step-3.png)
 
-Go to step 4 and press "Take me to Metabase"
+Complete step 4 and then press "Take me to Metabase".
 
 ## Creating a metabase query
 
@@ -193,12 +193,12 @@ On the main page, you'll see Metabase has already set up some automated analysis
 
 In the top right, press "New" and then "SQL query".
 
-![](https://drafts.cc.ritza.co/uploads/upload_363cf0abc2859c5a439581223248d7ad.png)
+![New query](assets/metabase-visualisations/new-query.png)
 
 In the following screen, you'll get a SQL editor. Choose "Eskom" (or whatever your database is called) using the dropdown in the top left, and then enter a query. For example:
 
 
-```sql
+```SQL
 SELECT strftime(substr("eskom"."Date Time Hour Beginning", 1,7)) AS "date",
     avg(CAST("eskom"."Total PCLF" AS decimal)) AS "planned capability loss factor",     
     avg(CAST("eskom"."Total UCLF" AS decimal)) AS "unplanned capability loss factor"
@@ -209,13 +209,13 @@ GROUP BY date
 
 In our example dataset we have hourly data over five years, which is a bit too fine-grained to create useful graphs, so we take a substring of the first 7 characters of our data column, which gives us something like `2018-06`. We pass this to `strftime`, which is SQLite's function to cast strings to a datetime format.
 
-We cast the colums we are interested in to decimal format and give them more friendly names (which will automatically be used in the graph).
+We cast the columns we are interested in to decimal format and give them more friendly names (which will automatically be used in the graph).
 
 Run the query using the play button in the right-hand toolbar or by pressing `Cmd+Enter`.
 
 In the bottom left, press "Visualization" and choose "Area", and you'll see a chart similar to the one shown below.
 
-![](https://drafts.cc.ritza.co/uploads/upload_799a4aee82cc47949ced738faaf5f419.png)
+![Graph visualisation](assets/metabase-visualisations/visualise.png)
 
 ## Saving the query and adding it to a dashboard
 
@@ -223,35 +223,35 @@ In metabase, you can have a collection of queries on a dashboard, so you can qui
 
 Click "Save" in the top right corner and give your query a name. Metabase will prompt you to add the query to a dashboard. Choose "yes please" and then choose "Create a new dashboard", give it a name and press "Create".
 
-You'll be taken to Metabases visual dashboard editor where you can resize the card that it's added from the query above and move it around. Use the "Aa" button in the top right to add text (e.g. a name for the card just above it) to your dashboard if you want and press "Save".
+You'll be taken to Metabase's visual dashboard editor where you can resize the card that it's added from the query above and move it around. Use the "Aa" button in the top right to add text (e.g. a name for the card just above it) to your dashboard if you want and press "Save".
 
 Now you'll be taken to the view version of your dashboard, which will look like the following.
 
-![](https://drafts.cc.ritza.co/uploads/upload_ae33055e8d0d8e2ff2e08cb58e4093ac.png)
+![Saving query](assets/metabase-visualisations/saving-query.png)
 
 
 ## Allowing public dashboards
 
 By default, Metabase operates in private mode, so only people who have an account on your Metabase instance can view your data.
 
-If you want to make dashbaords public, go to admin settings by pressing the cog icon in the top right.
+If you want to make dashboards public, go to admin settings by pressing the cog icon in the top right.
 
-![](https://drafts.cc.ritza.co/uploads/upload_6f9965ab2691cf2b841ee49d9cb9d901.png)
+![Admin settings](assets/metabase-visualisations/admin-settings.png)
 
 
 Under "Public sharing" toggle "enabled" to on.
 
-![](https://drafts.cc.ritza.co/uploads/upload_15a56b0e7447f05b25082557a2f8b9ce.png)
+![Public sharing toggle](assets/metabase-visualisations/public-sharing.png)
 
 Now navigate to "General settings" and configure your domain under "site url". Choose "https" from the dropdown to the left of the domain and toggle "redirect to HTTPS" to on as well.
 
-![](https://drafts.cc.ritza.co/uploads/upload_7e2d0628c78008cdf5d65512e2ef49b6.png)
+![Site URL](assets/metabase-visualisations/site-url.png)
 
-Press "exit admin" in the top right corner and navigate back to your dashboard by going to the "my analtics" collection in the top left corner and choosing the dashboard you created earlier.
+Press "exit admin" in the top right corner and navigate back to your dashboard by going to the "my analytics" collection in the top left corner and choosing the dashboard you created earlier.
 
 Open the Share panel by pressing the Share icon and toggle "enable sharing" to on (in the admin settings you were enabling sharing as an option, but your dashboards are all still private by default. Now you are choosing to make this specific dashboard public).
 
-![](https://drafts.cc.ritza.co/uploads/upload_93d9bb1a970569f2f5321afb7d4f3ee0.png)
+![Sharing](assets/metabase-visualisations/sharing.png)
 
 
 Copy the URL and share it with anyone you want!

@@ -70,5 +70,5 @@ pdf.close()
 
 We create a PDF with the our preferred name, ie. 'Visualization.pdf', using the keyword *'PdfPages'* we imported earlier. The *'savefig'* instruction then allows us to save the created graph to the open PDF. It is easy for us to create new graphs and add them to the same PDF by following steps 1 and 2 with new data, followed by the pdf.savefig() call. Once we are finished adding graphs to the PDF, we use the *'close'* keyword to save the final PDF in the project file directory. 
 
-![Screen Capture](Capture.jpg)
+![Screen Capture](Capture.JPG)
 Example Plot

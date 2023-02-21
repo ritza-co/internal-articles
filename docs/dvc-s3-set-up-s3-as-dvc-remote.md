@@ -40,22 +40,23 @@ comfortable installing and using command line tools.
 
 Create a new bucket by logging into your AWS console. Then:
 
-1. Navigate to the main S3 page.
+1\. Navigate to the main S3 page.
 
 ![Open S3](assets/dvc-s3-set-up-s3-as-dvc-remote/dvc-s3-navigate-s3.png)
 
-2. Press **Create Bucket**.
+2\. Press **Create Bucket**.
 
 ![Press Create Bucket](assets/dvc-s3-set-up-s3-as-dvc-remote/dvc-s3-create-bucket.png)
 
-3. Choose a name for your bucket (note that S3 names have to be globally unique
+3\. Choose a name for your bucket (note that S3 names have to be globally unique
    so be creative!).
-1. Choose a region close to where you'll mainly be accessing and updating your
+
+4\. Choose a region close to where you'll mainly be accessing and updating your
    data from.
 
 ![Name your bucket and choose a region](assets/dvc-s3-set-up-s3-as-dvc-remote/dvc-s3-name-bucket.png)
 
-5. Scroll down to the bottom of the page and press **Create Bucket**.
+5\. Scroll down to the bottom of the page and press **Create Bucket**.
 
 ![Create Bucket confirm](assets/dvc-s3-set-up-s3-as-dvc-remote/dvc-s3-create-bucket-confirm.png)
 
@@ -69,23 +70,23 @@ While you could use some existing AWS credentials, it's best to create a new IAM
 user that only has access to the single S3 bucket you want to use as a DVC
 remote, and use credentials for that. To achieve this:
 
-1. Navigate to the main IAM page.
+1\. Navigate to the main IAM page.
 
 ![](assets/dvc-s3-set-up-s3-as-dvc-remote/dvc-s3-navigate-iam.png)
 
-2. Press **Add Users**.
+2\. Press **Add Users**.
 
 ![](assets/dvc-s3-set-up-s3-as-dvc-remote/dvc-s3-add-users.png)
 
-3. Name your User something like "dvcuser" and press **Next: Permissions**.
+3\. Name your User something like "dvcuser" and press **Next: Permissions**.
 
 ![](assets/dvc-s3-set-up-s3-as-dvc-remote/dvc-s3-name-user.png)
 
-4. Choose **Attach existing policies directly** and press **Create policy**.
+4\. Choose **Attach existing policies directly** and press **Create policy**.
 
 ![](assets/dvc-s3-set-up-s3-as-dvc-remote/dvc-s3-attach-policy.png)
 
-5. Select the **JSON** tab and paste the following policy. Note the **two**
+5\. Select the **JSON** tab and paste the following policy. Note the **two**
    places where you need to substitute the bucket name you created earlier
    (we're using `my-dvc-store` in this example).
 
@@ -111,11 +112,11 @@ Press **Next: Tags** when you're done.
 
 ![](assets/dvc-s3-set-up-s3-as-dvc-remote/dvc-s3-write-custom-policy.png)
 
-6. Select **Next: Review**.
+6\. Select **Next: Review**.
 
 ![](assets/dvc-s3-set-up-s3-as-dvc-remote/dvc-s3-review-policy.png)
 
-7. Give your policy a name like "AllowFullAccessMyDVCStore" and add a
+7\. Give your policy a name like "AllowFullAccessMyDVCStore" and add a
    description to help you remember what it's for. Then press **Create policy**.
 
 ![](assets/dvc-s3-set-up-s3-as-dvc-remote/dvc-s3-name-describe-policy.png)
@@ -126,15 +127,15 @@ search for it using the name you chose and press **Next: Tags**.
 
 ![](assets/dvc-s3-set-up-s3-as-dvc-remote/dvc-s3-search-policy.png)
 
-8. Press **Next: Review**.
+8\. Press **Next: Review**.
 
 ![](assets/dvc-s3-set-up-s3-as-dvc-remote/dvc-s3-review-user.png)
 
-9. Press **Create User**.
+9\. Press **Create User**.
 
 ![](assets/dvc-s3-set-up-s3-as-dvc-remote/dvc-s3-create-user-confirm.png)
 
-10. Reveal the generated secret key and save both the access key and secret key
+10\. Reveal the generated secret key and save both the access key and secret key
     somewhere secure like your password manager (you won't be able to view your
     secret key from AWS again after this stage).
 

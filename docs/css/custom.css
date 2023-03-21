@@ -1,0 +1,4 @@
+.md-typeset {
+  max-width: 75% !important; /* Adjust this percentage to control the size of the images */
+  height: auto;
+}

@@ -1,9 +1,7 @@
 ---
 hide:
   - navigation
-
 title: Scrape Google Trends using Python and seaborn
-
 description: A guide to building and visualizing a simple Google trends scraper using Python and seaborn.
 ---
 

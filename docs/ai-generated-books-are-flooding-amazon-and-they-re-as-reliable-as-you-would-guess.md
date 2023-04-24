@@ -1,7 +1,8 @@
-----
+---
+title: AI-generated books are flooding Amazon (and they're as reliable as you would guess)
 hide:
-- navigation
-----
+  - navigation
+---
 
 # AI-generated books are flooding Amazon (and they're as reliable as you would guess)
 

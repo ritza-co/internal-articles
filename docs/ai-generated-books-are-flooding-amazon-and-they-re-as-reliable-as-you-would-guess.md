@@ -1,3 +1,8 @@
+----
+hide:
+- navigation
+----
+
 # AI-generated books are flooding Amazon (and they're as reliable as you would guess)
 
 As `low_tech_love` pointed out [on Hacker News](https://news.ycombinator.com/item?id=35687868), an author called Tom Lesley has pushed out over 40 tech books already this year, and we're not even done with April yet. 

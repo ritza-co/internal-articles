@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # GitHub vs. Gitlab vs. BitBucket vs. git
 
 ## Github vs. Gitlab

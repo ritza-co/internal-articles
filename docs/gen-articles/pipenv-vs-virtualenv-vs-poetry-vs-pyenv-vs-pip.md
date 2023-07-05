@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # pipenv vs. virtualenv vs. poetry vs. pyenv vs. pip
 
 ## Pipenv vs. virtualenv

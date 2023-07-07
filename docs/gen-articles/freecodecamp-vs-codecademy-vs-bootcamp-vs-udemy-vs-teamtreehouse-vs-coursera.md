@@ -121,7 +121,8 @@ Consider Teamtreehouse if you are looking for a website that offers courses on a
 
 Consider Udemy if you are looking for a website that offers courses on web development, design, data science, and more.
 
+**Disclaimer: this article was written by generative AI**.
 
 
 
-DISCLAIMER: This article was written by a generative AI model.
+

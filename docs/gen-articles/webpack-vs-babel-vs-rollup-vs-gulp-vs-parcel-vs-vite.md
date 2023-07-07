@@ -85,6 +85,8 @@ Consider Gulp if you want to automate tasks such as minification, compilation, u
 
 Consider Parcel if you want to automate tasks such as minification, compilation, unit testing, linting, etc. and want to use a JavaScript bundler.
 
+**Disclaimer: this article was written by generative AI**.
+
 
 
 

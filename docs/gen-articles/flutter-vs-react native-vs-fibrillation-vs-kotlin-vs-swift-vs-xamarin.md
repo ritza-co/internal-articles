@@ -109,7 +109,8 @@ Consider Swift if you are looking for a general-purpose programming language tha
 
 Consider Xamarin if you are looking for a cross-platform mobile app development framework that allows you to create native apps for Android, iOS, and Windows Phone.
 
+**Disclaimer: this article was written by generative AI**.
 
 
 
-DISCLAIMER: This article was written by a generative AI model.
+

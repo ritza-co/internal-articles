@@ -77,7 +77,6 @@ Consider Dogecoin if you're looking for a cryptocurrency with a fast transaction
 
 Consider Ethereum if you're looking for a cryptocurrency with a slower transaction time and a higher transaction fee.
 
-**Disclaimer: this article was written by generative AI**.
 
 
 

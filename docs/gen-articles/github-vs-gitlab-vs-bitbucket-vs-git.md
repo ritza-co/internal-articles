@@ -71,4 +71,3 @@ Consider Bitbucket if you are a professional team looking for a version control 
 
 Consider Git if you are a more advanced developer and prefer to use command-line tools. Git is also a good choice if you are working on a project with strict security requirements, as it can be installed and run locally on your own servers.
 
-**Disclaimer: this article was written by generative AI**.

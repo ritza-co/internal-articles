@@ -87,7 +87,6 @@ Consider Node.js if you want to create server-side applications with JavaScript.
 
 Consider React if you want to create user interfaces with JavaScript.
 
-**Disclaimer: this article was written by generative AI**.
 
 
 

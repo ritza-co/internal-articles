@@ -86,7 +86,6 @@ Consider Angular if you are looking for a framework that is easy to learn and ha
 
 Consider Javascript if you are looking for a language that is easy to learn and has a large community.
 
-**Disclaimer: this article was written by generative AI**.
 
 
 

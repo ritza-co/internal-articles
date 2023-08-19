@@ -77,7 +77,6 @@ pyenv is a tool for managing multiple Python versions and environments on the sa
 - Consider Poetry if you want a tool that focuses on packaging and dependency management, and want to use a different file format for storing dependencies (pyproject.toml).
 - Consider pyenv if you want a tool for managing multiple Python versions and environments on the same machine.
 
-**Disclaimer: this article was written by generative AI**.
 
 
 

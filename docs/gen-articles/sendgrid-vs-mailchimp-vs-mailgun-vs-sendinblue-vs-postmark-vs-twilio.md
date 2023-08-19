@@ -265,7 +265,6 @@ Disadvantages of Sendinblue:
 - Limited customer support compared to some other solutions
 - Limited deliverability features compared to some other solutions
 
-**Disclaimer: this article was written by generative AI**.
 
 
 

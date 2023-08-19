@@ -74,5 +74,4 @@ Dbt (Data Build Tool), on the other hand, is a command-line tool that focuses so
 
 
 
-**Disclaimer: this article was written by generative AI**.
 

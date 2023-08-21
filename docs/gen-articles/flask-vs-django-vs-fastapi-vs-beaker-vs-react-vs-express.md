@@ -79,7 +79,4 @@ FastAPI is a modern, fast (high-performance), web framework for building APIs wi
 - Consider Express if you want a lightweight and flexible framework for creating web applications and APIs in JavaScript, specifically in Node.js. It's ideal for projects where you want full control over the implementation details and don't need a lot of additional features out of the box.
 - Consider FastAPI if you're building APIs in Python and seek a framework that provides high performance, easy-to-use data validation and serialization, and interactive documentation. It's suitable for projects where rapid development and clean code are key to success.
 
-
-
-
-
+**Disclaimer**: this article was generated using an LLM

@@ -69,7 +69,4 @@ Warp is a compact yet powerful shell based on the JavaScript language. It has bu
 - Consider Alacritty if you want a stripped-down terminal emulator that focuses on speed and resource efficiency. Its simplicity makes it less prone to crashes or slowdowns and it may offer better performance on older or resource-constrained systems.
 - Consider Warp if you would like a feature-rich shell that provides advanced capabilities such as cloud sync, session sharing, and the ability to write scripts in JavaScript or TypeScript. Warp would be a good choice if you're comfortable with JavaScript and desire a more integrated, modern shell experience.
 
-
-
-
-
+**Disclaimer**: this article was generated using an LLM

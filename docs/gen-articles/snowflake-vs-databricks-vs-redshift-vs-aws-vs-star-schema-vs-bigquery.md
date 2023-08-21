@@ -77,9 +77,4 @@ Redshift is a fully managed data warehouse product by AWS. It enables running co
 - Consider BigQuery if you are heavily invested in the Google Cloud ecosystem, have large-scale data, and need real-time data insights without the need to manage any infrastructure.
 - Consider Redshift if you're an AWS user, and have a requirement for complex, high-performance data analytics, or if you're working with big data workflows.
 
-
-
-
-
-
-
+**Disclaimer**: this article was generated using an LLM

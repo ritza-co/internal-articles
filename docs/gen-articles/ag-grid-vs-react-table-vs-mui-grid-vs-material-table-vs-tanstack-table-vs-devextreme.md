@@ -63,11 +63,4 @@ TanStack Table, also a part of the TanStack family of libraries, follows a simil
 * Consider React Table if you're looking for a flexible, lightweight, and highly customizable table solution, especially when combined with complex or custom UI design.
 * Consider TanStack Table if you value a simple, straightforward approach to table creation, and need complete control over your table's appearance and behavior.
 
-
-
-
-
-
-
-
-
+**Disclaimer**: this article was generated using an LLM

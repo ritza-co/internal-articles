@@ -115,13 +115,4 @@ Consider Contentful if you want to manage content in a centralized place and wan
 
 Consider Directus if you want to manage content in a centralized place and want to be able to manage content from a desktop device.
 
-
-
-
-
-
-
-
-
-
-
+**Disclaimer**: this article was generated using an LLM

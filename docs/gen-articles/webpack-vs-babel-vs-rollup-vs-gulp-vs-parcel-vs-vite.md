@@ -91,8 +91,4 @@ Consider Parcel if you want to automate tasks such as minification, compilation,
 
 DISCLAIMER: This article was written by a generative AI model.
 
-
-
-
-
-
+**Disclaimer**: this article was generated using an LLM

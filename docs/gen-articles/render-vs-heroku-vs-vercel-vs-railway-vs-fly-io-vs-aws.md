@@ -144,17 +144,4 @@ Fly.io, in contrast, is a developer-focused cloud platform that enables applicat
 * Consider AWS if you have a large-scale or complex application, need a high level of customization, or require access to a vast array of cloud services.
 * Consider Fly.io if you're deploying applications that need to be geographically close to your users for optimal performance, or if advanced networking customization is a priority.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+**Disclaimer**: this article was generated using an LLM

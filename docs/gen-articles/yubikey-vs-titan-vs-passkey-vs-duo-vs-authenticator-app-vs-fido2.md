@@ -59,7 +59,4 @@ Passkey, also known as a PIN (Personal Identification Number), is a traditional 
 - Consider Fido2 if you want to implement a robust, secure and passwordless authentication system. It offers a higher level of security by using physical security keys or biometric identifiers, making it more resistant to phishing and other forms of cyber attacks.
 - Consider Passkey if simplicity and ease-of-use are your primary concern. Passkeys are straightforward to implement and user-friendly, as most people are already familiar with the concept of using a PIN for authentication. However, they are potentially more vulnerable to brute force attacks and guessing.
 
-
-
-
-
+**Disclaimer**: this article was generated using an LLM

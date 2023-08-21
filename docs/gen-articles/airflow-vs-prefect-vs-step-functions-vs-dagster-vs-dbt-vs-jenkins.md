@@ -72,12 +72,4 @@ Dbt (Data Build Tool), on the other hand, is a command-line tool that focuses so
 * Consider Dagster if you need a full-fledged data workflow management tool, particularly if you are deploying in a Kubernetes environment.
 * Consider dbt if you are primarily concerned with data transformation in your data warehouse and prefer writing pure SQL.
 
-
-
-
-
-
-
-
-
-
+**Disclaimer**: this article was generated using an LLM

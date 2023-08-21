@@ -123,7 +123,4 @@ Veracode is an application security company that provides an automation tool to 
 - Consider Github Advanced Security if you primarily host and manage your software repos on Github, and prefer an integrated solution for security features like code and secret scanning.
 - Consider Veracode if you need a more thorough and advanced security platform with multiple types of analysis tools and flexible deployment. Additionally, if you work across different source control management platforms, Veracode can bring more platform independence.
 
-
-
-
-
+**Disclaimer**: this article was generated using an LLM

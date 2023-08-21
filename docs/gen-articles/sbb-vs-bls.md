@@ -14,7 +14,4 @@ SBB, Swiss Federal Railways, is the national railway company of Switzerland, off
 - Consider BLS if you plan to primarily travel or freight in the Bernese Oberland region, where it holds prominence. It might also be your preferred choice if your commute involves ferry or bus travel within this regional network.
 - Consider SBB if your travel needs extend beyond a regional network, needing more extensive nationwide coverage. Its connection to routes towards other European countries can be particularly useful if your itinerary involves cross-border travel.
 
-
-
-
-
+**Disclaimer**: this article was generated using an LLM

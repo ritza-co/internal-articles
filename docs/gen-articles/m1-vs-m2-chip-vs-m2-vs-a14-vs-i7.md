@@ -52,4 +52,7 @@ M2, commonly referred to as M.2, is a specification for internally mounted compu
 
 
 
-*Disclaimer*: This article was generated using a GPT model.
+
+
+
+

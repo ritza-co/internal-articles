@@ -74,11 +74,8 @@ Cdk (Cloud Development Kit) is an open-source software development framework for
 
 Pulumi is a multi-language and multi-cloud development platform. It allows developers to create, deploy, and manage cloud infrastructure using the coding language of their choice. In addition to AWS, Pulumi supports many other cloud platforms including Azure, Google Cloud, and more.
 
-```
 - Consider Cdk if you primarily work with AWS and you want a development framework that allows defining cloud resources in familiar programming languages.
 - Consider Pulumi if you're looking for a platform that supports multiple cloud infrastructure and multiple languages. It's particularly useful when you have a heterogeneous environment or across various cloud platforms.
-```
-
 
 ## Ansible vs pulumi
 Ansible is an open-source software provisioning, configuration management, and application-deployment tool. It uses a declarative language for defining automation jobs in YAML, and its primary function is to unify and control multi-tier deployments. Ansible runs tasks sequentially, implying a procedural style programming paradigm.
@@ -90,4 +87,7 @@ Pulumi is an infrastructure as code tool for creating, deploying, and managing c
 
 
 
-*Disclaimer*: This article was generated using a GPT model.
+
+
+
+

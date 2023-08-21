@@ -79,4 +79,7 @@ Redshift is a fully managed data warehouse product by AWS. It enables running co
 
 
 
-*Disclaimer*: This article was generated using a GPT model.
+
+
+
+

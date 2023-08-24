@@ -23,3 +23,4 @@ These are some articles we created mainly by automation. Specifically, we use
 - [https://ritza.co/articles/gen-articles/pipenv-vs-virtualenv-vs-poetry-vs-pyenv-vs-pip/](https://ritza.co/articles/gen-articles/pipenv-vs-virtualenv-vs-poetry-vs-pyenv-vs-pip/)
 - [https://ritza.co/articles/gen-articles/github-vs-gitlab-vs-bitbucket-vs-git/](https://ritza.co/articles/gen-articles/github-vs-gitlab-vs-bitbucket-vs-git/)
 
+**Disclaimer**: this article was generated using an LLM

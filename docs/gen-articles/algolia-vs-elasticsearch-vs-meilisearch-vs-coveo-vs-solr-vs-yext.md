@@ -300,5 +300,4 @@ Disadvantages of Elasticsearch:
 - Steep learning curve for new users
 - Complex configuration options
 
-**Disclaimer: this article was written by generative AI**.
-
+**Disclaimer**: this article was generated using an LLM

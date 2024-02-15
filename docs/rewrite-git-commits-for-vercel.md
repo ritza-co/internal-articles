@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Rewrite git commits for vercel
 
 If you use Vercel for tests and previews then you have to authorize everyone who commits to your git repo on Vercel separately. I assume this is also because of how Vercel pricing works on a per-user basis, but I haven't looked into it too much. This is the error you get if you open a PR containing commits from a non-approved user.

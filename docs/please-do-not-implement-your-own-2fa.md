@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Please don't implement your own 2FA
 
 Many big and seemingly well-respected companies, and even government, are implementing their own 2FA. 

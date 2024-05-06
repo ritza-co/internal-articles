@@ -53,7 +53,7 @@ I haven't found a good option that meets all of the above yet and I'm still look
 
 ## Detailed comparison
 
-I considered, reach out to, or tried the following banks.
+I considered, reached out to, or tried the following banks.
 
 ## Bidvest
 

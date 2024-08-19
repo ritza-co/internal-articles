@@ -1,5 +1,5 @@
 ---
-title: yubikey vs. titan vs. passkey vs. duo vs. authenticator app vs. fido2
+title: Understand value to price your time or services
 hide:
   - navigation
 ---

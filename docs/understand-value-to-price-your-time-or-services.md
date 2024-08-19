@@ -1,3 +1,9 @@
+---
+title: yubikey vs. titan vs. passkey vs. duo vs. authenticator app vs. fido2
+hide:
+  - navigation
+---
+
 # Understand value to price your time or services
 
 At least three to four times a week now, I see advice shared that loosely says "don't charge for time, charge for **VALUE**". And this is good intentioned, and some people need to hear this advice, but I think it's over done now and needs some more context to be, uh, valuable to its target audience.
@@ -5,7 +11,6 @@ At least three to four times a week now, I see advice shared that loosely says "
 ![](https://drafts.cc.ritza.co/uploads/upload_48c2afe01d8c213dbbd887d77ec644f6.png)
 
 I can see why it's popular and often gets widely shared - the target audience (programmer, writer, designer, etc) likes to hear that they can create $150k value in a few hours, and many people **do** under-value their time. If you're selling your services at $10/hour and putting in a bunch of extra unpaid hours, and your employer would happily pay you more, then you should capture that.
-
 
 But it's still important to stay grounded in reality (unless you're ok with massive disappointment after you've already checked out luxury housing your area and then realized that no one is going to pay you $150k for an 800 word case study).
 
@@ -39,5 +44,7 @@ I've seen similar thinking in advice about how to price SaaS applications that h
 Not necessarily. Understanding the value you create and how you create it makes you more valuable to the people who want to hire you. They don't have to explain tradeoffs to you, define the tasks very carefully, and set boundries if you already have a good understanding of what value you're creating and where the money is coming from. If you can price competitively in another structure and you think it's better for you, then go for it. 
 
 But understanding value also means understanding how your clients are thinking about costs. Just saying "I create value so pay me more" is a good first step to finding your own worth if you've been chronically undervalued or underpaid for years, but it's far too simplisitic of a view past that initial recalibration period.
+
+
 
 

@@ -2,7 +2,9 @@
 
 [Mintlify](https://mintlify.com) allows users to create documentation using AI. In this tutorial you'll learn how you can migrate your documentaion from Docusaurus to Mintlify
 
-Here' an example of what you'll have:
+Here's an example of what you'll have:
+
+![Home page](<assets/docusaurus-to-mintlify-migration/Screenshot 2024-12-09 173627.png>)
 
 ## Prerequisites
 
@@ -19,7 +21,7 @@ Here' an example of what you'll have:
 
 ## Clone Your Github repo and create a new branch
 
-Head to [GitHub](https://github.com) and copy the url of your Docusaurus repo. Then run the following command in your terminal to clone the repo:
+Copy the url of your Docusaurus project repo and run the following command in your terminal to clone the repo:
 
 ```bash
 git clone <YOUR_GITHUB_REPO_URL>
@@ -76,11 +78,9 @@ Now let's look at how we can update the Docusaurus project to the Mintlify struc
 
 ## Changing to Mintlify compatible file structure
 
-There's alot of stuff we won't need from Docusaurus project. You can delete `docusaurus.config.js`, `sidebars.js`, `/blog` and `/build`
+There's alot of stuff we won't need from Docusaurus project. You can delete `docusaurus.config.js`, `sidebars.js`, `/blog` and `/build`.
 
-In mintlify each page is a `.mdx` file with the **same** name as the parent folder.
-
-For example:
+In mintlify each page is a `.mdx` file with the **same** name as the parent folder. For example:
 
 ```bash
 ├── /docs

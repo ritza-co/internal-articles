@@ -264,7 +264,7 @@ you would add:
     },
 ```
 
-If you want to nest groups, recursively nest them within a group.
+If you want to nest pages, recursively nest them within a group.
 
 ```javascript
 
@@ -314,7 +314,7 @@ Once everything is running. you can deploy using Mintlify
 
 ## Deployment
 
-Go to [Mintlify](https://dashboard.mintlify.com/) and create a account. After you'll see a dashboard like this.
+Go to [Mintlify](https://dashboard.mintlify.com/) and create a account. After, head to your dashboard
 
 ![Alt text](assets/docusaurus-to-mintlify-migration/2FuuhdVTcV.png)
 

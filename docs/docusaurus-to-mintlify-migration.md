@@ -266,29 +266,30 @@ you would add:
 
 If you want to nest groups, recursively nest them within a group.
 
-````json
+```javascript
 
 "navigation": [
-    {
-        "group": "Group 1",
-        "pages": [
-            "Introduction",
-            {
-                "group": "Nested Reference Pages",
-                "pages": ["nested-reference-page 1", "nested-reference-page 2"]
-            }
-        ]
-    }, {
-        "group": "Group 2",
-        "pages": [
-            "Group 2 points",
-            {
-                "group": "Nested Reference Pages",
-                "pages": ["nested-reference-page 1", "nested-reference-page 2"]
-            }
-        ]
-    }
-]```
+{
+"group": "Group 1",
+"pages": [
+"Introduction",
+{
+"group": "Nested Reference Pages",
+"pages": ["nested-reference-page 1", "nested-reference-page 2"]
+}
+]
+}, {
+"group": "Group 2",
+"pages": [
+"Group 2 points",
+{
+"group": "Nested Reference Pages",
+"pages": ["nested-reference-page 1", "nested-reference-page 2"]
+}
+]
+}
+]
+```
 
 Add all your pages with the updated folder structure and sanitized files in the navigation property.
 
@@ -296,14 +297,14 @@ Once you've set up your `mint.json` file, run locally using :
 
 ```bash
 mintlify dev
-````
+```
 
 In the terminal you will also be notified of any compatibility issues, use them to make any adjustments needed.
 
 If you have html in your `.mdx` files, you might encounter an error message like this when running locally:
 
 ```bash
-⚠️  Parsing error: .\docs\learn\governance\the-shimmer-governance-framework.mdx:65:11 - Expected a closing tag for `</a>` (65:11-65:15) before the end
+⚠️ Parsing error: .\docs\learn\governance\the-shimmer-governance-framework.mdx:65:11 - Expected a closing tag for `</a>` (65:11-65:15) before the end
 of `paragraph`
 ```
 

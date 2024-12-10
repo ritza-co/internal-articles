@@ -1,6 +1,6 @@
 # Migrating from Docusaurus to Mintlify
 
-[Mintlify](https://mintlify.com) allows users to create documentation using AI. In this tutorial you'll learn how you can migrate your documentaion from Docusaurus to Mintlify
+[Mintlify](https://mintlify.com) allows users to create documentation using AI. In this tutorial you'll learn how you can migrate your documentation from Docusaurus to Mintlify
 
 Here's an example of what you'll have:
 
@@ -17,7 +17,7 @@ Here's an example of what you'll have:
 - Clone your Docusaurus project repo
 - Change folder structure for Mintlify compatibility
 - Change all .md files to .mdx
-- Update imports and syntax in your .mdx files to sanitise it for Mintlify
+- Update imports and syntax in your .mdx files to sanitize it for Mintlify
 
 ## Clone Your Github repo and create a new branch
 
@@ -78,9 +78,9 @@ Now let's look at how we can update the Docusaurus project to the Mintlify struc
 
 ## Changing to Mintlify compatible file structure
 
-There's alot of stuff we won't need from Docusaurus project. You can delete `docusaurus.config.js`, `sidebars.js`, `/blog` and `/build`.
+There's a lot of stuff we won't need from Docusaurus project. You can delete `docusaurus.config.js`, `sidebars.js`, `/blog` and `/build`.
 
-In mintlify each page is a `.mdx` file with the **same** name as the parent folder. For example:
+With Mintlify, each page is a `.mdx` file with the **same** name as the parent folder. For example:
 
 ```bash
 ├── /docs
@@ -89,11 +89,11 @@ In mintlify each page is a `.mdx` file with the **same** name as the parent fold
 |            ├── introduction.mdx
 ```
 
-Is a valid page. `intoduction/introduction.md`, `intoductions/introduction.mdx` or `introduction/introduction-page.mdx` are not. The `.mdx` file and parent folder must have the same name.
+Is a valid page. `introduction/introduction.md`, `introductions/introduction.mdx` or `introduction/introduction-page.mdx` are not. The `.mdx` file and parent folder must have the same name.
 
 In your project, change all your `.md` file extensions to `.mdx` and create parent folders with the same name as the `.mdx` file.
 
-## Sanitising .mdx files for compatibility
+## Sanitizing .mdx files for compatibility
 
 Now that we've changed our file extension we need to remove Docusaurus specific tags and imports. Tags like `:::note`, `:::tip` or `:::info` and imports like `@theme` will not work
 
@@ -159,7 +159,7 @@ To use comments in Mintlify replace `<-- -->` with `/* */`
 
 ```
 
-These are just the main compatibility changes needed. If you need to use other componenets not capatible with Mintlify, look through the [Mintlify component library](https://mintlify.com/docs/content/components/) and update your project to use ones that best match your Docusaurus component.
+These are just the main compatibility changes needed. If you need to use other components not compatible with Mintlify, look through the [Mintlify component library](https://mintlify.com/docs/content/components/) and update your project to use ones that best match your Docusaurus component.
 
 ## Running Mintlify locally
 
@@ -223,13 +223,13 @@ Here's an explanation of the properties
   - `name`: Label displayed for the tab.
   - `url`: Corresponding URL for the tab’s content.
 
-For mintlify to recognise your pages you need to add them to the `navigation` property. for example if you have pages for `docs/introduction/introduction.mdx` and
+For Mintlify to recognize your pages you need to add them to the `navigation` property. for example if you have pages for `docs/introduction/introduction.mdx` and
 `docs/faq/faq.mdx`
 you would add:
 
 ```bash
   {
-      "group": "Introducion",
+      "group": "Introducing",
       "pages": [
         "/docs/introduction",
         "/docs/faq"
@@ -237,7 +237,7 @@ you would add:
     },
 ```
 
-Add all your pages with the updated folder structure and sanitised files in the navigation property.
+Add all your pages with the updated folder structure and sanitized files in the navigation property.
 
 Once you've set up your `mint.json` file, run locally with :
 

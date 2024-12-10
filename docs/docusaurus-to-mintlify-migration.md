@@ -80,7 +80,7 @@ Now let's look at how we can update the Docusaurus project to the Mintlify struc
 
 There's a lot of stuff we won't need from Docusaurus project. You can delete `docusaurus.config.js`, `sidebars.js`, `/blog` and `/build`.
 
-With Mintlify, each page is a `.mdx` file with the **same** name as the parent folder. For example:
+With Mintlify, each page is a `.mdx` file for example:
 
 ```bash
 ├── /docs
@@ -88,8 +88,6 @@ With Mintlify, each page is a `.mdx` file with the **same** name as the parent f
 │   │   ├── introduction/
 |            ├── introduction.mdx
 ```
-
-Is a valid page. `introduction/introduction.md`, `introductions/introduction.mdx` or `introduction/introduction-page.mdx` are not. The `.mdx` file and parent folder must have the same name.
 
 In your project, change all your `.md` file extensions to `.mdx` and create parent folders with the same name as the `.mdx` file.
 
@@ -145,6 +143,11 @@ and import it like this:
 import { ThemedImage } from "/snippets/ThemedImage.mdx";
 
 ```
+In some cases it is not possible to use an import, e.g for Docusaurus specific imports. In this case remove the import and where it is used. Find more information about imports and snippets in the [Mintlify import docs](https://mintlify.com/docs/reusable-snippets)
+
+### Images
+
+To use images, create a `img/` folder in your root directory and copy the images in your Docusaurus `static/` folder there.
 
 ### Comments
 
@@ -155,9 +158,26 @@ To use comments in Mintlify replace `<-- -->` with `/* */`
 <-- Your Comment -->
 
 //Mintlify
-/* Your Comment*/
+/* Your Comment */
 
 ```
+
+### Text formatting
+
+- To italicize text make sure your text ends with a closing `_`. For numbers you don't need to add `_` to signify a space.
+
+```bash
+// Docusaurus
+_50,_00_0,_00_0
+
+//Mintlify
+_50 000 000_
+
+```
+
+- Where **`$$`** is used, replace with backticks ( ``` )
+
+For more formatting options visit the [Mintlify text formatting docs](https://mintlify.com/docs/page)
 
 These are just the main compatibility changes needed. If you need to use other components not compatible with Mintlify, look through the [Mintlify component library](https://mintlify.com/docs/content/components/) and update your project to use ones that best match your Docusaurus component.
 
@@ -223,7 +243,7 @@ Here's an explanation of the properties
   - `name`: Label displayed for the tab.
   - `url`: Corresponding URL for the tab’s content.
 
-For Mintlify to recognize your pages you need to add them to the `navigation` property. for example if you have pages for `docs/introduction/introduction.mdx` and
+For Mintlify to recognize your pages you need to add them to the `navigation` property. For example if you have pages for `docs/introduction/introduction.mdx` and
 `docs/faq/faq.mdx`
 you would add:
 
@@ -237,10 +257,61 @@ you would add:
     },
 ```
 
+If you want to nest groups recursively nest them group within a group.
+
+````json
+
+"navigation": [
+    {
+        "group": "Group 1",
+        "pages": [
+            "Introduction",
+            {
+                "group": "Nested Reference Pages",
+                "pages": ["nested-reference-page 1", "nested-reference-page 2"]
+            }
+        ]
+    }, {
+        "group": "Group 2",
+        "pages": [
+            "Group 2 points",
+            {
+                "group": "Nested Reference Pages",
+                "pages": ["nested-reference-page 1", "nested-reference-page 2"]
+            }
+        ]
+    }
+]```
+
 Add all your pages with the updated folder structure and sanitized files in the navigation property.
 
-Once you've set up your `mint.json` file, run locally with :
+Once you've set up your `mint.json` file, run locally using :
 
 ```bash
 mintlify dev
+````
+
+In the terminal you will also be notified of any compatibility issues, use them to make any adjustments needed.
+
+If you have html in your `.mdx` files, you might encounter an error message like this when running locally:
+
+```bash
+⚠️  Parsing error: .\docs\learn\governance\the-shimmer-governance-framework.mdx:65:11 - Expected a closing tag for `</a>` (65:11-65:15) before the end
+of `paragraph`
 ```
+
+You can usually resolve them by trying to make sure the closing tag is on the same line as the opening tag.
+
+Once everything is running. you can deploy using Mintlify
+
+## Deployment
+
+Go to [Mintlify](https://dashboard.mintlify.com/) and create a account. After you'll see a dashboard like this.
+
+![Alt text](assets/docusaurus-to-mintlify-migration/2FuuhdVTcV.png)
+
+Click on **Settings > Git settings**
+
+![Alt text](image.png)
+
+Choose your Git repo with the Mintlify docs branch and click `Save changes`. Mintlify will then deploy your project and provide you with the URL.

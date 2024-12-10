@@ -321,4 +321,4 @@ Click on **Settings > Git settings**
 
 ![Alt text](image.png)
 
-Choose your Git repo with the Mintlify docs branch and click `Save changes`. Mintlify will then deploy your project and provide you with the URL.
+Choose your Git repo with the Mintlify docs branch and click `Save changes`. Mintlify will then deploy your project and provide you with the URL to your documentation.

@@ -2,7 +2,13 @@
 
 [Mintlify](https://mintlify.com) allows users to create documentation using AI. In this tutorial you'll learn how you can migrate your documentation from Docusaurus to Mintlify
 
-Here's an example of what you'll have:
+Here's an example of what you'll have
+
+Docusaurus:
+
+![Alt text](<assets/docusaurus-to-mintlify-migration/Screenshot 2024-12-10 183845.png>)
+
+Mintlify:
 
 ![Home page](<assets/docusaurus-to-mintlify-migration/Screenshot 2024-12-09 173627.png>)
 
@@ -12,7 +18,7 @@ Here's an example of what you'll have:
 - NPM
 - Git
 
-## Migration steps Overview
+## Migration steps overview
 
 - Clone your Docusaurus project repo
 - Change folder structure for Mintlify compatibility
@@ -143,6 +149,7 @@ and import it like this:
 import { ThemedImage } from "/snippets/ThemedImage.mdx";
 
 ```
+
 In some cases it is not possible to use an import, e.g for Docusaurus specific imports. In this case remove the import and where it is used. Find more information about imports and snippets in the [Mintlify import docs](https://mintlify.com/docs/reusable-snippets)
 
 ### Images
@@ -257,7 +264,7 @@ you would add:
     },
 ```
 
-If you want to nest groups recursively nest them group within a group.
+If you want to nest groups, recursively nest them within a group.
 
 ````json
 

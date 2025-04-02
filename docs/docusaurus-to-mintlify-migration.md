@@ -1,4 +1,12 @@
+---
+hide:
+  - navigation
+---
+
 # Migrating from Docusaurus to Mintlify
+
+**(Looking for help creating docs, or migrating your documentation? We love doing that at Ritza. Please reach out to gareth at ritza dot co if you'd like to discuss how we can make it painless for you.)**
+
 
 [Mintlify](https://mintlify.com) allows users to create documentation using AI. In this tutorial you'll learn how you can migrate your documentation from Docusaurus to Mintlify
 

@@ -1,7 +1,7 @@
 ---
 hide:
   - navigation
-title: AI 2025-2026: My Falsifiable Forecasts for the Next Two Years
+title: "AI 2025-2026: My Falsifiable Forecasts for the Next Two Years"
 ---
 
 # AI 2025-2026: My Falsifiable Forecasts for the Next Two Years

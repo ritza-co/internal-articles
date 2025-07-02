@@ -10,7 +10,8 @@ This puts developers in an uncomfortable position: building applications on infr
 
 Meanwhile, the alternative - self-hosting large language models - has become much more practical than most people realize. An ecosystem of specialized tools like [vLLM](https://github.com/vllm-project/vllm) and [TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) provides complete control over model performance. Combined with predictable hardware-based pricing models, developers can often cut costs while gaining complete control over data and infrastructure.
 
-[]()
+[![OpenAI Token Pricing vs Cerebrium Hardware Pricing](/docs/assets/openai-api-vs-self-hosted-llm/token-vs-hardware-pricing.png)](https://claude.ai/public/artifacts/ebb806fa-7c64-4b94-b5a0-d8b00770cb2b?fullscreen=true)
+*OpenAI charges per token (costs rise with usage), while self-hosting charges for hardware (costs stay consistent regardless of usage volume)*
 
 ## Pricing: OpenAI vs Self-hosted
 
@@ -36,7 +37,7 @@ Services like Cerebrium bridge the gap between traditional cloud hosting and ful
 
 The predictability comes from knowing costs upfront. [Developers can calculate](https://www.cerebrium.ai/pricing) exactly how much infrastructure will cost per month and plan accordingly. When more capacity is needed, hardware can be upgraded incrementally rather than facing sudden cost spikes from usage surges. Most importantly, developers control every aspect of the inference pipeline, giving full control over API optimization which directly effects pricing.
 
-[]()
+![Cerebrium Calculator](/docs/assets/openai-api-vs-self-hosted-llm/cerebrium-calculator.png)
 
 ## How to self-host
 
@@ -79,8 +80,6 @@ Self-hosting provides flexibility to optimize setups as requirements change. Har
 Model upgrades become developer choice rather than external decisions. When a new version of Llama or Mistral releases, teams can evaluate whether the improvements justify updating their deployment. There's no forced acceptance of changes or paying higher prices for unwanted features.
 
 Performance monitoring helps identify optimization opportunities. If applications consistently hit hardware limits, upgrading to more powerful GPUs might be cost-effective. If current setups are underutilized, scaling down saves money without affecting performance.
-
-[]()
 
 ## Tools that make it easy
 

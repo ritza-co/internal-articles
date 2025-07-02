@@ -11,6 +11,7 @@ This puts developers in an uncomfortable position: building applications on infr
 Meanwhile, the alternative - self-hosting large language models - has become much more practical than most people realize. An ecosystem of specialized tools like [vLLM](https://github.com/vllm-project/vllm) and [TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) provides complete control over model performance. Combined with predictable hardware-based pricing models, developers can often cut costs while gaining complete control over data and infrastructure.
 
 [![OpenAI Token Pricing vs Cerebrium Hardware Pricing](/docs/assets/openai-api-vs-self-hosted-llm/token-vs-hardware-pricing.png)](https://claude.ai/public/artifacts/ebb806fa-7c64-4b94-b5a0-d8b00770cb2b?fullscreen=true)
+
 *OpenAI charges per token (costs rise with usage), while self-hosting charges for hardware (costs stay consistent regardless of usage volume)*
 
 ## Pricing: OpenAI vs Self-hosted
@@ -37,7 +38,10 @@ Services like Cerebrium bridge the gap between traditional cloud hosting and ful
 
 The predictability comes from knowing costs upfront. [Developers can calculate](https://www.cerebrium.ai/pricing) exactly how much infrastructure will cost per month and plan accordingly. When more capacity is needed, hardware can be upgraded incrementally rather than facing sudden cost spikes from usage surges. Most importantly, developers control every aspect of the inference pipeline, giving full control over API optimization which directly effects pricing.
 
-![Cerebrium Calculator](/docs/assets/openai-api-vs-self-hosted-llm/cerebrium-calculator.png)
+[![Cerebrium Calculator](/docs/assets/openai-api-vs-self-hosted-llm/cerebrium-calculator.png)](https://www.cerebrium.ai/pricing)
+
+*[Cerebrium Pricing Calculator](https://www.cerebrium.ai/pricing)*
+
 
 ## How to self-host
 
@@ -102,8 +106,6 @@ SGLang offers competitive performance with focus on simplicity and customization
 Modern inference engines like vLLM provide [OpenAI-compatible APIs](https://docs.cerebrium.ai/v4/examples/openai-compatible-endpoint-vllm), meaning developers can switch from OpenAI to self-hosted infrastructure by changing just two lines of code. Application logic, prompt engineering, and error handling remain identical.
 
 This compatibility eliminates the technical risk of migration. Teams can deploy a self-hosted endpoint, run parallel tests comparing quality and performance, then gradually shift traffic without rewriting applications.
-
-_[Image placeholder: Architecture diagram showing vLLM serving multiple models with OpenAI-compatible endpoints]_
 
 ## Take pricing into your own hands
 

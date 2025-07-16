@@ -962,7 +962,7 @@ The real value proposition depends on your specific requirements. If you need co
 
 Migration has never been easier thanks to OpenAI-compatible endpoints. Change two lines of code, and applications run on self-hosted infrastructure with the same API they already use.
 
-Try [Cerebrium](https://www.cerebrium.ai/) today with $30 available on the free tier, plus [step-by-step tutorials](https://docs.cerebrium.ai/v4/examples/featured) that walk through setting up and optimizing today's top-performing models. Take control of AI infrastructure before the next OpenAI bill surprises you.
+Try [Cerebrium](https://www.cerebrium.ai/) today with $30 credit available on the free tier, plus [step-by-step tutorials](https://docs.cerebrium.ai/v4/examples/featured) that walk through setting up and optimizing today's top-performing models. Take control of AI infrastructure before the next OpenAI bill surprises you.
 
 ## Further Reading
 
@@ -970,5 +970,5 @@ Ready to explore self-hosting? These [tutorials](https://docs.cerebrium.ai/v4/ex
 
 - [Deploy Mistral 7B with vLLM](https://docs.cerebrium.ai/v4/examples/mistral-vllm) - Start with a popular open-source model and the vLLM inference engine.
 - [Create an OpenAI-compatible endpoint with vLLM](https://docs.cerebrium.ai/v4/examples/openai-compatible-endpoint-vllm) - Build drop-in replacements for OpenAI API calls.
-- [Benchmarking vLLM, SGLang and TensorRT for Llama 3.1 API](https://docs.cerebrium.ai/v4/examples/benchmarking-vllm-sglang-tensorrt) - Compare performance across different inference engines.
-- [Running Llama 3 8B with TensorRT-LLM](https://docs.cerebrium.ai/v4/examples/llama-3-tensorrt) - Achieve maximum performance with NVIDIA's optimized serving engine.
+- [Benchmarking vLLM, SGLang and TensorRT for Llama 3.1 API](https://www.cerebrium.ai/blog/benchmarking-vllm-sglang-tensorrt-for-llama-3-1-api) - Compare performance across different inference engines.
+- [Running Llama 3 8B with TensorRT-LLM](https://www.cerebrium.ai/blog/running-llama-3-8b-with-tensorrt-llm-on-serverless-gpus) - Achieve maximum performance with NVIDIA's optimized serving engine.

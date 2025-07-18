@@ -1,27 +1,27 @@
-# How to migrate from OpenAI to Cerebrium for cost-predictable AI inference
+# How To Migrate From OpenAI to Cerebrium for Cost-Predictable AI Inference
 
-Building AI applications often starts with OpenAI's convenient APIs, but as your application scales, you might find yourself wanting more control over costs, models, and infrastructure. Cerebrium offers an alternative that lets you run open-source models on dedicated hardware with predictable, time-based pricing instead of token-based billing.
+If you're building an AI application, you probably started with OpenAI's convenient APIs. However, as your application scales, you'll need more control over costs, models, and infrastructure. 
 
-In this guide, we'll build a complete chat application with OpenAI, migrate it to Cerebrium by changing just two lines of code, then add performance tracking to compare both approaches with real data.
+Cerebrium is a serverless AI infrastructure platform that lets you run open-source models on dedicated hardware with predictable, time-based pricing instead of token-based billing.
 
-By the end of this tutorial, you'll have a working chat application that demonstrates the practical differences between token-based and compute-based pricing models, along with the tools to make an informed decision for your specific use case.
+This guide will show you how to build a complete chat application with OpenAI, migrate it to Cerebrium by changing just two lines of code, and add performance and cost tracking to compare the two approaches to AI inference using real data. When you're done, you'll have a working chat application that demonstrates the practical differences between token-based and compute-based pricing models, and the insights you need to choose the right approach for your use case.
 
 ## Prerequisites
 
-Before we start, you'll need Python 3.10 or higher installed on your system. We'll also use a few API keys that you can obtain for free:
+To follow along with this guide, you'll need Python 3.10 or higher installed on your system. You'll also need the following (all free):
 
-- An OpenAI API key from the [OpenAI platform](https://platform.openai.com/)
-- A Cerebrium account from [cerebrium.ai](https://cerebrium.ai/), which offers free tier access to test GPU instances up to the A10 level
-- A Hugging Face token from [huggingface.co](https://huggingface.co/) (free account required)
-- Access to the Llama 3.1 model on Hugging Face - visit [meta-llama/Meta-Llama-3.1-8B-Instruct](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) and click "Request access" to get approval from Meta (this usually takes a few minutes to a few hours)
+- [OpenAI API key](https://platform.openai.com/).
+- [Cerebrium account](https://cerebrium.ai/) (includes free tier access to test GPU instances up to A10 level).
+- [Hugging Face token](https://huggingface.co/) (free account required).
+- Llama 3.1 model access on Hugging Face. Visit [meta-llama/Meta-Llama-3.1-8B-Instruct](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) and click "Request access" to get approval from Meta (typically takes a few minutes to a few hours).
 
-Familiarity with Python and API calls will be helpful, but we'll walk through each step in detail.
+Familiarity with Python and API calls is helpful, but we'll walk through each step in detail.
 
-## Creating an OpenAI chatbot
+## Creating an OpenAI Chatbot
 
-Let's start by building a complete chat application that works with OpenAI. This will be our foundation that we'll enhance throughout the tutorial without ever needing to modify the core chat logic.
+We'll build a complete chat application that works with OpenAI as our foundation and enhance it throughout the tutorial without ever needing to modify the core chat logic.
 
-Create a new directory for your project and set up the basic structure:
+Create a new directory for the project and set up the basic structure:
 
 ```bash
 mkdir openai-cerebrium-migration
@@ -34,7 +34,7 @@ Install the dependencies:
 pip install openai==1.55.0 python-dotenv==1.0.0 art==6.1 colorama==0.4.6
 ```
 
-Create a `.env` file to store your API credentials:
+Create a `.env` file to store API credentials:
 
 ```env
 OPENAI_API_KEY=your_openai_api_key_here
@@ -46,7 +46,9 @@ CEREBRIUM_ENDPOINT_URL=your_cerebrium_endpoint_url_here
 
 Replace `your_openai_api_key_here` with your actual OpenAI API key. 
 
-Now we'll build the `chat.py` file step by step. Start by creating the file and adding the imports:
+Now we'll build the `chat.py` file step by step. 
+
+Start by creating the file and adding the imports:
 
 ```python
 import os
@@ -67,7 +69,7 @@ load_dotenv()
 init(autoreset=True)
 ```
 
-Now add this `display_intro` function:
+Add this `display_intro` function:
 
 ```python
 def display_intro(use_cerebrium, endpoint_name):
@@ -84,9 +86,9 @@ def display_intro(use_cerebrium, endpoint_name):
     print("\nType 'quit' or 'exit' to end the chat\n")
 ```
 
-This provides some visual feedback when we switch between endpoints.
+This function provides visual feedback when we switch between endpoints.
 
-Now add the main function that handles the chat logic:
+Add the main function that handles the chat logic:
 
 ```python
 def main():    
@@ -114,9 +116,9 @@ def main():
         conversation.append({"role": "user", "content": user_input})
 ```
 
-This sets up the endpoint configuration and handles the basic chat loop.
+This function sets up the endpoint configuration and handles the basic chat loop.
 
-Add the response handling logic inside the `main` function's while loop:
+Add the response handling logic inside the `main` function's `while` loop:
 
 ```python
         try:
@@ -147,47 +149,44 @@ Add the response handling logic inside the `main` function's while loop:
             conversation.pop()
 ```
 
-Finally, add the script execution guard at the bottom of the file:
+Finally, add the script execution guard at the end of the file:
 
 ```python
 if __name__ == "__main__":
     main()
 ```
 
-Test your chatbot by running:
+Test the chatbot by running:
 
 ```bash
 python chat.py
 ```
 
-You should see the OpenAI ASCII art and be able to chat with GPT-4o-mini. Try asking a question to verify everything works correctly, the responses will stream in real-time.
+You'll see the OpenAI ASCII art, and you can start chatting with GPT-4o mini. Ask a question to verify that the app works correctly. Responses will stream in real-time.
 
-![OpenAI Chatbot Example Usage](assets/migrate-from-openai-with-vllm/open.svg)
+![User chatting with GPT-4o mini in terminal with OpenAI ASCII art header](assets/migrate-from-openai-with-vllm/open.svg)
 
-## Deploying a Cerebrium endpoint with vLLM and Llama 3.1
+## Deploying a Cerebrium Endpoint With vLLM and Llama 3.1
 
-Now we'll create a Cerebrium endpoint that serves the same OpenAI-compatible interface using vLLM and an open-source model. 
+Now we'll create a Cerebrium endpoint that serves the same OpenAI-compatible interface using vLLM and an open-source model. When we're done, we'll be able to switch to a self-hosted open-source model endpoint by changing just two lines of code.
 
-After this is created we will be able to switch to a self-hosted open-source model endpoint with just a two-line code change.
+### Configuring Hugging Face Access for Llama 3.1
 
+First, make sure you have access to the Llama 3.1 model on Hugging Face. If you haven't already requested access, visit [meta-llama/Meta-Llama-3.1-8B-Instruct](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) and click "Request access".
 
-### Configuring Hugging Face access for Llama 3.1
-
-First, make sure you have access to the Llama 3.1 model on Hugging Face. If you haven't already requested access, visit [meta-llama/Meta-Llama-3.1-8B-Instruct](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) and click "Request access."
-
-Next, create a Hugging Face token by going to your [Hugging Face settings](https://huggingface.co/settings/tokens), clicking "New token," and selecting "Read" permissions.
+Next, create a Hugging Face token by going to [Hugging Face settings](https://huggingface.co/settings/tokens), clicking "New token", and selecting "Read" permissions.
 
 Add your Hugging Face token to your Cerebrium project secrets. Go to your Cerebrium dashboard, select your project, and add `HF_AUTH_TOKEN` with your Hugging Face token as the value.
 
-![Cerebrium Secrets UI](assets/migrate-from-openai-with-vllm/hf-token.png)
+![Cerebrium's Secrets management interface showing where to enter and save the Hugging Face token](assets/migrate-from-openai-with-vllm/hf-token.png)
 
-### Setting up your Cerebrium account and API access
+### Setting Up a Cerebrium Account and API Access
 
-Create a free account at [cerebrium.ai](https://cerebrium.ai/) and navigate to your dashboard. Once logged in, you'll see your API keys section where you can copy your JWT token - save this for later as we'll need it to authenticate with your deployed endpoint.
+[Create a free Cerebrium account](https://cerebrium.ai/) and navigate to your dashboard. In the "API Keys" section, copy your session token and save it for later – you'll need it to authenticate with the deployed endpoint.
 
-![Cerebrium JWT Token in UI](assets/migrate-from-openai-with-vllm/jwt-token.png)
+![Screenshot of Cerebrium's API Keys interface showing where users can copy the Session Token value](assets/migrate-from-openai-with-vllm/jwt-token.png)
 
-Add this token to your `.env` file as the `CEREBRIUM_API_KEY` variable:
+Add the session token to the `.env` file as a `CEREBRIUM_API_KEY` variable:
 
 ```env
 OPENAI_API_KEY=your_openai_api_key_here
@@ -197,7 +196,7 @@ CEREBRIUM_API_KEY=your_cerebrium_api_key_here
 CEREBRIUM_ENDPOINT_URL=your_cerebrium_endpoint_url_here
 ```
 
-### Building the OpenAI-compatible vLLM endpoint
+### Building the OpenAI-Compatible vLLM Endpoint
 
 Start by installing the Cerebrium CLI and creating a new project:
 
@@ -208,7 +207,9 @@ cerebrium init openai-compatible-endpoint
 cd openai-compatible-endpoint
 ```
 
-We'll build the `main.py` file step by step to understand each component. Start with the imports and authentication:
+We'll build the `main.py` file step by step to understand each component. 
+
+Start with the imports and authentication:
 
 ```python
 from vllm import SamplingParams, AsyncLLMEngine
@@ -236,7 +237,7 @@ engine_args = AsyncEngineArgs(
 engine = AsyncLLMEngine.from_engine_args(engine_args)
 ```
 
-This configuration uses 90% of available GPU memory and sets a 8K token context window, optimizing for throughput while maintaining reasonable memory usage.
+This configuration uses 90% of available GPU memory and sets an 8K-token context window, optimizing for throughput while maintaining reasonable memory usage.
 
 Now add the Pydantic models that define the OpenAI-compatible response format:
 
@@ -274,7 +275,7 @@ class ChatCompletionResponse(BaseModel):
     usage: Optional[Usage] = None
 ```
 
-These models ensure our Cerebrium endpoint returns the same JSON structure as OpenAI's API, enabling drop-in compatibility.
+These models ensure the Cerebrium endpoint returns the same JSON structure as OpenAI's API, enabling drop-in compatibility.
 
 Add the chat template formatting function:
 
@@ -296,7 +297,7 @@ def format_llama_chat_prompt(messages: list) -> str:
 
 This function converts OpenAI's message format to Llama 3.1's specific chat template.
 
-Now add the main inference function:
+Add the main inference function:
 
 ```python
 async def run(
@@ -404,15 +405,15 @@ scaling_buffer = 0
 roll_out_duration_seconds = 0
 ```
 
-This specifies an A10 GPU with 2 CPU cores and 12GB memory, providing a good balance of performance and cost for most applications.
+This configuration specifies an A10 GPU with 2 CPU cores and 12GB of memory, providing a good balance of performance and cost for most applications.
 
-Deploy your endpoint:
+Deploy the endpoint:
 
 ```bash
 cerebrium deploy
 ```
 
-When your app has successfully deployed you should see a message like this:
+When the app has successfully deployed, you should see a message like this:
 
 ```js
 ╭─────────────────────────────────  openai-compatible-endpoint is now live!   ──────────────────────────────────╮
@@ -423,7 +424,7 @@ When your app has successfully deployed you should see a message like this:
 ╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
-After deployment, copy the endpoint URL and add it to your `.env` file, replacing `{function_name}` with `run`:
+After deployment, copy the endpoint URL and add it to the `.env` file, replacing `{function_name}` with `run`:
 
 ```env
 OPENAI_API_KEY=your_openai_api_key_here
@@ -433,9 +434,9 @@ CEREBRIUM_ENDPOINT_URL=https://api.cortex.cerebrium.ai/v4/p-your-project-id/open
 CEREBRIUM_API_KEY=your_jwt_token_here
 ```
 
-## Migrating from OpenAI to Cerebrium with two-line code change
+## Migrating From OpenAI to Cerebrium by Changing Just Two Lines of Code
 
-Now we can migrate from OpenAI to Cerebrium by changing just two lines in our `chat.py` file. Navigate back to your main project directory and open `chat.py`.
+Now you can migrate from OpenAI to Cerebrium by changing just two lines in the `chat.py` file. Navigate back to the main project directory and open `chat.py`.
 
 Replace the current endpoint:
 
@@ -454,20 +455,21 @@ client = OpenAI(
 model = "meta-llama/Meta-Llama-3.1-8B-Instruct"
 ```
 
-Here is what is necessary to change when migrating using vLLM:
-1. Added the `base_url` parameter to the OpenAI client
-2. Updated the `model` name
+To migrate to Cerebrium, you only need to make two changes:
 
-Now update `endpoint_name` and `use_cerebrium` to make sure we our CLI provides the visual feedback for the change.
+1. Add the `base_url` parameter to the OpenAI client.
+2. Update the `model` name.
 
-Replace:
+Next, update `endpoint_name` and `use_cerebrium` to ensure the CLI provides visual feedback for the change.
+
+Replace these lines:
 
 ```python
 endpoint_name = "OpenAI (GPT-4o-mini)"
 use_cerebrium = False
 ```
 
-With:
+With these updated lines:
 
 ```python
 endpoint_name = "Cerebrium vLLM (Llama 3.1)"
@@ -480,17 +482,15 @@ Run the application again:
 python chat.py
 ```
 
-You'll see the same streaming interface now uses your Cerebrium endpoint with Llama 3.1 instead of OpenAI with GPT-4o-mini.
+You'll see the same streaming interface, but now it's using the Cerebrium endpoint with Llama 3.1 instead of OpenAI with GPT-4o-mini. The chat functionality remains identical – same streaming, same interface – but now it's running on your infrastructure.
 
-The chat functionality remains identical – same streaming, same interface, but now running on your infrastructure.
+![Chat application running Llama 3.1 via Cerebrium endpoint with streaming responses](assets/migrate-from-openai-with-vllm/cer.svg)
 
-![Chat with Llama through Cerebrium Endpoint](assets/migrate-from-openai-with-vllm/cer.svg)
+> **Note:** You may notice a delay of 30-60 seconds on your first prompt as Cerebrium spins up the GPU instance. This is called a "cold start," which occurs because `min_replicas` is set to `0` in the configuration, meaning the instance shuts down when not in use to save costs. Cerebrium doesn't charge for cold start time – you only pay once the model starts processing your request. For production applications with consistent traffic, you can set `min_replicas = 1` to keep an instance always running and eliminate cold starts.
 
-> **Note**: You may notice a delay of 30-60 seconds on your first prompt as Cerebrium spins up the GPU instance. This is called a "cold start" and happens because we set `min_replicas = 0` in our configuration, which means the instance shuts down when not in use to save costs. Cerebrium doesn't charge for cold start time – you only pay once the model starts processing your request. For production applications with consistent traffic, you can set `min_replicas = 1` to keep an instance always running and eliminate cold starts.
+## Implementing the Automatic Cost and Performance Comparison
 
-## Implementing automatic cost and performance comparison
-
-Now that we've confirmed the migration works, let's add comprehensive cost and performance tracking. We'll create a `pricing.py` file that automatically enhances our existing chat application without requiring any changes to `chat.py`.
+To add comprehensive cost and performance tracking, we'll create a `pricing.py` file that automatically enhances the existing chat application without requiring any changes to `chat.py`.
 
 Start by creating the `pricing.py` file with the pricing constants:
 
@@ -523,9 +523,7 @@ CEREBRIUM_HARDWARE = {
 
 These constants define the pricing models from both services.
 
-Add the utility functions for text analysis:
-
-Add these functions to collect wod count and estimate token count which we will use to calculate costs later:
+Next, add the utility functions for text analysis:
 
 ```python
 def estimate_tokens(text):
@@ -537,7 +535,9 @@ def count_words(text):
     return len(re.findall(r'\b\w+\b', text))
 ```
 
-Now add the OpenAI cost calculation function:
+These functions collect word count and estimate token count (we'll use these to calculate costs later).
+
+Add the OpenAI cost calculation function:
 
 ```python
 def calculate_openai_stats(bot_response, response_time, chunks, final_usage, model):
@@ -696,7 +696,7 @@ def display_cerebrium_stats(stats):
 
 These functions create a formatted output that displays the different pricing models and performance metrics.
 
-Finally, add the entry point function that will be used in our `chat.py` file:
+Finally, add the entry point function that will be used in the `chat.py` file:
 
 ```python
 def calculate_and_display_stats(bot_response, response_time, chunks, final_usage, use_cerebrium, model):
@@ -710,9 +710,9 @@ def calculate_and_display_stats(bot_response, response_time, chunks, final_usage
 
 This function automatically detects which endpoint is being used and displays the appropriate statistics.
 
-### Add cost and performance analysis to our chat bot
+### Adding the Cost and Performance Analysis to the Chatbot
 
-Now we need to integrate our pricing module with the chat application. We'll modify `chat.py` to include performance tracking.
+Let's integrate the pricing module with the chat application by including performance tracking in `chat.py`.
 
 First, add the pricing module import below the existing imports:
 
@@ -720,13 +720,13 @@ First, add the pricing module import below the existing imports:
 from pricing import calculate_and_display_stats
 ```
 
-Next, we need to add performance tracking variables to the response handling section. Find the line that starts the response handling:
+Next, add performance tracking variables to the response handling section. Find the line that starts the response handling:
 
 ```python
 print("Bot: ", end="", flush=True)
 ```
 
-Add tracking variables right after this line:
+Add tracking variables right after it:
 
 ```python
 print("Bot: ", end="", flush=True)
@@ -791,15 +791,15 @@ python chat.py
 
 You'll see that detailed cost and performance statistics automatically appear after each response.
 
-![Cerebrium Cost Example in CLI](assets/migrate-from-openai-with-vllm/cer-price.svg)
+![Animated chat session with Cerebrium showing streaming responses and final cost analysis breakdown](assets/migrate-from-openai-with-vllm/cer-price.svg)
 
-## Comparing OpenAI and Cerebrium performance with real data
+## Comparing OpenAI and Cerebrium Performance With Real Data
 
-Now that we have comprehensive tracking in place, let's examine actual performance data from identical prompts sent to both services. The results show clear differences in both speed and cost that we need to understand before making infrastructure decisions.
+Now that we have comprehensive tracking in place, let's examine actual performance data from identical prompts sent to both services. The results show clear differences in both speed and cost that impact infrastructure decisions.
 
-### What the numbers tell us
+### What the Numbers Tell Us
 
-For simple questions like "What is the capital of France?":
+For simple questions like, "What is the capital of France?":
 
 **OpenAI**:
 
@@ -816,7 +816,7 @@ For simple questions like "What is the capital of France?":
 ─────────────────────────────────────────────────────────────────
 ```
 
-![Cerebrium Short Prompt Example in CLI](assets/migrate-from-openai-with-vllm/open-short-price.svg)
+![OpenAI cost analysis showing 1.62 second response time and $0.000006 total cost using token-based pricing for a simple question about France's capital](assets/migrate-from-openai-with-vllm/open-short-price.svg)
 
 **Cerebrium**:
 
@@ -835,9 +835,9 @@ For simple questions like "What is the capital of France?":
 ─────────────────────────────────────────────────────────────────
 ```
 
-![Cerebrium Short Prompt Example in CLI](assets/migrate-from-openai-with-vllm/cer-short-price.svg)
+![Cerebrium cost analysis showing 2.13 second response time and $0.000737 total cost using time-based pricing, with breakdown of GPU, CPU, and memory costs](assets/migrate-from-openai-with-vllm/cer-short-price.svg)
 
-For longer responses like "Explain the difference between machine learning and deep learning":
+For longer responses like, "Explain the difference between machine learning and deep learning":
 
 **OpenAI**: 
 
@@ -873,29 +873,29 @@ For longer responses like "Explain the difference between machine learning and d
 
 These numbers are expected - OpenAI has heavily optimized infrastructure running at massive scale, while our Cerebrium deployment uses default settings on a single A10 GPU.
 
-### The advantages of self-hosting
+### The Advantages of Self-Hosting
 
-Despite the initial performance gap, self-hosting with offers advantages that don't show up in these raw numbers:
+Despite the initial performance gap, self-hosting with Cerebrium offers advantages that don't show up in these raw numbers:
 
-**Hardware control**: We can upgrade from an A10 to an H100 GPU and see 3-5x speed improvements. OpenAI's hardware is fixed - we have no control over the underlying infrastructure.
+**Hardware control:** You can upgrade from an A10 to an H100 GPU and see 3-5 times faster inference speeds. OpenAI's hardware is fixed - you have no control over the underlying infrastructure.
 
-**Cost predictability**: OpenAI's costs scale unpredictably with output length. A chatbot that generates long responses during peak hours can blow through budgets. Cerebrium's time-based pricing gives us exact cost control.
+**Cost predictability:** OpenAI's costs scale unpredictably with output length. A chatbot that generates long responses during peak hours can blow through budgets. Cerebrium's time-based pricing gives you precise cost control.
 
-**Model flexibility**: We're running Llama 3.1 8B, but we could deploy Llama 3.1 70B for better quality, or switch to specialized models for coding, math, or other domains. OpenAI limits us to their model selection.
+**Model flexibility:** This example runs Llama 3.1 8B, but it could deploy Llama 3.1 70B for better quality, or switch to specialized models for coding, math, or other domains. OpenAI limits users to pre-selected models.
 
-**Optimization potential**: These Cerebrium numbers represent an unoptimized deployment. We can tune GPU memory usage, implement request batching, adjust inference parameters, and optimize for our specific use case.
+**Optimization potential:** These Cerebrium numbers represent an unoptimized deployment. You can tune GPU memory usage, implement request batching, adjust inference parameters, and optimize for your specific use case.
 
-**Data privacy**: Our data never leaves our infrastructure. For applications handling sensitive information, this control is often a legal requirement rather than a preference.
+**Data privacy:** Your data never leaves your infrastructure. For applications handling sensitive information, this control is often a legal requirement rather than a preference.
 
-The key insight is that we're comparing OpenAI's production-optimized service against our basic deployment. The real question is whether the control and optimization potential justify the initial performance difference.
+This guide compares OpenAI's production-optimized service against a basic Cerebrium deployment. The real question is whether the control and optimization potential justify the initial performance difference.
 
-## Optimizing our Cerebrium deployment
+## Optimizing a Cerebrium Deployment
 
-This performance gap brings us to an important realization: we can significantly improve our Cerebrium deployment's performance through configuration changes and hardware upgrades. Let's explore how vLLM optimization can close this gap.
+The performance gap between OpenAI and Cerebrium reveals significant optimization potential: You can improve the performance of Cerebrium deployments by changing configurations and upgrading hardware. Let's explore how vLLM optimization can close this gap.
 
-### Memory and context optimization
+### Memory and Context Optimization
 
-The `gpu_memory_utilization=0.9` setting in your `main.py` uses 90% of available GPU memory, maximizing throughput. For applications with varying load patterns, reduce this to 0.7 to allow for memory spikes:
+The `gpu_memory_utilization=0.9` setting in the `main.py` allocates 90% of available GPU memory to maximize throughput. For applications with varying load patterns, reduce this to 0.7 to allow for memory spikes:
 
 ```python
 engine_args = AsyncEngineArgs(
@@ -917,22 +917,22 @@ engine_args = AsyncEngineArgs(
 
 Reducing the context window from 8192 to 4096 tokens typically improves response times by 20-30% while using less GPU memory.
 
-### Batch processing for high-volume applications
+### Batch Processing for High-Volume Applications
 
-For production workloads, implement batching by adjusting the `replica_concurrency` setting in your `cerebrium.toml`:
+For production workloads, implement batching by adjusting the `replica_concurrency` setting in `cerebrium.toml`:
 
 ```toml
 [cerebrium.scaling]
 replica_concurrency = 4  # Allow 4 concurrent requests per replica
 ```
 
-This allows multiple requests to share GPU resources simultaneously. Instead of processing requests one at a time, vLLM can batch them together, dramatically improving cost efficiency. A single A10 GPU can handle 4-8 concurrent requests with minimal performance impact per request.
+This setting allows multiple requests to share GPU resources simultaneously. Instead of processing requests one at a time, vLLM can batch them together, dramatically improving cost efficiency. A single A10 GPU can handle 4-8 concurrent requests with minimal performance impact per request.
 
-### Hardware upgrades for maximum performance
+### Hardware Upgrades for Maximum Performance
 
-The most impactful optimization is upgrading your GPU hardware. Our A10 deployment is Cerebrium's entry-level option, but more powerful GPUs offer significant performance improvements:
+Upgrading your GPU hardware provides the biggest performance improvement. The example in this guide runs Cerebrium's entry-level A10 deployment option, but more powerful GPUs offer significantly improved inference times.
 
-Update your `cerebrium.toml` to use a more powerful GPU:
+Update `cerebrium.toml` to upgrade your GPU:
 
 ```toml
 [cerebrium.hardware]
@@ -942,32 +942,33 @@ compute = "AMPERE_A100_40GB"  # Upgrade from A10
 ```
 
 **Hardware upgrade options:**
-- **A10 → L40s**: 2-3x faster inference, better for production workloads
-- **A10 → A100 (40GB)**: 3-4x faster inference, ideal for high-throughput applications  
-- **A10 → H100**: 5-8x faster inference, matches OpenAI's performance levels
 
-An H100 upgrade would likely bring our response times from 34.86s to under 8s for long responses, making Cerebrium competitive with OpenAI's speed while maintaining cost predictability.
+- **A10 → L40s**: 2-3x faster inference, better for production workloads.
+- **A10 → A100 (40GB)**: 3-4x faster inference, ideal for high-throughput applications.  
+- **A10 → H100**: 5-8x faster inference, matches OpenAI's performance levels.
 
-The hardware upgrade path gives us control that OpenAI's hosted service can't match. We can scale performance based on our specific needs rather than hoping for infrastructure improvements from a third party.
+An H100 upgrade would likely bring response times from 34.86s to under 8s for long responses, making Cerebrium competitive with OpenAI's speed while maintaining cost predictability.
+
+The hardware upgrade path gives you control that OpenAI's hosted service can't match. Scale performance based on your specific needs rather than hoping for infrastructure improvements from a third party.
 
 ## Conclusion
 
 Migrating from OpenAI to Cerebrium requires changing just two lines of code, but the decision involves more than technical convenience. Our hands-on testing revealed clear trade-offs:
 
-- **OpenAI excels at**: Speed, cost for short responses, ease of use
-- **Cerebrium excels at**: Cost predictability, model choice, data control, optimization potential
+- **OpenAI excels at:** Speed, cost for short responses, and ease of use.
+- **Cerebrium excels at:** Cost predictability, model choice, data control, and optimization potential.
 
 The real value proposition depends on your specific requirements. If you need cost predictability, model flexibility, data privacy, or performance optimization, Cerebrium offers compelling advantages. If you prioritize speed and cost-efficiency for short responses, OpenAI remains competitive.
 
-Migration has never been easier thanks to OpenAI-compatible endpoints. Change two lines of code and applications run on self-hosted infrastructure with the same API they already use.
+Migration has never been easier thanks to OpenAI-compatible endpoints. Change two lines of code, and applications run on self-hosted infrastructure with the same API they already use.
 
-Try [Cerebrium](https://www.cerebrium.ai/) today with $30 available on the free tier, plus [step-by-step tutorials](https://docs.cerebrium.ai/v4/examples/featured) that walk through setting up and optimizing today's top-performing models. Take control of AI infrastructure before the next OpenAI bill surprises you.
+Try [Cerebrium](https://www.cerebrium.ai/) today with $30 credit available on the free tier, plus [step-by-step tutorials](https://docs.cerebrium.ai/v4/examples/featured) that walk through setting up and optimizing today's top-performing models. Take control of AI infrastructure before the next OpenAI bill surprises you.
 
-## Further reading
+## Further Reading
 
 Ready to explore self-hosting? These [tutorials](https://docs.cerebrium.ai/v4/examples/featured) will give you hands-on experience with the tools and techniques covered in this article:
 
-- [Deploy Mistral 7B with vLLM](https://docs.cerebrium.ai/v4/examples/mistral-7b-vllm) - Start with a popular open-source model and the vLLM inference engine
-- [Create an OpenAI compatible endpoint with vLLM](https://docs.cerebrium.ai/v4/examples/openai-compatible-endpoint-vllm) - Build drop-in replacements for OpenAI API calls
-- [Benchmarking vLLM, SGLang and TensorRT for Llama 3.1 API](https://docs.cerebrium.ai/v4/examples/benchmarking-vllm-sglang-tensorrt) - Compare performance across different inference engines
-- [Running Llama 3 8B with TensorRT-LLM](https://docs.cerebrium.ai/v4/examples/llama-3-tensorrt) - Achieve maximum performance with NVIDIA's optimized serving engine
+- [Deploy Mistral 7B with vLLM](https://docs.cerebrium.ai/v4/examples/mistral-vllm) - Start with a popular open-source model and the vLLM inference engine.
+- [Create an OpenAI-compatible endpoint with vLLM](https://docs.cerebrium.ai/v4/examples/openai-compatible-endpoint-vllm) - Build drop-in replacements for OpenAI API calls.
+- [Benchmarking vLLM, SGLang and TensorRT for Llama 3.1 API](https://www.cerebrium.ai/blog/benchmarking-vllm-sglang-tensorrt-for-llama-3-1-api) - Compare performance across different inference engines.
+- [Running Llama 3 8B with TensorRT-LLM](https://www.cerebrium.ai/blog/running-llama-3-8b-with-tensorrt-llm-on-serverless-gpus) - Achieve maximum performance with NVIDIA's optimized serving engine.

@@ -1,4 +1,4 @@
-# Stop Being the Robot: Automated Browser Testing for AI Development With Browserbase and Claude Code Agents
+# Automated Browser Testing with Claude Code Agents and Browserbase 
 
 When working with AI, it's easy to feel like the robot - performing repetitive tasks, feeding data back to AI systems so they have better context for their work, manually bridging gaps between what AI produces and what actually works. When this happens, it's time to upgrade our development workflows. These tools are supposed to handle repetitive tasks, letting us work on higher-level problems, not locking us into mind-numbing repetition.
 
@@ -283,7 +283,6 @@ First ensure the latest Browserbase SDK is installed:
 
 Use this exact template for all test files:
 
-
 import Browserbase from "@browserbasehq/sdk";
 import { chromium } from "playwright-core";
 
@@ -348,12 +347,15 @@ async function testTemplate() {
     return { success: false, message: `Test failed with error: ${error.message}` };
   } finally {
     // REQUIRED: Clean up resources (browser and session)
-    // Note: Variables must be declared at function scope to be accessible here
     if (browser) {
       await browser.close();
     }
     if (session && bb) {
-      await bb.sessions.end(session.id);
+      // If using keepAlive: true, release the session manually
+      await bb.sessions.update(session.id, {
+        projectId: process.env.BROWSERBASE_PROJECT_ID,
+        status: 'REQUEST_RELEASE',
+      });
     }
   }
 }

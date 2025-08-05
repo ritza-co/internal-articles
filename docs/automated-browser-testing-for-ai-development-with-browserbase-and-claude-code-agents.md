@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Automated Browser Testing with Claude Code Agents and Browserbase 
 
 When working with AI, it's easy to feel like the robot - performing repetitive tasks, feeding data back to AI systems so they have better context for their work, manually bridging gaps between what AI produces and what actually works. When this happens, it's time to upgrade our development workflows. These tools are supposed to handle repetitive tasks, letting us work on higher-level problems, not locking us into mind-numbing repetition.

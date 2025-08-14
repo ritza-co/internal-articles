@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolt vs Lovable vs Same.new: AI App Builder Showdown</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.875rem;
+            font-weight: 600;
+            color: #111827;
+            margin: 2.5rem 0 1rem 0;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #111827;
+            margin: 2rem 0 1rem 0;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .tldr {
+            background-color: #f3f4f6;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .tldr strong {
+            color: #1f2937;
+        }
+
+        code {
+            background-color: #f3f4f6;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background-color: #1f2937;
+            color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Image Carousel Styles */
+        .image-carousel {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+            height: 24rem;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            margin: 2rem 0;
+        }
+
+        .carousel-item {
+            position: relative;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            height: 24rem;
+        }
+
+        .carousel-item.expanded {
+            flex: 1;
+        }
+
+        .carousel-item.collapsed {
+            width: 4rem;
+        }
+
+        .carousel-item.collapsed:hover {
+            width: 5rem;
+        }
+
+        .carousel-item-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .carousel-item.collapsed .carousel-item-inner {
+            border: 1px solid #e5e7eb;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-logo {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-logo img {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        /* Bird Card Demo Styles */
+        .demo-container {
+            max-width: 64rem;
+            margin: 0 auto;
+            padding: 2rem;
+            background: transparent;
+            border-radius: 0.5rem;
+            min-height: 18.75rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .demo-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .demo-logo {
+            flex-shrink: 0;
+            margin-right: 2rem;
+        }
+
+        .demo-logo-circle {
+            width: 4rem;
+            height: 4rem;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .demo-card {
+            flex-grow: 1;
+            max-width: 32rem;
+        }
+
+        /* Bolt Card Styles */
+        .bolt-card {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            background-color: white;
+            transition: all 0.2s;
+        }
+
+        .bolt-card:hover {
+            border-color: #93c5fd;
+            background-color: #eff6ff;
+        }
+
+        .bolt-card img {
+            width: 4rem;
+            height: 4rem;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-right: 1rem;
+        }
+
+        .bolt-card-content {
+            flex-grow: 1;
+        }
+
+        .bolt-card h3 {
+            font-weight: 600;
+            color: #111827;
+            margin: 0 0 0.25rem 0;
+            font-size: 1rem;
+        }
+
+        .bolt-card p {
+            font-size: 0.875rem;
+            color: #6b7280;
+            font-style: italic;
+            margin: 0;
+        }
+
+        .bolt-card button {
+            background-color: #16a34a;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: 1rem;
+        }
+
+        .bolt-card:hover button {
+            transform: scale(1.05);
+        }
+
+        .bolt-card button:hover {
+            background-color: #15803d;
+        }
+
+        /* Lovable Card Styles */
+        .lovable-card {
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+            background-color: white;
+            color: #111827;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .lovable-image {
+            aspect-ratio: 16/9;
+            background-color: #e5e7eb;
+            position: relative;
+        }
+
+        .lovable-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .lovable-content {
+            padding: 1rem;
+        }
+
+        .lovable-content > div {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .lovable-content h3 {
+            font-weight: 600;
+            font-size: 1.125rem;
+            margin: 0;
+        }
+
+        .lovable-badge {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 9999px;
+            padding: 0.125rem 0.625rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            width: fit-content;
+        }
+
+        .lovable-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.375rem;
+            background-color: #111827;
+            color: white;
+            transition: all 0.2s;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.875rem;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 0.75rem;
+        }
+
+        .lovable-button:hover {
+            background-color: #1f2937;
+        }
+
+        .lovable-button svg {
+            height: 1rem;
+            width: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Same.new Card Styles */
+        .same-card {
+            border-radius: 0.75rem;
+            background-color: white;
+            color: #111827;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        .same-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .same-image-container {
+            position: relative;
+            aspect-ratio: 4/3;
+            background-color: #f1f5f9;
+            overflow: hidden;
+        }
+
+        .same-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s;
+            opacity: 1;
+        }
+
+        .same-card:hover .same-image {
+            transform: scale(1.05);
+        }
+
+        .same-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0);
+            transition: all 0.3s;
+        }
+
+        .same-card:hover .same-overlay {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .same-heart-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            opacity: 0;
+            transition: all 0.3s;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .same-card:hover .same-heart-btn {
+            opacity: 1;
+        }
+
+        .same-heart-btn:hover {
+            background-color: white;
+        }
+
+        .same-add-btn {
+            position: absolute;
+            bottom: 0.5rem;
+            right: 0.5rem;
+            opacity: 0;
+            transition: all 0.3s;
+            background-color: #1e293b;
+            color: white;
+            border: none;
+            border-radius: 9999px;
+            height: 2rem;
+            padding: 0 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .same-card:hover .same-add-btn {
+            opacity: 1;
+        }
+
+        .same-add-btn:hover {
+            background-color: #0f172a;
+        }
+
+        .same-category-badge {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #334155;
+            border: 1px solid transparent;
+            padding: 0.125rem 0.625rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 0.375rem;
+        }
+
+        .same-card-content {
+            padding: 1rem;
+        }
+
+        .same-card-content > div {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .same-card h3 {
+            font-weight: 600;
+            color: #0f172a;
+            margin: 0;
+            font-size: 1rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+
+        .same-card .species-name {
+            font-size: 0.875rem;
+            color: #64748b;
+            font-style: italic;
+            margin: 0;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+
+        .same-sighting-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .same-sighting-count {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .same-photo-credit {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .same-photo-credit p {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin: 0;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+
+        /* Icons */
+        .icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .icon-sm {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .icon-xs {
+            width: 0.75rem;
+            height: 0.75rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .demo-container {
+                padding: 1rem;
+            }
+
+            .demo-logo {
+                margin-right: 1rem;
+            }
+
+            .demo-logo-circle {
+                width: 3rem;
+                height: 3rem;
+            }
+
+            .image-carousel {
+                height: 16rem;
+            }
+
+            .carousel-item {
+                height: 16rem;
+            }
+
+            .carousel-item.collapsed {
+                width: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bolt vs Lovable vs Same.new</h1>
+
+        <div class="tldr">
+            <strong>TLDR: Three working birding CRUD apps built and deployed in 10 minutes across these platforms</strong>
+        </div>
+
+        <p>Prototyping delivers that immediate dopamine hit when showing colleagues or friends something tangible. There's genuine motivation in seeing results quickly, which makes rapid prototyping tools incredibly appealing for validating ideas over a weekend.</p>
+
+        <p>AI has obviously accelerated prototyping, but significant friction remains. Andrej Karpathy highlighted these exact frustrations in his recent <a href="https://www.ycombinator.com/">Y Combinator</a> talk <a href="https://www.youtube.com/watch?v=LCEmiRjPEtQ">"Software Is Changing (Again)"</a> about Software 3.0, pointing out how even with advanced AI tools, developers still spend enormous time on deployment, database setup, and API integrations that require manual browser clicking rather than intelligent automation. His example showed building a working app demo in hours, then spending a week making it production-ready through tedious DevOps work.</p>
+
+        <p>That talk was a month ago, which when converted to the 2025 time-scale is more like 5 years ago, and there are already tools claiming to solve these problems. So I built my weekend project using three AI app builders: <a href="https://lovable.dev/">Lovable</a>, <a href="https://bolt.new/">Bolt</a>, and <a href="https://same.new/">Same</a>.</p>
+
+        <p>Here's how that went. I had three working birding apps with a Supabase authentication and database in 10 minutes flat.</p>
+
+        <div class="image-carousel" id="imageCarousel">
+            <div class="carousel-item expanded" data-index="0">
+                <div class="carousel-item-inner">
+                    <img src="/images/same-new-app.png" alt="Same.new App" style="display: block;">
+                    <div class="carousel-logo" style="display: none;">
+                        <img src="/images/same-logo.svg" alt="Same.new logo">
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item collapsed" data-index="1">
+                <div class="carousel-item-inner">
+                    <img src="/images/lovable-app.png" alt="Lovable App" style="display: none;">
+                    <div class="carousel-logo" style="display: flex;">
+                        <img src="/images/lovable-logo.jpeg" alt="Lovable logo">
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item collapsed" data-index="2">
+                <div class="carousel-item-inner">
+                    <img src="/images/bolt-app.png" alt="Bolt.new App" style="display: none;">
+                    <div class="carousel-logo" style="display: flex;">
+                        <img src="/images/bolt-logo.jpg" alt="Bolt.new logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Getting Started with Integrations</h2>
+
+        <p>All three platforms offer <a href="https://supabase.com/">Supabase</a> integration, which eliminates table setup and project configuration using the Supabase MCP.</p>
+
+        <p>Each tool created a Supabase project directly from the chat interface and configured tables automatically.</p>
+
+        <p>Here's how easy it was to integrate Supabase with each tool:</p>
+
+        <p><strong>Lovable</strong> had great UX. The chat UI allowed me to select Supabase as a tool, letting the model know I wanted this to have a Supabase backend so the AI would not mistakenly setup a SQLite database or something like that, burning through tokens unnecessarily. The setup is a few button clicks to link to a Supabase account and then the AI handles the rest from project creation to table setup and migrations.</p>
+
+        <p><strong>Bolt.new</strong> similarly has an easy Supabase integration through the setting. After prompting the AI intelligently suggests creating database with Supabase even if I have not explicitly asked for a Supabase integration. I prefer the Lovable UI that lets me explicitly suggest Supabase in the chat.</p>
+
+        <p><strong>Same.new</strong> had some UX issues. I was not able to set up Supabase before starting a chat so the first time I prompted the app it went straight ahead and built the app using a SQLite database. To get around this I started over and prompted the AI to wait for me to integrate Supabase before continuing. From here the integration was straightforward but I burned through some unnecessary tokens unfortunately.</p>
+
+        <h2>The One-Shot Test</h2>
+
+        <p>I prompted each tool to make the same app:</p>
+
+        <pre><code>Build a birding app where users can search for birds using the iNaturalist API, add birds to their personal sighting list with photos and notes, and authenticate to save their data. Users should be able to upload photos of their bird sightings to the database.</code></pre>
+
+        <p>Unbelievably, each tool had finished the application, (which was fully functional! Strange birding API and all) in 10 minutes. I was stumped. Have a look at the results.</p>
+
+        <p><strong>Lovable</strong> delivered a perfectly functional application from a single prompt. Authentication worked correctly, CRUD operations handled bird sightings smoothly, and the <a href="https://www.inaturalist.org/">iNaturalist</a> API integration functioned flawlessly. The design remained simple but everything worked across mobile and desktop browsers.</p>
+
+        <img src="/images/lovable-shot.png" alt="Lovable birding app screenshot" style="width: 100%; max-width: 600px; height: auto; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 1rem 0;">
+
+        <p><strong>Bolt.new</strong> also produced a working prototype in one attempt. The green design with bird iconography felt cohesive, mobile responsiveness worked well, and core functionality operated reliably. The only noticeable issue being the tiny bird images in search results—a minor UX oversight.</p>
+
+        <img src="/images/bolt-shot.png" alt="Bolt.new birding app screenshot" style="width: 100%; max-width: 600px; height: auto; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 1rem 0;">
+
+        <p><strong>Same.new</strong> created a fully functional app with a design that looked impressive with a beautiful landing page, working search functionality for non-authenticated users, and awesome hover animations. Lovable and Bolt both hid all style and functionality behind the login screen, where as Same seems to have thought a lot about selling the app as a product with a front page that had some features and information for user's to try out before signing up.</p>
+
+        <img src="/images/same-new-shot.png" alt="Same.new birding app screenshot" style="width: 100%; max-width: 600px; height: auto; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 1rem 0;">
+
+        <h2>Design Comparison</h2>
+
+        <p>Design is subjective so take a look for yourself at the components each tool created:</p>
+
+        <h3>Bolt's Design</h3>
+
+        <div class="demo-container">
+            <div class="demo-content">
+                <div class="demo-logo">
+                    <div class="demo-logo-circle">
+                        <img src="/images/bolt-logo.jpg" alt="Bolt.new logo">
+                    </div>
+                </div>
+                <div class="demo-card">
+                    <div class="bolt-card">
+                        <img src="/images/eagle.jpg" alt="Northern Sea-Eagles and Fish-Eagles">
+                        <div class="bolt-card-content">
+                            <h3>Northern Sea-Eagles and Fish-Eagles</h3>
+                            <p>Haliaeetus</p>
+                        </div>
+                        <button>
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M12 5v14m-7-7h14"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>Bolt prioritized information density. Small images, horizontal layout. This resembles how backend developers might approach functional interfaces—clean and working, but not particularly stylish.</p>
+
+        <h3>Lovable's Design</h3>
+
+        <div class="demo-container">
+            <div class="demo-content">
+                <div class="demo-logo">
+                    <div class="demo-logo-circle">
+                        <img src="/images/lovable-logo.jpeg" alt="Lovable logo">
+                    </div>
+                </div>
+                <div class="demo-card">
+                    <div class="lovable-card">
+                        <div class="lovable-image">
+                            <img src="/images/eagle.jpg" alt="Northern Sea-Eagles and Fish-Eagles">
+                        </div>
+                        <div class="lovable-content">
+                            <div>
+                                <h3>Northern Sea-Eagles and Fish-Eagles</h3>
+                                <div class="lovable-badge">Haliaeetus</div>
+                                <button class="lovable-button">
+                                    <svg class="icon-sm" viewBox="0 0 24 24">
+                                        <path d="M12 5v14m-7-7h14"/>
+                                    </svg>
+                                    Add Sighting
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>Lovable used large prominent images in a responsive grid. The images look great on the app, with some cropping issues for taller images. Overall missed any standout "wow" factor.</p>
+
+        <h3>Same.new's Design</h3>
+
+        <div class="demo-container">
+            <div class="demo-content">
+                <div class="demo-logo">
+                    <div class="demo-logo-circle">
+                        <img src="/images/same-logo.svg" alt="Same.new logo">
+                    </div>
+                </div>
+                <div class="demo-card">
+                    <div class="same-card">
+                        <div class="same-image-container">
+                            <img class="same-image" src="/images/eagle.jpg" alt="Northern Sea-Eagles and Fish-Eagles">
+                            <div class="same-overlay">
+                                <button class="same-heart-btn">
+                                    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="m19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7 7-7Z"/>
+                                    </svg>
+                                </button>
+                                <button class="same-add-btn">
+                                    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M5 12h14"/>
+                                        <path d="m12 5v14"/>
+                                    </svg>
+                                    Add
+                                </button>
+                            </div>
+                            <div class="same-category-badge">genus</div>
+                        </div>
+                        <div class="same-card-content">
+                            <div>
+                                <h3>Northern Sea-Eagles and Fish-Eagles</h3>
+                                <p class="species-name">Haliaeetus</p>
+                                <div class="same-sighting-info">
+                                    <div class="same-sighting-count">
+                                        <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M8 2v4"/>
+                                            <path d="M16 2v4"/>
+                                            <rect width="18" height="18" x="3" y="4" rx="2"/>
+                                            <path d="M3 10h18"/>
+                                        </svg>
+                                        <span>207,979 sightings</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="same-photo-credit">
+                                <p>Photo: (c) Carolyn Stewart, some rights reserved (CC BY-NC)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>Same.new built a quality interface, with gallery-style layouts and smooth hover interactions. Genuinely beautiful results.</p>
+
+        <h2>Vibe Check</h2>
+
+        <p>These tools were incredible to use. The boundary for non-technical users to create something useful is disappearing at such a rate. I feel like I could suggest any of these to the next family member asking for help with their app idea.</p>
+
+        <p>I enjoyed both Bolt and Lovable's thoughtful UI design. The way they guide you through integrations and handles the development workflow feels polished and intentional.</p>
+
+        <p>The styling from Same.new felt premium rather than prototyped. It felt like prototyping is changing from functional demos to something someone would actually want to use.</p>
+
+        <p>Some quality of life improvements and adopting more extensive MCP tooling could make these really powerful, multi-purpose app building platforms.</p>
+    </div>
+
+    <script>
+        // Image Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('imageCarousel');
+            const items = carousel.querySelectorAll('.carousel-item');
+            let expandedIndex = 0;
+            let isTransitioning = false;
+            let timeout;
+
+            function handleMouseEnter(index) {
+                if (isTransitioning || index === expandedIndex) return;
+                
+                setIsTransitioning(true);
+                setExpandedIndex(index);
+                
+                if (timeout) {
+                    clearTimeout(timeout);
+                }
+                
+                timeout = setTimeout(() => {
+                    setIsTransitioning(false);
+                }, 300);
+            }
+
+            function setIsTransitioning(value) {
+                isTransitioning = value;
+            }
+
+            function setExpandedIndex(index) {
+                expandedIndex = index;
+                
+                items.forEach((item, i) => {
+                    const inner = item.querySelector('.carousel-item-inner');
+                    const img = inner.querySelector('img');
+                    const logo = inner.querySelector('.carousel-logo');
+                    
+                    if (i === index) {
+                        item.classList.remove('collapsed');
+                        item.classList.add('expanded');
+                        img.style.display = 'block';
+                        logo.style.display = 'none';
+                    } else {
+                        item.classList.remove('expanded');
+                        item.classList.add('collapsed');
+                        img.style.display = 'none';
+                        logo.style.display = 'flex';
+                    }
+                });
+            }
+
+            items.forEach((item, index) => {
+                item.addEventListener('mouseenter', () => handleMouseEnter(index));
+            });
+        });
+    </script>
+</body>
+</html>

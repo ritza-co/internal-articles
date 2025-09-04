@@ -1,5 +1,5 @@
 ---
-title: Railway vs Vercel: Complete Developer Platform Comparison 2025
+title: "Railway vs Vercel: Complete Developer Platform Comparison 2025"
 description: Comprehensive comparison of Railway and Vercel hosting platforms covering pricing, deployment models, features, and technical capabilities to help developers choose the right platform.
 hide:
   - navigation

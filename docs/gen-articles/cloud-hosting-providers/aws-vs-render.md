@@ -1,5 +1,5 @@
 ---
-title: AWS vs Render: Complete Hosting Platform Comparison for 2025
+title: "AWS vs Render: Complete Hosting Platform Comparison for 2025"
 description: Comprehensive comparison of AWS and Render hosting platforms covering pricing, deployment, performance, scalability, and features to help developers choose the right solution.
 hide:
   - navigation

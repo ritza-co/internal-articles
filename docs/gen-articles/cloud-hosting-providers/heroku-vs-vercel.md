@@ -1,5 +1,5 @@
 ---
-title: Heroku vs Vercel: Complete Platform Comparison for 2025
+title: "Heroku vs Vercel: Complete Platform Comparison for 2025"
 description: Detailed comparison of Heroku and Vercel hosting platforms covering pricing, features, deployment workflows, and when to choose each platform for your applications.
 hide:
   - navigation

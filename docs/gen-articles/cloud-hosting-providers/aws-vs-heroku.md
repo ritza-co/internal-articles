@@ -1,5 +1,5 @@
 ---
-title: AWS vs Heroku: Complete Platform Comparison for Developers in 2025
+title: "AWS vs Heroku: Complete Platform Comparison for Developers in 2025"
 description: Detailed comparison of AWS and Heroku hosting platforms covering pricing, features, scalability, developer experience, and when to choose each platform for your applications.
 hide:
   - navigation

@@ -1,5 +1,5 @@
 ---
-title: Fly.io vs Railway: Complete Hosting Platform Comparison for 2025
+title: "Fly.io vs Railway: Complete Hosting Platform Comparison for 2025"
 description: Comprehensive comparison of Fly.io vs Railway hosting platforms covering pricing, performance, scalability, features, and developer experience to help you choose the right platform.
 hide:
   - navigation

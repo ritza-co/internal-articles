@@ -1,5 +1,5 @@
 ---
-title: AWS vs Vercel: Complete Hosting Platform Comparison for 2025
+title: "AWS vs Vercel: Complete Hosting Platform Comparison for 2025"
 description: In-depth comparison of AWS and Vercel hosting platforms covering pricing, features, performance, and deployment options to help developers choose the right platform.
 hide:
   - navigation

@@ -1,5 +1,5 @@
 ---
-title: Railway vs Render: Complete Platform Comparison for 2025
+title: "Railway vs Render: Complete Platform Comparison for 2025"
 description: Detailed comparison of Railway and Render hosting platforms covering pricing, features, deployment capabilities, and developer experience to help you choose the right platform.
 hide:
   - navigation

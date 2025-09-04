@@ -1,5 +1,5 @@
 ---
-title: Heroku vs Render: Complete Platform-as-a-Service Comparison for 2025
+title: "Heroku vs Render: Complete Platform-as-a-Service Comparison for 2025"
 description: Comprehensive comparison of Heroku and Render hosting platforms, covering pricing, features, performance, and deployment capabilities for developers in 2025.
 hide:
   - navigation

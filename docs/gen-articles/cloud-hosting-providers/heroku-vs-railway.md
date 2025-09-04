@@ -1,5 +1,5 @@
 ---
-title: Heroku vs Railway: Complete Platform Comparison for Developers in 2025
+title: "Heroku vs Railway: Complete Platform Comparison for Developers in 2025"
 description: Compare Heroku vs Railway hosting platforms including pricing, features, deployment, scalability, and developer experience to choose the right cloud platform for your project.
 hide:
   - navigation

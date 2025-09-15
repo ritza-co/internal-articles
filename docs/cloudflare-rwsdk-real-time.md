@@ -1,8 +1,8 @@
 # Building Real-Time Apps with Cloudflare Workers and RedwoodSDK
 
-Cloudflare Workers are fantastic for building fast, globally distributed applications. You get edge deployment, instant cold starts, and powerful primitives like Durable Objects for stateful apps. RedwoodSDK takes this solid foundation and adds React server components, automatic real-time features, and zero-config auth.
+Cloudflare Workers excel at edge computing with instant cold starts and global distribution. When you need real-time features, you'll typically set up Durable Objects for state management, WebSocket handlers for live updates, and custom authentication. RedwoodSDK handles these patterns with React server components and built-in real-time features while generating standard Cloudflare Workers code.
 
-We'll build the same live polling app with both technologies. First, we'll explore Cloudflare Workers' capabilities, then see how RedwoodSDK's abstractions can accelerate development. You'll learn both approaches and understand when each makes sense for your projects.
+We'll build identical live polling applications with both approaches. You'll see what RedwoodSDK automates and decide whether its React-based development model fits your projects.
 
 By the end of this tutorial, you'll have built identical real-time polling applications that look like this:
 
@@ -22,7 +22,7 @@ To follow along with this guide, you'll need Node.js 18 or higher installed on y
 
 ## Building the Polling App with Cloudflare Workers
 
-We'll start with raw Cloudflare Workers to understand the full complexity, then build the same app with RedwoodSDK to see the abstraction benefits.
+We'll start with Cloudflare Workers to understand the platform fundamentals, then build the same app with RedwoodSDK to see how its React-based approach streamlines development.
 
 Create a new directory for both projects:
 
@@ -382,7 +382,7 @@ Finally, add the cookie handling methods at the end of the class:
 
 This authentication service handles user registration, login, session management, and cookie parsing. In a production app, you'd use proper password hashing like bcrypt, but this simplified version works for our tutorial.
 
-**What this demonstrates:** With raw Cloudflare Workers, authentication requires substantial custom code. You need to manually handle password hashing, session creation/validation, cookie parsing, and database operations. While this gives you complete control, it's also significant infrastructure code that you need to write, test, and maintain for every project.
+**What this demonstrates:** With Cloudflare Workers, authentication requires substantial custom code. You need to manually handle password hashing, session creation/validation, cookie parsing, and database operations. While this gives you complete control, it's also significant infrastructure code that you need to write, test, and maintain for every project.
 
 ### Creating the Durable Objects
 
@@ -691,7 +691,7 @@ The main worker file is where all the complexity comes together. In Cloudflare W
 
 - **API routing**: Pattern matching URLs and HTTP methods
 - **Authentication middleware**: Checking sessions on every protected route
-- **Database operations**: Raw SQL queries and result processing
+- **Database operations**: SQL queries and result processing
 - **Durable Object coordination**: Managing communication between poll state and real-time objects
 - **Error handling**: Comprehensive try-catch blocks for every operation
 
@@ -1012,7 +1012,7 @@ export default {
 
 **What you just built:** This main worker file contains extensive backend logic. Every API endpoint requires manual route matching, authentication checks, database queries, and error handling. The poll voting function alone needs to coordinate between three different systems: the database (for persistence), poll Durable Objects (for fast vote counting), and realtime Durable Objects (for broadcasting updates).
 
-This demonstrates both the power and burden of raw Cloudflare Workers: you have complete control over every aspect of your application's behavior, but you also need to implement every piece of infrastructure yourself.
+This demonstrates both the power and burden of Cloudflare Workers: you have complete control over every aspect of your application's behavior, but you also need to implement every piece of infrastructure yourself.
 
 ### Building the React Frontend
 
@@ -2016,15 +2016,15 @@ You've built a complete, production-ready polling application using Cloudflare W
 - **Multiple configuration files** with manual database and Durable Object setup
 - **Manual coordination** between authentication, database, and real-time systems
 
-Every feature required building from first principles. Authentication meant writing session management from scratch. Real-time features meant manually handling WebSocket connections and message broadcasting. Database operations meant writing raw SQL and handling results.
+Every feature required building from first principles. Authentication meant writing session management from scratch. Real-time features meant manually handling WebSocket connections and message broadcasting. Database operations meant writing SQL and handling results.
 
-The benefit: you understand exactly how every piece works and have complete control over the implementation. The cost: significant development time and code maintenance overhead.
+The benefit: you understand exactly how every piece works and have complete control over the implementation. The cost: significant development time and manual infrastructure management.
 
 Now let's see how RedwoodSDK handles the same functionality.
 
 ## Building the Same App with RedwoodSDK
 
-Now we'll build the identical polling application using RedwoodSDK. The goal is exactly the same functionality: real-time polling with vote counting and live updates. You'll see how the framework abstracts away most of the complexity you just implemented manually.
+Now we'll build the identical polling application using RedwoodSDK. The goal is exactly the same functionality: real-time polling with vote counting and live updates. You'll see how the framework provides built-in solutions for the infrastructure patterns you just implemented manually.
 
 Instead of building authentication from scratch, RedwoodSDK provides it out-of-the-box. Instead of manually managing WebSocket connections, the framework handles real-time updates automatically. Instead of writing custom API routing, you'll use declarative route definitions.
 
@@ -2141,7 +2141,7 @@ This configuration adds:
 
 ### Setting Up the Database Schema
 
-**Database simplification:** RedwoodSDK uses Prisma for database management, which means you define your schema declaratively instead of writing raw SQL migrations. Your fresh project already includes User and Credential models for authentication (which you had to build from scratch in Cloudflare Workers), but we need to add polling functionality.
+**Database simplification:** RedwoodSDK uses Prisma for database management, which means you define your schema declaratively instead of writing SQL migrations. Your fresh project already includes User and Credential models for authentication (which you had to build from scratch in Cloudflare Workers), but we need to add polling functionality.
 
 Compare this to the Cloudflare Workers approach where you wrote a 50-line SQL migration file. Here you'll define the same schema in just a few lines of Prisma syntax.
 
@@ -2271,7 +2271,7 @@ Finally, update the render routes. Replace the existing routes in the `render(Do
     prefix("/user", userRoutes),
 ```
 
-**What you just built:** Your worker now includes two API endpoints for poll creation and voting, plus the real-time route that enables live updates. Notice that this entire backend is declarative with just route definitions and function calls. The framework handles all the complexity you manually implemented in Cloudflare Workers:
+**What you just built:** Your worker now includes two API endpoints for poll creation and voting, plus the real-time route that enables live updates. Notice that this entire backend is declarative with just route definitions and function calls. The framework provides built-in solutions for the infrastructure patterns you manually implemented in Cloudflare Workers:
 
 - **No manual route matching** with just `route("/api/poll/create", ...)`
 - **No authentication middleware** because the framework handles sessions automatically
@@ -2885,7 +2885,7 @@ RedwoodSDK's real-time system eliminates the need for custom WebSocket managemen
 - **Declarative database schema** (vs. manual SQL migrations)
 - **Automatic real-time updates** (vs. manual WebSocket management)
 
-You built the exact same application with significantly less code. Every complex piece of infrastructure is provided by the framework, letting you focus on your application logic rather than plumbing.
+You built the exact same application with significantly less code. Every infrastructure pattern is provided by the framework, letting you focus on your application logic rather than platform plumbing.
 
 <video width="600" controls>
   <source src="assets/cloudflare-rwsdk-real-time/real-time-polling-app.mp4" type="video/mp4">
@@ -2902,21 +2902,21 @@ RedwoodSDK significantly reduces the code required for identical functionality. 
 
 ### The Tradeoffs to Consider
 
-Using RedwoodSDK means accepting a framework dependency for infrastructure decisions. You get less visibility into underlying Cloudflare Workers patterns and may encounter abstraction overhead when debugging or optimizing performance.
+RedwoodSDK follows a "zero magic" philosophy with minimal abstraction over Cloudflare Workers. The framework generates standard Cloudflare Workers code and uses native Web APIs directly. The main tradeoff is framework dependency for infrastructure decisions, but you maintain full visibility into the underlying code.
 
 ### When to Choose RedwoodSDK
 
-RedwoodSDK shines for rapid prototyping and development velocity. If you want consistent patterns across authentication, real-time features, and database management with framework-managed infrastructure complexity, it's an excellent choice.
+RedwoodSDK excels when you want React server components, automatic real-time features, and built-in authentication while maintaining platform transparency. It's designed for developers who understand Cloudflare Workers but want framework-provided solutions for common patterns like WebSocket management and user sessions.
 
 ### When to Stick with Cloudflare Workers
 
-Choose Cloudflare Workers when you need direct control over Workers configuration and optimization. It's also better when you want to understand underlying platform primitives or implement custom architecture patterns not supported by RedwoodSDK.
+Choose Cloudflare Workers when you're building custom infrastructure patterns that don't fit standard web application models, or when you want to learn the platform primitives from first principles. RedwoodSDK assumes you want React-based server rendering and real-time capabilities.
 
 ## Further Reading
 
 ### Cloudflare Workers Resources
 
-If you want to dive deeper into raw Cloudflare Workers development, explore the [Cloudflare Workers documentation](https://developers.cloudflare.com/workers/). The [Durable Objects guide](https://developers.cloudflare.com/durable-objects/) provides comprehensive coverage of stateful edge computing patterns.
+If you want to dive deeper into Cloudflare Workers development, explore the [Cloudflare Workers documentation](https://developers.cloudflare.com/workers/). The [Durable Objects guide](https://developers.cloudflare.com/durable-objects/) provides comprehensive coverage of stateful edge computing patterns.
 
 ### RedwoodSDK Documentation
 

@@ -1,20 +1,20 @@
 # 5 Best SERP APIs for 2025: SerpAPI vs ScrapingDog vs ScrapingBee vs Exa vs Tavily
 
-We tested five SERP APIs with standardized benchmarks to find which performs best for different use cases. [SerpAPI](https://serpapi.com) delivered the fastest responses at 0.072 seconds. [Exa](https://exa.ai) provides semantic search over a proprietary index at $5 per 1,000 queries. [Tavily](https://tavily.com) aggregates and parses content for LLM applications. [Scrapingdog](https://www.scrapingdog.com) offers the lowest per-request pricing at under $0.001 at scale. [Scrapingbee](https://www.scrapingbee.com) bundles SERP access with general web scraping.
+We tested five SERP APIs with standardized benchmarks to find which performs best for different use cases. [Exa](https://exa.ai) delivered the fastest responses at 1.180 seconds with semantic search over a proprietary index at $5 per 1,000 queries. [Tavily](https://tavily.com) aggregates and parses content for LLM applications. [Scrapingdog](https://www.scrapingdog.com) offers the lowest per-request pricing at under $0.001 at scale. [SerpAPI](https://serpapi.com) provides the broadest coverage with 20+ search engines. [Scrapingbee](https://www.scrapingbee.com) bundles SERP access with general web scraping.
 
 This comparison helps you choose a SERP API for SEO monitoring, AI agents, RAG applications, or price comparison tools. Each section includes benchmark data, pricing breakdowns, and code examples.
 
 ## Overview Comparison
 
-We tested five SERP APIs using this [Python benchmark script](#testing-methodology) that measured response time, success rate, cost, and free tier across five real-world queries.
+We tested five SERP APIs using this [Python benchmark script](#testing-methodology) that measured response time, success rate, cost, and free tier across 50 real-world queries.
 
 | API | Avg Response Time | Success Rate | Cost per 1,000 Searches | Free Tier |
 |-----|-------------------|--------------|-------------------------|-----------|
-| **SerpAPI** | 0.072s | 100% | $15 | 250/month |
-| **Exa** | 1.190s | 100% | $5 | 2,000 one-time |
-| **Tavily** | 2.327s | 100% | $5-$8 | 1,000/month |
-| **Scrapingdog** | 3.762s | 100% | $0.20-$0.06 | 1,000+ one-time |
-| **Scrapingbee** | 5.411s | 100% | $0.56-$1.44 | 66 one-time |
+| **Exa** | 1.180s | 100% | $5 | 2,000 one-time |
+| **Scrapingdog** | 1.700s | 100% | $0.20-$0.06 | 1,000+ one-time |
+| **Tavily** | 1.885s | 100% | $5-$8 | 1,000/month |
+| **SerpAPI** | 2.972s | 100% | $15 | 250/month |
+| **Scrapingbee** | 7.257s | 100% | $0.56-$1.44 | 66 one-time |
 
 ![SERP API Comparison Spider Chart](images/serp-api-comparison-spider-chart.png)
 
@@ -22,23 +22,21 @@ Response times vary based on what each API delivers: [SerpAPI](https://serpapi.c
 
 # SerpAPI
 
-[SerpAPI](https://serpapi.com) scrapes 20+ search engines and returns structured JSON. The service handles [CAPTCHA solving and proxy rotation](https://serpapi.com/search-api) automatically, so you make a request and get back parsed data without dealing with blocks or rate limits.
+[SerpAPI](https://serpapi.com) scrapes 20+ search engines and returns structured JSON. The service handles CAPTCHA solving and proxy rotation automatically, so you make a request and get back parsed data without dealing with blocks or rate limits.
 
 ![SerpAPI Spider Chart](images/serpapi-spider-chart.png)
 
-Most competitors support 3-5 search engines. SerpAPI covers Google (including AI Mode and AI Overview), Bing, Yahoo, Baidu, DuckDuckGo, Yandex, Amazon, eBay, Walmart, Home Depot, YouTube, Google Scholar, Google Patents, TripAdvisor, and Yelp. Each platform has its own API endpoint with consistent JSON formatting.
+## Speed
 
-## Performance
+Our 50-query benchmark measured 2.972s average response time with 100% success rate. Response times ranged from 0.070s to 13.308s, showing high variability. The free tier uses "Best Effort" speed with automatic refunds for failed searches. [Paid tiers offer Ludicrous Speed](https://serpapi.com/pricing) claiming 2.2x faster responses for time-sensitive applications. [SerpAPI's status page](https://serpapi.com/status) reports 99.911% uptime over the last 30 days.
 
-Our benchmark tests measured 0.072s average response time with 100% success rate across 5 queries. This was the fastest of all tested APIs. [SerpAPI's status page](https://serpapi.com/status) reports 99.911% uptime over the last 30 days.
-
-The free tier uses "Best Effort" speed with automatic refunds for failed searches. Paid tiers can add [Ludicrous Speed](https://serpapi.com/pricing) for faster responses.
+**Speed Score (6.0/10):** Mid-tier performance at 2.972s average places SerpAPI fourth out of five tested APIs, though the wide variance suggests some queries complete in milliseconds while others take 10+ seconds.
 
 ## Pricing
 
-[SerpAPI's pricing](https://serpapi.com/pricing) uses monthly subscriptions based on search volume. The free tier provides 250 searches per month with no credit card required. Paid plans start at $75/month for 5,000 searches ($0.015 per search).
+[SerpAPI's pricing](https://serpapi.com/pricing) uses monthly subscriptions based on search volume. Plans start at $75/month for 5,000 searches, which works out to $15 per 1,000 searches or $0.015 per search. Production tier and above include [U.S. Legal Shield](https://serpapi.com/legal-shield), providing legal defense for crawling public search data under First Amendment rights.
 
-For 1,000 searches you'd pay $15 on the Developer plan. Production tier and above include [U.S. Legal Shield](https://serpapi.com/legal-shield), which provides legal defense for crawling public search data under First Amendment rights.
+**Pricing Score (3.0/10):** At $15 per 1,000 searches, SerpAPI costs 3-15x more than alternatives like Scrapingdog ($0.20) or Exa ($5), earning the lowest pricing score among tested APIs.
 
 ## Developer Experience
 
@@ -64,6 +62,20 @@ for result in results["organic_results"]:
 
 ![SerpAPI Playground Interface](images/serpapi-playground-interface.png)
 
+**Developer Experience Score (10.0/10):** Eight official SDKs, an interactive playground, comprehensive documentation, and real-time usage dashboards make SerpAPI the strongest developer experience among tested APIs.
+
+## Search Capabilities
+
+SerpAPI covers Google (including AI Mode and AI Overview), Bing, Yahoo, Baidu, DuckDuckGo, Yandex, Amazon, eBay, Walmart, Home Depot, YouTube, Google Scholar, Google Patents, TripAdvisor, and Yelp. Each platform has its own API endpoint with consistent JSON formatting. Most competitors support 3-5 search engines at most.
+
+**Search Capabilities Score (10.0/10):** Coverage of 20+ search engines and specialized platforms far exceeds any competitor, making SerpAPI the only choice for applications needing multi-engine support.
+
+## Free Tier Generosity
+
+The free tier provides 250 searches per month with no credit card required. All API endpoints work on the free tier, though you're limited to Best Effort speed without access to Ludicrous Speed tiers. Failed searches receive automatic refunds, so the 250-search limit only counts successful requests.
+
+**Free Tier Score (6.0/10):** The 250 searches per month places SerpAPI mid-tier, more generous than Scrapingbee (66 total) but less than Tavily (1,000/month), Exa (2,000 one-time), or Scrapingdog (11,000 with promotions).
+
 ## Choose SerpAPI when you need breadth of coverage
 
 SerpAPI works best when you need access to multiple search engines or specialized platforms through one provider. SEO tools monitoring rankings across Google, Bing, and Yahoo avoid maintaining separate integrations. E-commerce price monitoring pulls structured data from Amazon, Walmart, and eBay. Academic research platforms integrate Google Scholar without parsing citation formats. The $15 per 1,000 searches pays for itself when infrastructure complexity is the bottleneck.
@@ -76,21 +88,17 @@ Skip SerpAPI if you only need Google search on a tight budget. At $0.015 per sea
 
 ![Exa Spider Chart](images/exa-spider-chart.png)
 
-The [API](https://docs.exa.ai/reference/search) provides multiple search modes (neural for semantic matching, keyword for traditional results, auto for intelligent combination) plus endpoints for content retrieval, similarity search, direct question answering, and automated research tasks. [Exa's Playground](https://dashboard.exa.ai) lets you test queries with controls for search type, filters, and AI features while generating code snippets in Python or JavaScript.
+## Speed
 
-![Exa Playground Interface](images/exa-playground-interface.png)
+Our 50-query benchmark measured 1.180s average response time with 100% success rate. Response times ranged from 1.003s to 2.120s. [Exa's published benchmarks](https://exa.ai/blog/fastest-search-api) claim P50 latency below 425ms, though our numbers likely include network overhead and full result retrieval while their metrics measure API response only.
 
-## Performance
-
-Benchmark tests measured 1.189s average response time with 100% success rate across 5 queries. Response times ranged from 1.049 to 1.354 seconds.
-
-[Exa's published benchmarks](https://exa.ai/blog/fastest-search-api) claim P50 latency below 425ms. Our higher numbers likely include network overhead and full result retrieval, while published metrics measure API response only. The 1.189s average still represents strong performance for a semantic search system processing embeddings.
+**Speed Score (10.0/10):** At 1.180s average, Exa delivered the fastest response times among all tested APIs, making it ideal for latency-sensitive applications.
 
 ## Pricing
 
 [Exa's pricing](https://exa.ai/pricing) charges $5 per 1,000 searches for 1-25 results ($0.005 per search). Requesting 26-100 results jumps to $25 per 1,000 searches ($0.025 per search), a 5x increase. Additional endpoints cost separately: contents retrieval runs $1 per 1,000 pages, answers and research tasks run $5 per 1,000 calls.
 
-For 1,000 standard searches (1-25 results), you pay $5. Custom plans offer volume discounts, enterprise security, custom rate limits, and early feature access.
+**Pricing Score (7.5/10):** At $5 per 1,000 searches, Exa sits in the affordable mid-tier, significantly cheaper than SerpAPI ($15) but more expensive than Scrapingdog ($0.20).
 
 ## Developer Experience
 
@@ -106,19 +114,23 @@ for result in results.results:
     print(result.title)
 ```
 
-The [Playground](https://dashboard.exa.ai) removes the need to write code during testing. You adjust parameters through form controls and see both rendered results and JSON responses. The dashboard tracks usage by endpoint with graphs for monthly spend and API key management.
+The [Playground](https://dashboard.exa.ai) lets you test queries with controls for search type, filters, and AI features while generating code snippets. [Documentation](https://docs.exa.ai) includes integration examples for LangChain, LlamaIndex, CrewAI, Anthropic, and OpenAI, plus an [MCP integration](https://docs.exa.ai/mcp) for Cursor.
 
-![Exa Dashboard Usage View](images/exa-dashboard-usage.png)
+![Exa Playground Interface](images/exa-playground-interface.png)
 
-[Documentation](https://docs.exa.ai) includes integration examples for LangChain, LlamaIndex, CrewAI, Anthropic, and OpenAI. The service provides an [MCP integration](https://docs.exa.ai/mcp) for Cursor and other MCP-compatible tools with functions like `GetCodeContext` for code snippet retrieval and `DeepResearcher` for autonomous research.
+**Developer Experience Score (9.0/10):** Two official SDKs with TypeScript support, interactive playground, comprehensive docs, and MCP integration provide excellent developer experience, just slightly behind SerpAPI's eight-language SDK coverage.
 
-## Free Trial Generosity
+## Search Capabilities
 
-The free tier provides $10 in credits with no expiration and no credit card requirement. At $5 per 1,000 searches for standard queries (1-25 results), this translates to 2,000 free searches, or allocate across other endpoints (research/answers at 2,000 calls, content retrieval at 10,000 pages). All features work on the free tier including semantic search, similarity search, and AI-powered summaries.
+Exa maintains a [proprietary search index](https://exa.ai/exa-api) built for AI applications rather than scraping Google or Bing. The embeddings-based index covers web content, research papers, news, GitHub repositories, tweets, and PDFs with [category filters](https://docs.exa.ai/reference/search) and date filtering. The [API](https://docs.exa.ai/reference/search) provides multiple search modes (neural for semantic matching, keyword for traditional results, auto for intelligent combination) plus endpoints for content retrieval, similarity search, and automated research.
 
-## Search Engine Coverage
+**Search Capabilities Score (8.0/10):** Proprietary AI-powered semantic search offers unique capabilities for meaning-based queries, though it can't replicate specific search engine results like SerpAPI.
 
-Exa maintains a [proprietary search index](https://exa.ai/exa-api) built for AI applications rather than scraping Google or Bing. The embeddings-based index covers web content, research papers, news, GitHub repositories, tweets, and PDFs with [category filters](https://docs.exa.ai/reference/search) and date filtering. Applications get semantic search capabilities instead of exact Google SERP replication, meaning no knowledge graphs, shopping results, or local pack results.
+## Free Tier Generosity
+
+The free tier provides $10 in credits with no expiration and no credit card requirement. At $5 per 1,000 searches for standard queries (1-25 results), this translates to 2,000 free searches. You can allocate credits across other endpoints (research/answers at 2,000 calls, content retrieval at 10,000 pages). All features work on the free tier including semantic search, similarity search, and AI-powered summaries.
+
+**Free Tier Score (9.0/10):** 2,000 one-time free searches with no expiration places Exa among the most generous free tiers, second only to Scrapingdog's 11,000 credits.
 
 ## Choose Exa when you need semantic search
 
@@ -132,33 +144,21 @@ Skip Exa if you need exact Google SERP replication for SEO monitoring or Google 
 
 ![Tavily Spider Chart](images/tavily-spider-chart.png)
 
-The API provides [four endpoints](https://docs.tavily.com): search (factual queries with AI ranking), extract (clean content from specified URLs), map (page discovery across domains), and crawl (combined mapping and extraction). Search supports [basic and advanced depth modes](https://docs.tavily.com/documentation/api-credits), topic filtering (general, news, finance), and time range filtering (daily to yearly).
+## Speed
 
-[Tavily's Playground](https://app.tavily.com) generates real-time code as you build queries. Adjust parameters like search depth and result count, and the right panel updates with Python, JavaScript, or cURL code. The playground includes tabs for search, extract, and crawl testing with live result previews.
+Our 50-query benchmark measured 1.885s average response time with 100% success rate. Response times ranged from 1.583s to 2.897s. The response time reflects that Tavily fetches, parses, and ranks content before responding, while traditional SERP APIs return URLs and leave content extraction to you. [Tavily's published benchmarks](https://blog.tavily.com/tavily-evaluation-part-1-tavily-achieves-sota-on-simpleqa-benchmark/) focus on accuracy (93.3% on SimpleQA) rather than raw speed.
 
-![Tavily Playground Interface](images/tavily-playground-interface.png)
-
-## Performance
-
-Our benchmark tests measured 2.327 seconds average response time with 100% success rate across 5 queries (range: 1.814-2.768s).
-
-[Tavily's published benchmarks](https://blog.tavily.com/tavily-evaluation-part-1-tavily-achieves-sota-on-simpleqa-benchmark/) focus on accuracy rather than raw speed. The service achieved 93.3% accuracy on OpenAI's SimpleQA benchmark while providing 92% faster latency in RAG workflows. The benchmark measures end-to-end performance including retrieval and content processing, which differs from our simple query response measurement.
-
-The 2.3-second response time reflects that Tavily fetches, parses, and ranks content before responding. Traditional SERP APIs return URLs and leave content extraction to you, which is faster per API call but requires follow-up requests.
+**Speed Score (8.5/10):** At 1.885s average, Tavily ranks third among tested APIs, delivering strong performance considering it aggregates and parses content from multiple sources.
 
 ## Pricing
 
-[Tavily's pricing](https://tavily.com/#pricing) uses a credit-based system. The free Researcher tier includes 1,000 credits per month with no credit card required. Pay-as-you-go charges $0.008 per credit. Subscription tiers start at $30/month for 4,000 credits ($0.0075 per credit) and scale down to $0.005 per credit on the Growth plan ($500/month for 100,000 credits).
+[Tavily's pricing](https://tavily.com/#pricing) uses a credit-based system. Pay-as-you-go charges $0.008 per credit. Basic search consumes 1 credit per request ($8 per 1,000 searches), while advanced search uses 2 credits. Subscription tiers start at $30/month for 4,000 credits ($0.0075 per credit) and scale down to $0.005 per credit on the Growth plan.
 
-Basic search consumes 1 credit per request ($8 per 1,000 searches on pay-as-you-go), while advanced search uses 2 credits. Extract operations cost 1 credit per 5 URLs (basic) or 2 credits per 5 URLs (advanced). Map operations cost 1 credit per 10 pages (basic) or 1 credit per 5 pages (with custom instructions). Crawl operations combine mapping and extraction costs.
-
-[Credits reset monthly](https://docs.tavily.com/documentation/api-credits) on subscription plans without rollover. Pay-as-you-go credits don't expire.
+**Pricing Score (7.0/10):** At $8 per 1,000 searches on pay-as-you-go, Tavily offers mid-tier pricing between premium options like SerpAPI ($15) and budget options like Scrapingdog ($0.20).
 
 ## Developer Experience
 
-[Tavily provides SDKs](https://docs.tavily.com) for Python (`tavily-python`) and JavaScript/TypeScript (`@tavily/core`). The Python SDK supports synchronous and asynchronous clients, while the JavaScript SDK provides async functions with TypeScript definitions.
-
-Setup takes about 5 minutes:
+[Tavily provides SDKs](https://docs.tavily.com) for Python (`tavily-python`) and JavaScript/TypeScript (`@tavily/core`). Setup takes about 5 minutes:
 
 ```python
 from tavily import TavilyClient
@@ -170,27 +170,29 @@ for result in response["results"]:
     print(result["title"])
 ```
 
-The Playground interface updates code in real time as you modify parameters. Test queries in the browser, then copy working Python, JavaScript, or shell commands directly into your application.
+[Tavily's Playground](https://app.tavily.com) generates real-time code as you build queries. Adjust parameters like search depth and result count, and the right panel updates with Python, JavaScript, or cURL code. [Documentation](https://docs.tavily.com) includes integration guides for LangChain, LlamaIndex, OpenAI, Anthropic, Vercel AI, and Zapier.
 
-The dashboard shows [API usage tracking](https://app.tavily.com) with credits consumed and remaining, pay-as-you-go billing toggles, API key management, and a Remote MCP section for generating IDE connection URLs. [Tavily Expert](https://app.tavily.com) provides contextual help for API integration within AI-native IDEs.
+![Tavily Playground Interface](images/tavily-playground-interface.png)
 
-![Tavily Dashboard Overview](images/tavily-dashboard-overview.png)
+**Developer Experience Score (8.5/10):** Two official SDKs, real-time code generation in the playground, comprehensive integration guides, and MCP support provide strong developer experience, comparable to Exa.
 
-[Tavily's documentation](https://docs.tavily.com) includes quickstart guides, endpoint references, SDK examples, and integration guides for LangChain, LlamaIndex, OpenAI, Anthropic, Vercel AI, and Zapier. Rate limiting applies at 100 requests per minute on the free tier and 1,000 requests per minute on paid tiers.
+## Search Capabilities
 
-## Free Trial Generosity
+Tavily uses [proprietary AI ranking](https://docs.tavily.com/documentation/about) to aggregate content from up to 20 sources per query. The API provides [four endpoints](https://docs.tavily.com): search (factual queries with AI ranking), extract (clean content from URLs), map (page discovery), and crawl (combined mapping and extraction). Search supports [topic filters](https://docs.tavily.com/documentation/api-reference/endpoint/search) (general, news, finance), time range filters (day, week, month, year), and domain inclusion/exclusion.
 
-The free tier provides 1,000 credits per month with no credit card requirement. At 1 credit per basic search, this translates to 1,000 free searches monthly, or allocate across advanced searches (2 credits), content extraction (1 credit per 5 URLs), or mapping (1 credit per 10 pages). All features including advanced search depth, topic filtering, and time range controls work on the free tier with 100 requests per minute rate limiting.
+**Search Capabilities Score (7.5/10):** AI-powered content aggregation with 93.3% accuracy on SimpleQA benchmarks provides strong factual search, though it can't replicate specific search engine results like SerpAPI or offer semantic search like Exa.
 
-## Search Engine Coverage
+## Free Tier Generosity
 
-Tavily does not provide access to specific search engines like Google or Bing. Instead, it uses [proprietary AI ranking](https://docs.tavily.com/documentation/about) to aggregate content from up to 20 sources per query with [topic filters](https://docs.tavily.com/documentation/api-reference/endpoint/search) (general, news, finance), time range filters (day, week, month, year), and domain inclusion/exclusion. The service emphasizes factual accuracy with [93.3% accuracy on SimpleQA benchmarks](https://blog.tavily.com/tavily-evaluation-part-1-tavily-achieves-sota-on-simpleqa-benchmark/) rather than replicating search engine interfaces.
+The free tier provides 1,000 credits per month with no credit card requirement. At 1 credit per basic search, this translates to 1,000 free searches monthly. You can allocate credits across advanced searches (2 credits), content extraction (1 credit per 5 URLs), or mapping (1 credit per 10 pages). All features work on the free tier with 100 requests per minute rate limiting.
+
+**Free Tier Score (8.0/10):** 1,000 recurring monthly credits places Tavily among the more generous free tiers, better than SerpAPI (250/month) or Scrapingbee (66 total) but less than Exa (2,000 one-time) or Scrapingdog (11,000).
 
 ## Choose Tavily for AI-optimized search
 
 Tavily fits RAG applications, AI agents, or LLM-powered assistants that need factual, grounded web information. Chatbots get ranked content with source citations, research automation tools use the crawl endpoint to map entire domains, and content aggregation platforms pull clean text without handling CAPTCHA. The 93.3% accuracy on factual benchmarks and automatic content filtering reduce manual validation needs.
 
-Skip Tavily for exact Google or Bing SERP layouts needed in SEO monitoring or structured shopping results for price comparison. The 2.3-second average response time reflects content aggregation work, so applications needing only URLs without content extraction should consider lighter-weight SERP APIs.
+Skip Tavily for exact Google or Bing SERP layouts needed in SEO monitoring or structured shopping results for price comparison. Applications needing only URLs without content extraction should consider lighter-weight SERP APIs.
 
 # Scrapingdog
 
@@ -198,27 +200,25 @@ Skip Tavily for exact Google or Bing SERP layouts needed in SEO monitoring or st
 
 ![Scrapingdog Spider Chart](images/scrapingdog-spider-chart.png)
 
-## Performance
+## Speed
 
-Our benchmark tests measured Scrapingdog at 3.762 seconds average response time with 100% success rate across 5 queries. Response times ranged from 1.178 to 4.683 seconds.
+Our 50-query benchmark measured 1.700s average response time with 100% success rate. Response times ranged from 0.709s to 4.432s. The measured performance contradicts [Scrapingdog's published benchmarks](https://www.scrapingdog.com/blog/serpapi-vs-serper-vs-scrapingdog/), which claim 1.25 second response times for Google SERP requests, though our 1.700s average is reasonably close.
 
-The measured performance contradicts [Scrapingdog's published benchmarks](https://www.scrapingdog.com/blog/serpapi-vs-serper-vs-scrapingdog/), which claim 1.25 second response times for Google SERP requests. Our independent testing shows 3.762 seconds average, roughly 3x slower than their self-reported figure. The wide response time variance (1.178s to 4.683s) indicates less predictable latency than competitors.
+**Speed Score (9.0/10):** At 1.700s average, Scrapingdog ranks second among tested APIs, delivering strong performance at the lowest price point.
 
 ## Pricing
 
-[Scrapingdog's pricing](https://www.scrapingdog.com/pricing) uses a credit-based system with monthly subscriptions and pay-as-you-go options. Plans start at $40/month for 200,000 credits (Light) and scale to $30,000/month for 1 billion credits (Nova Pro). At 1 credit per Google search, the cost per 1,000 searches ranges from $0.20 (Light) to under $0.06 at high-volume tiers.
+[Scrapingdog's pricing](https://www.scrapingdog.com/pricing) uses a credit-based system with monthly subscriptions. Plans start at $40/month for 200,000 credits (Light) and scale to $30,000/month for 1 billion credits (Nova Pro). At 1 credit per Google search, the cost per 1,000 searches ranges from $0.20 (Light) to under $0.06 at high-volume tiers.
 
-Concurrency limits scale with plan tiers: Light supports 5 concurrent connections, Standard supports 50, Pro supports 100, and Nova Pro supports 2,200. The free tier provides 1,000 credits with no credit card required. [Social media promotions](https://www.scrapingdog.com/dashboard) add 4,000 credits for following on X and 6,000 for posting a LinkedIn review, bringing the total free tier to 11,000 credits.
+**Pricing Score (10.0/10):** At $0.20-$0.06 per 1,000 searches, Scrapingdog offers the cheapest pricing among all tested APIs, making it ideal for high-volume projects.
 
 ## Developer Experience
 
-[Scrapingdog's documentation](https://www.scrapingdog.com/documentation) covers authentication, error codes, and endpoint references. Some pages returned 404 errors during testing, and the service lacks official SDKs with helper functions found in competing APIs. Integration requires direct REST API calls using standard HTTP libraries.
-
-The dashboard's request builder generates code in cURL, Python, Java, Node.js, Ruby, PHP, Go, and C# as you configure parameters. This real-time code generation simplifies testing without writing initial integration code.
+[Scrapingdog's documentation](https://www.scrapingdog.com/documentation) covers authentication, error codes, and endpoint references, though some pages returned 404 errors during testing. The service lacks official SDKs with helper functions found in competing APIs, requiring direct REST API calls using standard HTTP libraries. The dashboard's request builder generates code in cURL, Python, Java, Node.js, Ruby, PHP, Go, and C# as you configure parameters.
 
 ![Scrapingdog Request Builder Interface](images/scrapingdog-request-builder.png)
 
-Setup takes approximately 5-10 minutes from signup to first API call. Here's a Python example:
+Setup takes approximately 5-10 minutes:
 
 ```python
 import requests
@@ -237,32 +237,25 @@ for result in data.get("organic_results", []):
     print(result["title"])
 ```
 
-The Universal Search API aggregates results across four engines:
+**Developer Experience Score (5.0/10):** No official SDKs, documentation gaps with 404 errors, and REST-only integration give Scrapingdog the weakest developer experience among tested APIs.
 
-```python
-url = "https://api.scrapingdog.com/universal-search"
-params = {
-    "api_key": "YOUR_API_KEY",
-    "query": "coffee",
-    "engines": "google,bing,yahoo,duckduckgo"
-}
+## Search Capabilities
 
-response = requests.get(url, params=params)
-```
+[Scrapingdog's Google Search API](https://www.scrapingdog.com/google-search-api/) provides access to Google web search with organic results, People Also Ask sections, related searches, and multiple search types (web, images, news, shopping). The [Universal Search API](https://www.scrapingdog.com/universal-search-api/) aggregates and de-duplicates results from Google, Bing, Yahoo, and DuckDuckGo in a single request. Beyond search engines, Scrapingdog provides dedicated scrapers for Amazon, Walmart, eBay, LinkedIn Jobs, Instagram, and other platforms.
 
-## Free Trial Generosity
+**Search Capabilities Score (6.0/10):** Coverage of 4 search engines via Universal Search API with de-duplication provides decent breadth, though significantly less than SerpAPI's 20+ platforms.
+
+## Free Tier Generosity
 
 The free tier provides 1,000 request credits with no expiration and no credit card requirement. Optional [social media promotions](https://www.scrapingdog.com/dashboard) add 4,000 credits for following on X and 6,000 for posting a LinkedIn review, bringing the total to 11,000 credits. Free tier users access all API endpoints including the Universal Search API, JavaScript rendering, geo-targeting, and AI extraction features.
 
-## Search Engine Coverage
-
-[Scrapingdog's Google Search API](https://www.scrapingdog.com/google-search-api/) provides access to Google web search with organic results, People Also Ask sections, related searches, location-based searches, and multiple search types (web, images, news, shopping). The [Universal Search API](https://www.scrapingdog.com/universal-search-api/) aggregates and de-duplicates results from Google, Bing, Yahoo, and DuckDuckGo in a single request. Beyond search engines, Scrapingdog provides dedicated scrapers for Amazon, Walmart, eBay, LinkedIn Jobs, Instagram, X, YouTube, Baidu, Google Maps, and Google Scholar.
+**Free Tier Score (10.0/10):** 11,000 total free credits (with promotions) is the most generous free tier among all tested APIs, ideal for extensive evaluation and small projects.
 
 ## Choose Scrapingdog for cost-optimized scraping
 
-Scrapingdog fits high-volume projects where per-request cost matters more than response time. Data collection pipelines requiring millions of monthly searches benefit from pricing that drops to $0.000058 per request at scale. Lead generation tools can consolidate Google search results alongside LinkedIn profiles, Instagram accounts, or e-commerce platforms through a single provider. The Universal Search API's de-duplication feature benefits SEO tools comparing rankings across Google, Bing, Yahoo, and DuckDuckGo without manual result matching.
+Scrapingdog fits high-volume projects where per-request cost matters more than response time. Data collection pipelines requiring millions of monthly searches benefit from pricing that drops to $0.00006 per request at scale. Lead generation tools can consolidate Google search results alongside LinkedIn profiles, Instagram accounts, or e-commerce platforms through a single provider. The Universal Search API's de-duplication feature benefits SEO tools comparing rankings across multiple search engines without manual result matching.
 
-Skip Scrapingdog for latency-sensitive applications requiring sub-second response times. The 3.762-second average response with wide variance (1.178s to 4.683s) makes it unsuitable for real-time voice assistants or live search suggestions. Projects requiring official SDKs and comprehensive documentation should consider alternatives given the REST-only API and documentation gaps observed during testing.
+Skip Scrapingdog for projects requiring official SDKs and comprehensive documentation. The REST-only API and documentation gaps observed during testing make integration more challenging than competitors with polished SDKs.
 
 # Scrapingbee
 
@@ -270,23 +263,23 @@ Skip Scrapingdog for latency-sensitive applications requiring sub-second respons
 
 ![Scrapingbee Spider Chart](images/scrapingbee-spider-chart.png)
 
-## Performance
+## Speed
 
-Our benchmark tests measured Scrapingbee at 5.411 seconds average response time with 100% success rate across 5 queries. Response times ranged from 2.094 to 11.044 seconds, creating a 5x performance spread that makes response time prediction difficult.
+Our 50-query benchmark measured 7.257s average response time with 100% success rate. Response times ranged from 1.453s to 22.978s, creating a 16x performance spread that makes response time prediction difficult. [Competitor benchmarks from Scrapingdog](https://www.scrapingdog.com/blog/scrapingbee-vs-scraperapi-vs-scrapingdog/) show 90% success rate with 16.28 second average response time for Google SERP requests, confirming high variability.
 
-[Competitor benchmarks from Scrapingdog](https://www.scrapingdog.com/blog/scrapingbee-vs-scraperapi-vs-scrapingdog/) show 90% success rate with 16.28 second average response time for Google SERP requests. The extreme variability suggests inconsistent proxy selection or resource allocation during request handling, reflecting Scrapingbee's positioning as a general web scraper rather than a SERP-optimized service.
+**Speed Score (2.0/10):** At 7.257s average, Scrapingbee delivered the slowest response times among all tested APIs, with extreme variability reflecting its positioning as a general web scraper rather than SERP-optimized service.
 
 ## Pricing
 
-[Scrapingbee's pricing](https://www.scrapingbee.com/pricing/) uses a credit-based system where Google Search API requests cost 15 credits per call. Monthly plans start at $49.99 for 250,000 credits. For 1,000 Google searches at 15 credits per request, costs range from $0.56 to $1.44 depending on tier.
+[Scrapingbee's pricing](https://www.scrapingbee.com/pricing/) uses a credit-based system where Google Search API requests cost 15 credits per call. Monthly plans start at $49.99 for 250,000 credits. For 1,000 Google searches at 15 credits per request, costs range from $0.56 to $1.44 depending on tier. Variable credit costs create billing unpredictability as enabling premium proxies increases request cost from 5 to 25 credits (5x multiplier).
 
-Variable credit costs create billing unpredictability. Enabling premium proxies increases request cost from 5 to 25 credits (5x multiplier), while screenshot capture, custom wait conditions, and JavaScript rendering add incremental charges. The request builder's real-time cost estimator helps predict expenses during development. Monthly credits do not roll over.
+**Pricing Score (8.5/10):** At $0.56-$1.44 per 1,000 searches, Scrapingbee offers competitive pricing in the mid-to-low range, more affordable than SerpAPI ($15) or Exa ($5) but slightly more expensive than Scrapingdog ($0.20).
 
 ## Developer Experience
 
-[Scrapingbee's documentation](https://www.scrapingbee.com/documentation/) provides endpoint references, authentication guides, and code examples across Python, Node.js, Java, Ruby, PHP, Go, and C#. The request builder interface shows real-time credit costs and generates code in multiple languages as you configure parameters.
+[Scrapingbee's documentation](https://www.scrapingbee.com/documentation/) provides endpoint references, authentication guides, and code examples across Python, Node.js, Java, Ruby, PHP, Go, and C#. The request builder interface shows real-time credit costs and generates code in multiple languages as you configure parameters. Scrapingbee provides [official Python and Node.js SDKs](https://www.scrapingbee.com/documentation/) that wrap authentication and parameter formatting.
 
-Authentication uses API keys passed as query parameters. Setup takes approximately 5-10 minutes from signup to first API call:
+Setup takes approximately 5-10 minutes:
 
 ```python
 import requests
@@ -305,21 +298,25 @@ for result in data.get("organic_results", []):
     print(result["title"])
 ```
 
-Scrapingbee provides [official Python and Node.js SDKs](https://www.scrapingbee.com/documentation/) that wrap authentication and parameter formatting. Credits are charged for failed requests in many cases, creating cost uncertainty when scraping unreliable targets.
+**Developer Experience Score (7.0/10):** Two official SDKs, comprehensive documentation, and a request builder with real-time cost estimation provide decent developer experience, though credits charged for failed requests create cost uncertainty.
 
-## Free Trial Generosity
+## Search Capabilities
+
+[Scrapingbee's Google Search API](https://www.scrapingbee.com/features/google/) provides access to Google web search only with structured JSON including organic results, local results, ads, related queries, images, news results, knowledge graph data, and top stories. Scrapingbee supports [multiple Google search types](https://www.scrapingbee.com/documentation/google/) including web, news, Maps, and image search. The platform provides dedicated scrapers for Amazon, Walmart, and ChatGPT API alongside general HTML scraping.
+
+**Search Capabilities Score (4.0/10):** Google-only coverage limits Scrapingbee to a single search engine, significantly less than SerpAPI (20+ engines), Scrapingdog (4 engines), or the proprietary search capabilities of Exa and Tavily.
+
+## Free Tier Generosity
 
 The free tier provides 1,000 API credits with no credit card required and no time expiration. At 15 credits per Google search, this translates to approximately 66 free searches. The 1,000 credits cover diverse use cases including HTML scraping (5 credits), Amazon scraping (15 credits), and Walmart scraping (15 credits), with all platform features available including JavaScript rendering, geo-targeting, and premium proxies at higher credit costs.
 
-## Search Engine Coverage
-
-[Scrapingbee's Google Search API](https://www.scrapingbee.com/features/google/) provides access to Google web search only with structured JSON including organic results, local results, ads, related queries, images, news results, knowledge graph data, and top stories. Scrapingbee supports [multiple Google search types](https://www.scrapingbee.com/documentation/google/) including web, news, Maps, and image search. The platform provides dedicated scrapers for Amazon, Walmart, and ChatGPT API alongside general HTML scraping with JavaScript rendering and proxy rotation.
+**Free Tier Score (2.0/10):** 66 total free searches is the least generous free tier among all tested APIs, limiting evaluation and making it difficult to thoroughly test the service before committing.
 
 ## Choose Scrapingbee for unified web scraping
 
-Scrapingbee fits projects requiring both SERP data and general web scraping in a unified platform. Teams already scraping e-commerce sites, social media profiles, or JavaScript-heavy web applications can consolidate Google search results through the same service. Projects with flexible latency requirements can tolerate 5.4-second average response times and high variability for data collection pipelines, batch processing systems, or research workflows prioritizing breadth over speed.
+Scrapingbee fits projects requiring both SERP data and general web scraping in a unified platform. Teams already scraping e-commerce sites, social media profiles, or JavaScript-heavy web applications can consolidate Google search results through the same service. Projects with flexible latency requirements can tolerate 7.257-second average response times and high variability for data collection pipelines, batch processing systems, or research workflows prioritizing breadth over speed.
 
-Skip Scrapingbee for dedicated SERP API needs. The 66-search free tier limits evaluation, Google-only coverage restricts multi-engine analysis, and 5.411-second average response times with 11-second worst-case performance make it unsuitable for real-time voice assistants or live autocomplete suggestions.
+Skip Scrapingbee for dedicated SERP API needs. The 66-search free tier limits evaluation, Google-only coverage restricts multi-engine analysis, and 7.257-second average response times with 23-second worst-case performance make it unsuitable for real-time voice assistants or live autocomplete suggestions.
 
 # SerpAPI vs Tavily
 
@@ -515,4 +512,4 @@ for api_name, data in results.items():
     print(f"{api_name:15s} {data['avg_time']:6.3f}s avg, {data['success_rate']:5.1f}% success")
 ```
 
-The benchmark script is available in the project repository. We ran tests with a 100Mbps connection. Network latency impacts absolute times but relative performance remains consistent. Your results may vary based on location, query complexity, and API server load.
+We ran tests with a 100Mbps connection. Network latency impacts absolute times but relative performance remains consistent. Your results may vary based on location, query complexity, and API server load.

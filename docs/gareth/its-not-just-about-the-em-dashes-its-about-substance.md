@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # It's not just about the em-dashes, it's about ✨substance✨ 
 
 I've seen a lot of people arguing about whether they can identify LLM content or not. I can, and I'll show you how.

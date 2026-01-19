@@ -121,8 +121,8 @@ One thing to keep in mind with Python, is that your code doesn't directly access
 
 Now, let's build our metronome - You will need to download these two metronome sound files and place them in the same folder as your `notes.py` file: 
 
-* [metronome.wav](../assets/note-generator-article/metronome.wav)
-* [metronomeup.wav](../assets/note-generator-article/metronomeup.wav)
+* [metronome.wav](assets/note-generator-article/metronome.wav)
+* [metronomeup.wav](assets/note-generator-article/metronomeup.wav)
 
 The only difference between the two is that one will be played when stressing the beginning of a new beat.
 

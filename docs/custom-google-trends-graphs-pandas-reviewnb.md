@@ -147,7 +147,7 @@ git push
 Now we can review the changes on GitHub.
 
 Open the latest change we've made on the notebook and click on 'load diff'.
-![](./assets/custom-google-trends-graphs-pandas-reviewnb/Capture.png)
+![](./assets/custom-google-trends-graphs-pandas-reviewnb/Capture.PNG)
 
 We see a huge blog of JSON, which represents the minor changes we've made to the notebook. It would be nice if we could see the changes visualised in a nicer way, so let's move on to ReviewNB.
 

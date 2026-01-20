@@ -215,14 +215,3 @@ The tools can navigate websites, fill forms, and extract data. But they need deb
 These tools market themselves as "autonomous" and "intelligent," but the reality feels more like training a junior developer. They need specific guidance, they can't estimate timing, and sometimes they stop mid-task to ask for permission.
 
 For scheduled automation where you can debug the workflow once, this works. For real-time use where you expect things to just work, we're not there yet.
-
----
-
-<!--
-BEFORE PUBLISHING - SKIMMER CHECK:
-1. Read just the headings - do they tell the full story? ✓
-2. Each image/video explained in text? ✓
-3. Remove all media - does article still work? ✓
-4. No vague phrases without evidence? ✓
-5. Shows both successes AND failures honestly? ✓
--->

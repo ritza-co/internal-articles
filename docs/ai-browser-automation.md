@@ -53,7 +53,7 @@ This time it worked. The search completed in a few seconds and extracted 11 flig
 
 Here's what it looks like when it works. The video shows the browser on the left filling forms and extracting prices while Claude Code executes commands on the right. The whole search took about 10 seconds. (Video is at 2x speed.)
 
-<video src="../assets/ai-browser-automation/2x_dev-browser-trimmed.mp4" controls></video>
+<video src="../assets/ai-browser-automation/2x_dev-browser-trimmed.mp4" controls style="max-width: 100%;"></video>
 
 ### Fast execution, but not adaptive
 
@@ -113,7 +113,7 @@ This time it worked. The agent completed the search and extracted 10 flight opti
 
 Here's what the successful execution looked like. The video shows Stagehand autonomously navigating Google Flights and extracting flight data without any manual intervention. The whole thing took about 3 minutes. (Video is at 6x speed.)
 
-<video src="../assets/ai-browser-automation/6x_stagehand.mp4" controls></video>
+<video src="../assets/ai-browser-automation/6x_stagehand.mp4" controls style="max-width: 100%;"></video>
 
 ### Autonomous agents need forceful instructions
 
@@ -137,7 +137,7 @@ Then it moved to the next site and immediately hit a bot detection page.
 
 Here's what that looked like. The video shows the agent struggling through Kayak with repeated failed attempts, then getting blocked by bot detection on the next site. (Video is at 8x speed.)
 
-<video src="../assets/ai-browser-automation/8x_automation-issues.mp4" controls></video>
+<video src="../assets/ai-browser-automation/8x_automation-issues.mp4" controls style="max-width: 100%;"></video>
 
 ### Bot detection is a hard limit
 
@@ -151,7 +151,7 @@ I deployed the working single-site script and triggered it remotely. This time i
 
 Here's what the remote execution looked like. The video shows Kernel completing the flight search faster than the local execution. (Video is at 2x speed.)
 
-<video src="../assets/ai-browser-automation/2x_kernel-trimmed.mp4" controls></video>
+<video src="../assets/ai-browser-automation/2x_kernel-trimmed.mp4" controls style="max-width: 100%;"></video>
 
 ### Remote execution is unpredictable
 
@@ -174,7 +174,7 @@ If remote execution works but timing is unpredictable, the obvious use case is s
 
 Here's what it looks like when it runs. The video shows the GitHub Action executing and committing the updated README automatically. (Video is at 8x speed.)
 
-<video src="../assets/ai-browser-automation/8x_github.mp4" controls></video>
+<video src="../assets/ai-browser-automation/8x_github.mp4" controls style="max-width: 100%;"></video>
 
 Here's what the README looks like after the agent runs:
 

@@ -11,7 +11,7 @@ We wanted to understand how remote browser automation actually works in practice
 
 To test this, we built an automated travel agent that searches Google Flights and extracts structured flight data:
 
-<video src="assets/browserbase-vs-kernel/example-for-intro.mp4" controls></video>
+<video src="/articles/assets/browserbase-vs-kernel/example-for-intro.mp4" controls></video>
 
 We built the same flight search agent on both Browserbase and Kernel using identical Stagehand code. This isolated the platform differences: startup speed, debugging tools, stealth capabilities, and cost structures.
 
@@ -220,7 +220,7 @@ await agent.execute({
 });
 ```
 
-<video src="assets/browserbase-vs-kernel/kernel-agent-filling-out-form.mp4" controls></video>
+<video src="/articles/assets/browserbase-vs-kernel/kernel-agent-filling-out-form.mp4" controls></video>
 
 The agent breaks the task into steps: click the departure field, type "New York," click the autocomplete suggestion, and so on. Each step requires an LLM inference to identify elements and determine actions.
 

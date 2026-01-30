@@ -5,505 +5,450 @@ hide:
 
 # Browserbase vs Kernel: Cloud Browser Automation for AI Agents
 
-AI models run on remote servers. They can't open Chrome on your computer. That's the infrastructure constraint that makes remote browser platforms necessary: they provide cloud Chrome instances that AI can access and control.
-
-We wanted to understand how remote browser automation actually works in practice. How do these platforms handle real-world complexity like bot detection, dynamic forms, and debugging failures? What are the trade-offs between them?
-
-To test this, we built an automated travel agent that searches Google Flights and extracts structured flight data:
+I built an automated travel agent that searches Google Flights and extracts the cheapest flights. Give it a query like "New York to London, January 30 - February 6" and it returns structured flight data:
 
 <video src="/articles/assets/browserbase-vs-kernel/example-for-intro.mp4" controls></video>
 
-We built the same flight search agent on both Browserbase and Kernel using identical Stagehand code. This isolated the platform differences: startup speed, debugging tools, stealth capabilities, and cost structures.
+[See the code on GitHub](#) *(placeholder - GitHub link to be added)*
 
-## Why Remote Browsers Exist
+This guide compares Browserbase and Kernel—the two remote browser platforms I used to build it. I'll show how they work, how AI agents control them, and their practical differences when handling real sites like Google Flights and Skyscanner.
 
-AI models like GPT-4 and Claude can't open Chrome on your computer. They run on remote servers. That's the infrastructure problem remote browsers solve: they provide cloud Chrome instances that AI can access via WebSocket connections.
+## How AI Agents Access Browsers
 
-You have three approaches to browser automation:
+### Claude Code: API Calls and Local Commands
 
-**1. Write Playwright scripts directly**
+Claude Code runs on your machine. It makes API calls and executes local bash commands. It can read files, write code, and run scripts.
 
-You write explicit code: `await page.click('#submit-button')`. Scripts are repeatable and deterministic, but brittle. When websites change CSS selectors, your scripts break. Every UI change requires manual updates. The upside is cost—no LLM calls means low operating expenses.
+It can't open a browser or interact with JavaScript-heavy sites. When you ask Claude Code to fetch Google Flights, it makes an HTTP request. The request returns an empty shell because the content loads dynamically with JavaScript.
 
-**2. Use computer-use models (Anthropic Claude, OpenAI's vision models)**
+### Hybrid Approach: Local Browser with Remote AI
 
-AI sees screenshots and controls the browser visually. UI changes don't break automation because the model adapts automatically. The trade-off is cost and speed. Every action requires vision model inference on screenshots, making this approach slower (screenshot → inference → action → screenshot) and more expensive. It works on any visual interface, including desktop applications.
+Tools like dev-browser solve this by launching Chrome on your machine and connecting the remote AI to it using the Chrome DevTools Protocol (CDP). The browser runs locally. The AI runs on remote servers (Anthropic, OpenAI, etc.). The AI sees your browser's DOM, sends commands to click elements, fill forms, and extract data.
 
-**3. Use Stagehand with remote browsers**
+This works for personal projects. The browser has your logged-in sessions and cookies. The AI can interact with authenticated sites. The limitation is scale—running multiple Chrome instances consumes significant memory, browser crashes need manual cleanup, and you're constrained by your machine's resources.
 
-You write natural language instructions: `stagehand.act("click the search button")`. An LLM analyzes page structure (the DOM) to identify elements. Skipping screenshots makes this faster than computer-use models. Text analysis uses fewer tokens than vision, making it cheaper. It still requires LLM calls for each action, and needs cloud browsers so AI can access Chrome remotely.
+### Remote Browsers with Remote AI: Everything in the Cloud
 
-This comparison tests the third approach. We use Stagehand identically on both Browserbase and Kernel to isolate the platform differences.
+Browserbase and Kernel run Chrome instances in the cloud. Both the browser and the AI controlling it run on remote servers.
 
-## The Test: Building a Flight Search Agent
+You request a browser via their API. They start Chrome in a VM and return a WebSocket URL. You connect an automation library (I used Stagehand) to that URL. Your code runs on your machine, but it orchestrates remote resources.
 
-We built a flight search agent that navigates Google Flights, fills in search criteria (NYC to London, specific dates), and extracts structured flight data. This real-world test reveals how each platform handles complex forms, bot detection, debugging, and cost optimization.
+Here's how the data flows: Stagehand fetches the page DOM from the remote browser. It sends that DOM to an LLM API you specify—I used GPT-5 with my OpenAI API key. The LLM returns element selectors or actions (click button #42, type "London" into input field #7). Stagehand sends those CDP commands over the WebSocket to the remote browser. The browser executes them.
 
-Google Flights has complex autocomplete dropdowns, aggressive bot detection, dynamic content loading, and frequently changing DOM structure. It exercises stealth features, AI-powered form filling, data extraction, and requires good debugging tools when things break.
+The cloud service manages browser resources (memory, crashes, updates). You write instructions like "search for flights to London." The LLM figures out how to execute those instructions by analyzing the page structure. You pay for browser sessions plus LLM API calls.
 
----
+This guide focuses on remote browsers because that's what scales beyond personal projects.
 
 ## Spinning Up Remote Browsers
 
-AI models like GPT-4 and Claude run on remote servers. They can't open Chrome on your computer. They need browsers running in the cloud that they can access remotely.
+A remote browser is a Chrome instance running in a virtual machine. You request one from Browserbase or Kernel through their API. They start Chrome and return a connection URL. Your automation code connects to that URL and controls the remote browser.
 
-Browserbase and Kernel provide cloud Chrome browsers. You request a browser, they start a Chrome instance in a virtual machine, and send back a connection URL. Your code connects and controls the browser.
+Remote browsers handle infrastructure (persistent sessions, automatic updates, container isolation) and provide observability tools (video recording, logs, network inspection) that would be difficult to build yourself.
 
-Why use cloud browsers instead of running Chrome locally? Resource management. Ten browsers consume 8GB of RAM on a typical laptop. Running dozens or hundreds of automation tasks requires dedicated servers, monitoring for crashes, and cleanup code for orphaned processes. Cloud browser services handle that infrastructure.
+You use them when scaling beyond local Chrome instances, when debugging production automation failures, or when building AI agents where both the model and browser run remotely.
 
-Both platforms work similarly. The difference is what they optimize for. Browserbase prioritizes debugging and observability. Kernel prioritizes speed and cost control.
+Both Browserbase and Kernel provide cloud Chrome browsers. Kernel prioritizes speed and minimal overhead. Browserbase prioritizes observability and debugging tools.
 
 ### Creating a Browser on Kernel
 
-Kernel gives you direct control over the browser lifecycle. Create a browser using their SDK, get back a connection URL, then connect your automation code.
+Kernel's SDK creates a browser and returns a WebSocket URL. You connect using Playwright's Chrome DevTools Protocol (CDP):
 
-```typescript
-import Kernel from "@onkernel/sdk";
-import { Stagehand } from "@browserbasehq/stagehand";
+```javascript
+import Kernel from '@onkernel/sdk';
+import { chromium } from 'playwright';
 
 const kernel = new Kernel({
-  apiKey: process.env.KERNEL_API_KEY,
+  apiKey: process.env.KERNEL_API_KEY
 });
 
-const browser = await kernel.browsers.create({
-  timeout_seconds: 300,
-  stealth: true,
-});
+const startTime = performance.now();
+const kernelBrowser = await kernel.browsers.create();
+const createTime = performance.now() - startTime;
 
-const stagehand = new Stagehand({
-  env: "LOCAL",
-  localBrowserLaunchOptions: {
-    cdpUrl: browser.cdp_ws_url,
-  },
-});
+const connectStart = performance.now();
+const browser = await chromium.connectOverCDP(kernelBrowser.cdp_ws_url);
+const connectTime = performance.now() - connectStart;
 
-await stagehand.init();
-const page = stagehand.context.pages()[0];
-await page.goto("https://www.google.com/travel/flights");
+const context = browser.contexts()[0];
+const page = context.pages()[0];
 
-console.log("Live view:", browser.browser_live_view_url);
+const navStart = performance.now();
+await page.goto('https://www.skyscanner.com/');
+const navTime = performance.now() - navStart;
+
+console.log('Browser creation:', (createTime / 1000).toFixed(2) + 's');
+console.log('CDP connection:', (connectTime / 1000).toFixed(2) + 's');
+console.log('Page navigation:', (navTime / 1000).toFixed(2) + 's');
+console.log('Live View:', kernelBrowser.browser_live_view_url);
 ```
 
-**Timing:** Browser creation (1.12s) + Stagehand init (4.43s) + page navigation (1.42s) = 7.57s total.
+I wrapped each operation in `performance.now()` calls to measure execution time. Running this produces:
 
-The `stealth: true` flag makes the browser look like a real human is using it. Websites detect automated browsers and block them with CAPTCHAs. With stealth enabled, the browser passes detection checks.
+```
+Browser creation: 0.94s
+CDP connection:   1.98s
+Page navigation:  1.50s
+Total:            4.42s
 
-Kernel provides a live view URL. Open it in your regular browser to watch the remote browser in real-time.
+Session ID: q60fa1i7zpfzvd99gslqjzru
+Live View:  https://proxy.iad-pedantic-rhodes.onkernel.com:8443/browser/live/ZsDmmTN8K5Fl
+```
 
-![Kernel live view showing Google Flights](assets/browserbase-vs-kernel/kernel-session-live.png)
+The live view URL shows the remote browser in real-time:
+
+![Kernel live view showing Skyscanner](assets/browserbase-vs-kernel/kernel-session-live.png)
+
+Kernel's Live View streams the browser screen while automation runs. You can interact with the session through this view—clicking or typing affects the running browser. This helps when debugging agents that take unexpected actions or get stuck.
+
+The live view expires when the session ends. Kernel's free tier doesn't save recordings. The paid tier offers manual video recording through `startRecording()` and `stopRecording()` API calls.
 
 ### Creating a Session on Browserbase
 
-Browserbase built Stagehand, so the integration is simpler. Stagehand handles browser creation automatically when you initialize.
+Browserbase works similarly. I added the same timing measurements:
 
-```typescript
-import { Stagehand } from "@browserbasehq/stagehand";
+```javascript
+const { chromium } = require('playwright-core');
+const Browserbase = require('@browserbasehq/sdk').default;
 
-const stagehand = new Stagehand({
-  env: "BROWSERBASE",
-  apiKey: process.env.BROWSERBASE_API_KEY,
-  projectId: process.env.BROWSERBASE_PROJECT_ID,
+const bb = new Browserbase({
+  apiKey: process.env.BROWSERBASE_API_KEY
 });
 
-await stagehand.init();
+const startTime = performance.now();
+const session = await bb.sessions.create({
+  projectId: process.env.BROWSERBASE_PROJECT_ID
+});
+const createTime = performance.now() - startTime;
 
-const sessionId = stagehand.browserbaseSessionID!;
-const sessionUrl = `https://browserbase.com/sessions/${sessionId}`;
+const connectStart = performance.now();
+const browser = await chromium.connectOverCDP(session.connectUrl);
+const connectTime = performance.now() - connectStart;
 
-const page = stagehand.context.pages()[0];
-await page.goto("https://www.google.com/travel/flights");
+const defaultContext = browser.contexts()[0];
+const page = defaultContext.pages()[0];
 
-console.log("Session Inspector:", sessionUrl);
+const navStart = performance.now();
+await page.goto('https://www.skyscanner.com/');
+const navTime = performance.now() - navStart;
+
+console.log('Session creation:', (createTime / 1000).toFixed(2) + 's');
+console.log('CDP connection:', (connectTime / 1000).toFixed(2) + 's');
+console.log('Page navigation:', (navTime / 1000).toFixed(2) + 's');
+console.log('Session replay:', `https://browserbase.com/sessions/${session.id}`);
 ```
 
-**Timing:** Stagehand init including browser creation (14.87s) + page navigation (4.01s) = 25.85s total.
+Running this produces:
 
-The Session Inspector shows the browser in real-time and records everything automatically: network requests, console logs, and page structure snapshots.
+```
+Session creation:  2.14s
+CDP connection:    2.60s
+Page navigation:   5.69s
+Total time:        11.44s
 
-![Browserbase Session Inspector with Google Flights](assets/browserbase-vs-kernel/browserbase-session-inspector-google-flights.png)
+Session ID: a620443e-b942-4920-a64d-a217888046ec
+Session replay: https://browserbase.com/sessions/a620443e-b942-4920-a64d-a217888046ec
+```
 
-### Startup Speed Comparison
+The session replay URL remains accessible after the session ends, unlike Kernel's live view:
+
+![Browserbase Session Inspector showing Skyscanner](assets/browserbase-vs-kernel/browserbase-session-inspector-skyscanner.png)
+
+Browserbase automatically records every session. The video becomes available about 30 seconds after the session ends. The dashboard includes Console (errors and logs), Network (HTTP requests with timing), DOM (page structure inspection), and Stagehand (token usage and extraction results) tabs. Sessions persist according to your plan's retention policy, so you can share URLs with teammates or review historical failures.
+
+### Speed Comparison
 
 | Step | Kernel | Browserbase |
 |------|--------|-------------|
-| Browser/session creation | 1.12s | 14.87s |
-| Stagehand initialization | 4.43s | Included above |
-| Page navigation | 1.42s | 4.01s |
-| **Total** | **7.57s** | **25.85s** |
+| Browser/session creation | 0.94s | 2.14s |
+| CDP connection | 1.98s | 2.60s |
+| Page navigation | 1.50s | 5.69s |
+| **Total** | **4.42s** | **11.44s** |
 
-**Kernel is 3.4x faster.** Browserbase's overhead comes from recording infrastructure that captures everything from the start. Kernel provisions a bare browser without recording.
-
-At scale: 1,000 browser startups take ~2.1 hours on Kernel vs ~7.2 hours on Browserbase.
+Kernel spins up a browser 2.6x faster. Browserbase's recording infrastructure (video, logs, network capture) adds latency at session creation and during page navigation. Kernel provides a bare browser without automatic recording.
 
 ---
 
-## Running the Automation
+## Giving Agent Access to Browser
 
-Stagehand provides an AI layer for browser automation. Instead of writing CSS selectors like `button.submit-form[data-testid="search"]`, you write natural language instructions like "click the search button." An LLM analyzes the page to identify which element you mean and executes the action.
+Raw Chrome DevTools Protocol automation breaks when sites redesign their forms. You write `await page.click('button[data-testid="search-button"]')`. The site changes `data-testid` to `data-qa-id`. Your automation stops working.
 
-You supply your own LLM API key (OpenAI, Anthropic, or Google). Stagehand sends page context to the LLM, receives element selectors or coordinates, then executes actions using Playwright.
+Stagehand adds an AI layer that uses natural language instructions instead of CSS selectors. You provide an LLM API key (OpenAI, Anthropic, or Google). Stagehand sends page structure to the LLM, receives element selectors or action coordinates, then executes those actions through Playwright.
 
-```typescript
-const stagehand = new Stagehand({
-  env: "BROWSERBASE",
-  apiKey: process.env.BROWSERBASE_API_KEY,
-  projectId: process.env.BROWSERBASE_PROJECT_ID,
-  model: "openai/gpt-4o",
-});
-```
+The same Stagehand code runs on Kernel, Browserbase, or local browsers—only the connection setup changes.
 
-Stagehand is platform-agnostic. The same automation code runs on Browserbase, Kernel, or your local machine. Only the connection setup changes.
+### Running an Agent on Kernel
 
-### Connecting Stagehand
+Kernel provides a CDP WebSocket URL when you create a browser. Pass that URL to Stagehand's local browser options:
 
-**Browserbase** (built by the same team as Stagehand):
-
-```typescript
-import { Stagehand } from "@browserbasehq/stagehand";
-
-const stagehand = new Stagehand({
-  env: "BROWSERBASE",
-  apiKey: process.env.BROWSERBASE_API_KEY,
-  projectId: process.env.BROWSERBASE_PROJECT_ID,
-});
-
-await stagehand.init();
-const page = stagehand.context.pages()[0];
-```
-
-**Kernel** (connects via CDP WebSocket):
-
-```typescript
-import Kernel from "@onkernel/sdk";
-import { Stagehand } from "@browserbasehq/stagehand";
+```javascript
+import Kernel from '@onkernel/sdk';
+import { Stagehand } from '@browserbasehq/stagehand';
 
 const kernel = new Kernel({
-  apiKey: process.env.KERNEL_API_KEY,
+  apiKey: process.env.KERNEL_API_KEY
 });
 
-const browser = await kernel.browsers.create({
-  timeout_seconds: 300,
-  stealth: true,
-});
+const kernelBrowser = await kernel.browsers.create();
 
 const stagehand = new Stagehand({
-  env: "LOCAL",
+  env: 'LOCAL',
   localBrowserLaunchOptions: {
-    cdpUrl: browser.cdp_ws_url,
+    cdpUrl: kernelBrowser.cdp_ws_url,
   },
+  model: 'openai/gpt-5',
 });
 
 await stagehand.init();
 const page = stagehand.context.pages()[0];
 ```
 
-### The Flight Search Agent
+Stagehand's `agent()` method handles multi-step workflows autonomously. I built a flight search that navigates to Google Flights and fills the search form:
 
-Our test agent navigates Google Flights, fills search criteria (New York to London, March 15-22, 2026), and extracts structured flight data.
+```javascript
+const startTime = performance.now();
 
-```typescript
-const agent = stagehand.agent({
-  cua: false, // DOM mode (element-based)
-  model: "openai/gpt-4o",
-});
+await page.goto('https://www.google.com/travel/flights');
 
-await page.goto("https://www.google.com/travel/flights");
-
+const agent = stagehand.agent();
 await agent.execute({
-  instruction: `Fill out the flight search:
-    - Departure city: New York
-    - Destination city: London
-    - Departure date: March 15, 2026
-    - Return date: March 22, 2026
-    Then click Search and wait for results to load.`,
+  instruction: 'Search for flights from New York to London departing January 30th and returning February 6th',
   maxSteps: 30,
 });
+
+const agentTime = performance.now() - startTime;
+console.log('Agent execution:', (agentTime / 1000).toFixed(2) + 's');
 ```
 
-<video src="/articles/assets/browserbase-vs-kernel/kernel-agent-filling-out-form.mp4" controls></video>
+The agent autonomously fills departure/destination cities, selects dates from the picker, clicks Search, and waits for results. Google Flights required about 20 steps to complete. The `maxSteps: 30` parameter provides buffer room (the default is 20).
 
-The agent breaks the task into steps: click the departure field, type "New York," click the autocomplete suggestion, and so on. Each step requires an LLM inference to identify elements and determine actions.
+I added timing measurements to see how long the autonomous workflow takes. Running this produces:
 
-After results load, we extract structured data with a Zod schema:
-
-```typescript
-const flightSchema = z.object({
-  flights: z.array(
-    z.object({
-      airline: z.string(),
-      departureTime: z.string(),
-      arrivalTime: z.string(),
-      duration: z.string(),
-      price: z.string(),
-      stops: z.string(),
-    })
-  ),
-});
-
-const flightData = await stagehand.extract({
-  instruction: "extract all visible flights with their details",
-  schema: flightSchema,
-});
-
-console.log(`Found ${flightData.flights.length} flights`);
+```
+Agent execution: 620.45s  (10 minutes 20 seconds)
 ```
 
-The output shows structured flight data:
+After the agent completes, the page shows flight results. Stagehand's `extract()` method parses page content into structured data using Zod schemas:
 
-```json
-{
-  "flights": [
-    {
-      "airline": "British Airways",
-      "departureTime": "7:00 PM",
-      "arrivalTime": "7:10 AM+1",
-      "duration": "7h 10m",
-      "price": "$347",
-      "stops": "Nonstop"
-    },
-    {
-      "airline": "Virgin Atlantic",
-      "departureTime": "8:30 PM",
-      "arrivalTime": "8:40 AM+1",
-      "duration": "7h 10m",
-      "price": "$362",
-      "stops": "Nonstop"
-    },
-    {
-      "airline": "Delta",
-      "departureTime": "10:45 PM",
-      "arrivalTime": "11:00 AM+1",
-      "duration": "7h 15m",
-      "price": "$389",
-      "stops": "Nonstop"
-    },
-    {
-      "airline": "Norse Atlantic",
-      "departureTime": "1:30 AM",
-      "arrivalTime": "1:45 PM",
-      "duration": "7h 15m",
-      "price": "$279",
-      "stops": "Nonstop"
-    },
-    {
-      "airline": "American Airlines",
-      "departureTime": "6:15 PM",
-      "arrivalTime": "9:30 AM+1",
-      "duration": "10h 15m",
-      "price": "$425",
-      "stops": "1 stop (PHI)"
-    }
-  ]
-}
+```javascript
+import { z } from 'zod';
+
+const flightSchema = z.array(
+  z.object({
+    airline: z.string(),
+    price: z.string(),
+    departureTime: z.string(),
+  })
+);
+
+const extractStart = performance.now();
+const flights = await stagehand.extract(
+  'Extract the first 3 flight options with airline, price, and departure time',
+  flightSchema
+);
+const extractTime = performance.now() - extractStart;
+
+console.log('Extraction time:', (extractTime / 1000).toFixed(2) + 's');
+console.log(flights);
 ```
 
-Found 5 flights
+The LLM identifies which parts of the page match the schema and returns JSON:
 
----
+```
+Extraction time: 40.12s
 
-## Handling Bot Detection
-
-Websites detect automated browsers before your code runs. They check browser fingerprints, IP addresses, and behavioral patterns. By the time a CAPTCHA appears, detection has already happened. AI agents can't solve their way out because the browser itself has been flagged.
-
-Both platforms handle this with stealth mode: randomized browser fingerprints, residential proxies, and automatic CAPTCHA solving.
-
-### Kernel: Stealth Included Free
-
-Kernel provides stealth mode on all plans through a single flag:
-
-```typescript
-const browser = await kernel.browsers.create({
-  stealth: true,
-  timeout_seconds: 300,
-});
+[
+  {
+    "airline": "Norse Atlantic UK",
+    "price": "$385",
+    "departureTime": "6:05 PM"
+  },
+  {
+    "airline": "Delta",
+    "price": "$519",
+    "departureTime": "8:00 PM"
+  },
+  {
+    "airline": "JetBlue",
+    "price": "$524",
+    "departureTime": "8:45 AM"
+  }
+]
 ```
 
-![Kernel successfully loading Skyscanner with stealth mode](assets/browserbase-vs-kernel/kernel-session-skyscanner.png)
+Total workflow time: 620.45s (agent) + 40.12s (extraction) = ~11 minutes using GPT-5.
 
-We tested against Skyscanner, which blocks automation aggressively. With stealth disabled, we got blocked immediately. With stealth enabled, the page loaded normally across three tests.
+Kernel's Live View lets you watch the agent work in real-time:
 
-One test did trigger a CAPTCHA. Kernel's auto-solver handled it in 30 seconds without requiring code changes.
+<video src="/articles/assets/browserbase-vs-kernel/kernel-agent-live-view.mp4" controls></video>
 
-### Browserbase: Stealth Requires Paid Plan
+### Running an Agent on Browserbase
 
-Browserbase's stealth features are on the Developer plan ($20/month minimum). The free plan gets blocked immediately on the same sites where Kernel's free stealth works.
+Browserbase integration is simpler because Stagehand handles session creation automatically:
 
-```typescript
+```javascript
+import { Stagehand } from '@browserbasehq/stagehand';
+
 const stagehand = new Stagehand({
-  env: "BROWSERBASE",
+  env: 'BROWSERBASE',
   apiKey: process.env.BROWSERBASE_API_KEY,
   projectId: process.env.BROWSERBASE_PROJECT_ID,
+  model: 'openai/gpt-5',
 });
 
 await stagehand.init();
 const page = stagehand.context.pages()[0];
-await page.goto("https://www.skyscanner.com");
-// Blocked: "Press & Hold Human Challenge" appears
 ```
 
-![Browserbase blocked by Skyscanner Press & Hold challenge](assets/browserbase-vs-kernel/skyscanner-browserbase.png)
+The agent and extraction code is identical to Kernel. The same flight search task produced identical results.
 
-We tried having Stagehand's AI agent solve the challenge:
+Browserbase's Session Inspector automatically recorded the entire workflow. The Session Inspector includes a Stagehand tab showing token usage, timing, Zod schemas, and extraction results:
 
-```typescript
-const agent = stagehand.agent({
-  model: "openai/gpt-4o",
-});
-
-await agent.execute({
-  instruction: "Click and hold the verification button to pass the challenge",
-  maxSteps: 15,
-});
-```
-
-The agent failed after 10 attempts over 80 seconds. The challenge iframe has protections that block automated interaction.
-
-**Error:** "Node does not have a layout object"
-
-Browserbase's Developer plan includes fingerprint randomization, residential proxies (1GB included), and CAPTCHA auto-solving. According to their documentation, these work similarly to Kernel's stealth features. We couldn't test this without a paid subscription.
-
-The Scale plan ($499/month) adds advanced stealth with a custom Chromium build. Browserbase Identity partners with Cloudflare's "Signed Agents" program to cryptographically authenticate automation instead of hiding it.
-
-**For travel sites and flight searches:** Stealth features determine whether your automation works or gets blocked on the first page load. Kernel includes this free. Browserbase requires the Developer plan.
+<video src="/articles/assets/browserbase-vs-kernel/browserbase-agent-session.mp4" controls></video>
 
 ---
 
 ## Debugging When Things Break
 
-Remote browsers run on cloud servers. You can't attach a debugger or use browser DevTools like you would locally. Both platforms solve this with different approaches to observability.
+Browser automation fails at different layers: the browser crashes, the agent clicks the wrong element, Stagehand times out, or the LLM generates an invalid selector. Each layer needs different debugging tools.
 
-Browserbase automatically records every session. Kernel provides real-time live view on the free tier, with optional video recording on paid plans.
+Stagehand provides application-level debugging (logs, LLM inference files) that works on both platforms. Kernel and Browserbase each provide infrastructure-level debugging (video, console logs, network inspection) with different trade-offs.
 
-We tested both by deliberately breaking our flight search automation. We removed the code that closed Google's autocomplete dropdown, causing the return date picker to fail.
+### Debugging with Stagehand
 
-### Browserbase Session Inspector
+I added verbose logging to see what the agent was doing:
 
-Browserbase records every session automatically. The Session Inspector combines video replay with Chrome DevTools: timeline with all events, console logs, network inspector, and video synced to the timeline.
-
-![Browserbase Session Inspector with debugging tools](assets/browserbase-vs-kernel/browserbase-network-tab-open-for-debug.png)
-
-We opened the session and saw exactly where it failed. The video showed Stagehand getting stuck on the return date picker because the autocomplete dropdown covered it.
-
-The Stagehand debugging tab shows every `.act()` call, token consumption, and AI decisions. Stagehand tried to click the picker three times before timing out.
-
-Console logs captured Stagehand's internal reasoning automatically:
-
-```
-[stagehand] Attempting to click return date picker
-[stagehand] Element found but not clickable: covered by dropdown
-[stagehand] Retrying with alternate selector...
-[stagehand] Retry failed: element still not clickable
+```javascript
+const stagehand = new Stagehand({
+  env: 'LOCAL',
+  verbose: 2,  // 0=errors, 1=info, 2=debug
+  logInferenceToFile: true,  // Saves LLM request/response to disk
+});
 ```
 
-The fix:
+This produces logs showing which elements Stagehand identified and which XPaths it executed:
 
-```typescript
-await stagehand.act("press Escape key");
-await stagehand.page.waitForTimeout(500);
-await stagehand.act("click the return date picker");
+```
+[INFO] Agent calling tool: act | arguments=type "New York" into the Where from? combobox
+[INFO] response | elementId=16-23, method=type, arguments=["New York"]
+[DEBUG] final tail | xpath=/html[1]/body[1]/c-wiz[2]/div[1]/.../input[1]
+[INFO] action complete
 ```
 
-Diagnosed in 30 seconds without adding logging or reproducing locally.
+The `logInferenceToFile: true` setting saves the complete LLM request and response for every action to `./inference_summary/`. The `act_call.txt` file contains the entire DOM snapshot sent to the LLM. The `act_response.txt` shows which element the LLM selected and why. When Stagehand clicks the wrong element, these files reveal whether the DOM was stale or whether multiple elements matched the instruction.
 
-### Kernel Live View (Free Tier)
+### Debugging with Kernel
 
-Kernel's free tier provides a live view URL that streams the browser in real-time:
+Kernel provides a live view URL showing the browser screen in real-time:
 
-```typescript
+```javascript
 const browser = await kernel.browsers.create();
-console.log("Live View:", browser.browser_live_view_url);
-
-await stagehand.goto("https://www.google.com/travel/flights");
-// Open the live view URL to watch in real-time
+console.log('Live View:', browser.browser_live_view_url);
 ```
 
-![Kernel Live View with read-only browser stream](assets/browserbase-vs-kernel/kernel-session-live-link.png)
+I opened the live view URL in another tab while the agent ran. I watched it type into fields, open dropdowns, and select dates:
 
-The live view is read-only. You can watch but not interact.
+<video src="/articles/assets/browserbase-vs-kernel/kernel-live-view-session.mp4" controls></video>
 
-We opened the live view and watched the automation get stuck on the return date picker. We saw where it failed, but not why. The live view shows visual state but doesn't capture console logs or provide debugging tools.
+The live view URL expires when the session ends. Kernel's free tier doesn't save video recordings. Paid plans add manual video recording through `replays.start()` and `replays.stop()` API calls. Videos download as MP4 files.
 
-We added manual logging:
+### Debugging with Browserbase
 
-```typescript
-page.on("console", (msg) => {
-  console.log(`[Browser Console]: ${msg.text()}`);
+Browserbase records every session automatically:
+
+```javascript
+const stagehand = new Stagehand({
+  env: 'BROWSERBASE',
+  apiKey: process.env.BROWSERBASE_API_KEY,
+  projectId: process.env.BROWSERBASE_PROJECT_ID,
 });
 
-try {
-  await stagehand.act("click the return date picker");
-} catch (error) {
-  console.error("[Automation Failed]:", error.message);
-  await stagehand.page.screenshot({ path: "debug-failure.png" });
-}
+await stagehand.init();
+const sessionId = stagehand.browserbaseSessionID;
+console.log(`Session Inspector: https://browserbase.com/sessions/${sessionId}`);
 ```
 
-The terminal output combined with live view visual feedback let us diagnose the issue.
+The Session Inspector URL works during and after the session. Video becomes available about 30 seconds after the session ends:
 
-The free tier doesn't include video replay. Once the browser terminates, the live view URL stops working. You need to watch failures happen in real-time or reproduce them with logging.
+<video src="/articles/assets/browserbase-vs-kernel/browserbase-session-inspector-recording.mp4" controls></video>
 
-### Kernel Replay Recording (Paid Plans)
+The dashboard includes Console (browser logs), Network (HTTP requests/responses), and Stagehand tabs. The Stagehand tab breaks down token consumption and timing per operation.
 
-Kernel's paid plans (starting at $19/month) add manual video recording:
+Browserbase's Session Inspector is free and automatic. Kernel's free tier requires watching live—you can't replay sessions after they end.
 
-```typescript
-const replay = await kernel.browsers.replays.start(browser.session_id);
+## Handling Bot Detection
 
-await stagehand.goto("https://www.google.com/travel/flights");
-// Run automation...
+I tested both platforms against Skyscanner to see how they handle bot detection. Skyscanner uses a "Press & Hold" verification challenge to block automated browsers.
 
-await kernel.browsers.replays.stop(replay.replay_id, {
-  id: browser.session_id
+### Testing Without Stealth
+
+Both Kernel (without stealth mode) and Browserbase (free tier) hit the same bot detection screen immediately:
+
+![Skyscanner bot detection screen](assets/browserbase-vs-kernel/skyscanner-browserbase.png)
+
+### Testing Kernel's Stealth Mode
+
+Kernel's free tier includes stealth mode:
+
+```javascript
+const browser = await kernel.browsers.create({
+  stealth: true,
 });
-
-const replays = await kernel.browsers.replays.list(browser.session_id);
-console.log("Replay URL:", replays[0].replay_view_url);
 ```
 
-You control when recording starts and stops. Record only specific parts of your session or create multiple recordings per session. Replays download as MP4 files.
+The `stealth: true` flag enables residential proxy routing, browser fingerprint randomization, and headful mode (harder to detect than headless).
 
-The trade-off: you need to know when to record. If a failure happens unexpectedly, you miss it unless you recorded the entire session.
+With stealth enabled, Skyscanner's initial page loaded without showing the bot detection screen. The agent filled the flight search form successfully. When the agent clicked Search, Skyscanner showed the bot detection challenge again. The agent couldn't bypass it.
 
-**Performance difference:** Kernel's free tier (no recording) ran our test in 14.48 seconds. Browserbase's automatic recording took 35.81 seconds (2.5x slower).
+The agent abandoned Skyscanner and navigated to Google Flights instead. It completed the flight search there and returned results:
 
-### Debugging Comparison
+<video src="/articles/assets/browserbase-vs-kernel/kernel-agent-abandons-skyscanner.mp4" controls></video>
 
-| Feature | Browserbase Free | Kernel Free | Kernel Paid |
-|---------|-----------------|-------------|-------------|
-| Live view during session | ✅ Session Inspector | ✅ Live View URL | ✅ Live View URL |
-| Video replay after session | ✅ Automatic | ❌ | ✅ Manual |
-| Console log capture | ✅ Built-in | Manual listener | Manual listener |
-| Network inspector | ✅ | ❌ | ❌ |
-| Stagehand debugging tab | ✅ Token usage | ❌ | ❌ |
+```
+[
+  { "airline": "Norse Atlantic UK", "price": "$385", "departureTime": "6:05 PM" },
+  { "airline": "Delta", "price": "$519", "departureTime": "8:00 PM" },
+  { "airline": "JetBlue", "price": "$524", "departureTime": "8:45 AM" }
+]
+```
 
-**Browserbase:** Automatic recording on free tier. Diagnosed our broken automation in 30 seconds by watching the replay. Downside: 2.5x slower due to recording overhead. You can't disable it.
+I gave the agent this instruction: "Search for flights from New York to London departing January 30th and returning February 6th on Skyscanner." It ignored the Skyscanner requirement when it hit the bot detection screen.
 
-**Kernel free tier:** Real-time live view with no recording overhead (2.5x faster). Downside: no post-session replay. You must watch failures live or reproduce them with logging.
+### Agent Behavior: Unpredictable or Resourceful?
 
-**Kernel paid tier:** Manual recording. Start/stop recording when needed. Downside: you need to predict when failures will happen.
+Both platforms showed the same pattern. The agents encountered bot detection on Skyscanner. Instead of failing or reporting an error, they switched sites autonomously and completed the task.
 
-Choose Browserbase if you need post-mortem debugging for CI/CD failures. Choose Kernel free tier if you want faster iteration during active development. Choose Kernel paid tier if you want selective recording control.
+This raises a question about autonomous agents: They fulfilled the core requirement (finding flights) but ignored explicit instructions (use Skyscanner). You could view this as resourceful problem-solving or as unpredictable behavior that deviates from instructions.
+
+### Browserbase Stealth Options
+
+Browserbase's free tier has no stealth features. Paid plans add:
+
+**Basic Stealth Mode** (Developer plan): Activates automatically, randomizes fingerprints and viewport sizes per session.
+
+**Advanced Stealth Mode** (Scale plan): Custom Chromium build. Requires manual session creation, which conflicts with Stagehand's automatic session management.
+
+**Proxies** (Developer+ plans): Residential IP routing. Developer plan includes 1GB bandwidth.
+
+I couldn't test paid features without a subscription.
+
+### Stealth Mode Limitations
+
+Kernel's stealth mode (free) bypassed Skyscanner's initial bot detection but failed when the agent tried to search. Both platforms ultimately succeeded by switching to Google Flights, which didn't show bot detection screens.
+
+Stealth features help but don't guarantee bypass. Sites like Skyscanner actively detect automation even with residential proxies and fingerprint randomization.
 
 ---
 
-## Remote Browser Automation Works
+## Conclusion
 
-Remote browsers solve an infrastructure problem: AI models run on servers that can't open Chrome locally. Cloud browsers provide remote Chrome instances that AI can access. That infrastructure works reliably on both platforms.
+Both platforms give AI agents access to real web pages. They run Chrome in VMs and provide WebSocket connections your code controls remotely.
 
-The platforms differ in debugging and cost trade-offs.
+Browserbase automatically records every session with video, console logs, and network inspection. When my agent behaved unexpectedly, I replayed the session to see exactly what it did. 
 
-**Browserbase optimizes for debugging.** The free tier automatically records every session. The Session Inspector provides video replay synced to Chrome DevTools. We diagnosed broken automation in 30 seconds using post-session replay. The trade-off is startup speed. Recording overhead makes Browserbase 2.5x slower (25.85s vs 7.57s). You can't disable recording to improve performance.
+Kernel spins up browsers faster—4.42 seconds versus Browserbase's 11.44 seconds. The free tier includes stealth mode with residential proxies.
 
-**Kernel optimizes for speed and cost.** Browser startup takes 7.57 seconds—3.4x faster than Browserbase. The free tier includes real-time live view without recording overhead. Paid plans add manual video recording that you control (record only when needed). The trade-off is post-session debugging. The free tier doesn't capture replays. You must watch failures live or add logging to diagnose issues later.
+Stagehand made switching platforms straightforward. The same automation code ran on both. I changed connection parameters and everything worked identically.
 
-The bottleneck isn't browser infrastructure. LLM inference dominates costs. Our flight search consumed 115,627 tokens (~$0.23) per search. Browser session costs were fractions of a cent. How efficiently you use LLM calls matters more than which cloud browser you choose.
+Bot detection was harder to solve. Kernel's stealth mode bypassed Skyscanner's initial detection but failed when the agent tried to search. Both agents autonomously switched to Google Flights to complete the task. They fulfilled the goal but ignored explicit instructions about which site to use.
 
-Stagehand makes platform choice flexible. The same automation code runs on Browserbase, Kernel, or local browsers by changing one connection parameter. This removes vendor lock-in and lets you optimize for your specific workflow: automatic debugging during development on Browserbase, then switch to Kernel's faster startup for production.
-
-The challenge isn't getting remote browser automation to work. It works. The challenge is writing efficient automation that minimizes LLM calls while handling real-world web complexity like bot detection, dynamic forms, and changing page structure.
-
-Choose Browserbase for automatic post-mortem debugging. The free tier's Session Inspector helps diagnose CI/CD failures or debug complex automation during active development.
-
-Choose Kernel for faster iteration and cost optimization. The free tier's live view accelerates development without recording overhead. Paid tiers provide selective recording control for production workloads.
-
-Both platforms handle the core requirement: cloud browsers accessible to AI models. The rest is trade-offs between debugging tools and performance optimization.
+Test against your actual target sites early. Stealth features help but don't guarantee bypass. Agent behavior becomes unpredictable when they encounter obstacles you didn't anticipate.

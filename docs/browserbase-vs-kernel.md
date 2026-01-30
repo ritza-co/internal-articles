@@ -15,11 +15,9 @@ This guide compares Browserbase and Kernel—the two remote browser platforms I 
 
 ## How AI Agents Access Browsers
 
-### Claude Code: API Calls and Local Commands
-
 Claude Code runs on your machine. It makes API calls and executes local bash commands. It can read files, write code, and run scripts.
 
-It can't open a browser or interact with JavaScript-heavy sites. When you ask Claude Code to fetch Google Flights, it makes an HTTP request. The request returns an empty shell because the content loads dynamically with JavaScript.
+It can't currently use a browser like a human does or interact with JavaScript-heavy sites with its default configuration. When you ask Claude Code to fetch Google Flights, it makes an HTTP request. The request returns an empty shell because the content loads dynamically with JavaScript.
 
 ### Hybrid Approach: Local Browser with Remote AI
 

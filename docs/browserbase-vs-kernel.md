@@ -9,21 +9,19 @@ I built an automated travel agent that searches Google Flights and extracts the 
 
 <video src="/articles/assets/browserbase-vs-kernel/example-for-intro.mp4" controls></video>
 
-[See the code on GitHub](#) *(placeholder - GitHub link to be added)*
+[See the code on GitHub](https://github.com/jamesdanielwhitford/kernel-flight-tracker)
 
 This guide compares Browserbase and Kernel—the two remote browser platforms I used to build it. I'll show how they work, how AI agents control them, and their practical differences when handling real sites like Google Flights and Skyscanner.
 
 ## How AI Agents Access Browsers
 
-### Claude Code: API Calls and Local Commands
-
 Claude Code runs on your machine. It makes API calls and executes local bash commands. It can read files, write code, and run scripts.
 
-It can't open a browser or interact with JavaScript-heavy sites. When you ask Claude Code to fetch Google Flights, it makes an HTTP request. The request returns an empty shell because the content loads dynamically with JavaScript.
+It can't currently use a browser like a human does or interact with JavaScript-heavy sites with its default configuration. When you ask Claude Code to fetch Google Flights, it makes an HTTP request. The request returns an empty shell because the content loads dynamically with JavaScript.
 
 ### Hybrid Approach: Local Browser with Remote AI
 
-Tools like dev-browser solve this by launching Chrome on your machine and connecting the remote AI to it using the Chrome DevTools Protocol (CDP). The browser runs locally. The AI runs on remote servers (Anthropic, OpenAI, etc.). The AI sees your browser's DOM, sends commands to click elements, fill forms, and extract data.
+Tools like [dev-browser](https://github.com/SawyerHood/dev-browser) solve this by launching Chrome on your machine and connecting the remote AI to it using the Chrome DevTools Protocol (CDP). The browser runs locally. The AI runs on remote servers (Anthropic, OpenAI, etc.). The AI sees your browser's DOM, sends commands to click elements, fill forms, and extract data.
 
 This works for personal projects. The browser has your logged-in sessions and cookies. The AI can interact with authenticated sites. The limitation is scale—running multiple Chrome instances consumes significant memory, browser crashes need manual cleanup, and you're constrained by your machine's resources.
 
@@ -277,7 +275,7 @@ Extraction time: 40.12s
 
 Total workflow time: 620.45s (agent) + 40.12s (extraction) = ~11 minutes using GPT-5.
 
-Kernel's Live View lets you watch the agent work in real-time:
+Kernel's Live View lets you watch the agent work in real-time (video shown at 2x speed):
 
 <video src="/articles/assets/browserbase-vs-kernel/kernel-agent-live-view.mp4" controls></video>
 
@@ -303,7 +301,7 @@ The agent and extraction code is identical to Kernel. The same flight search tas
 
 Browserbase's Session Inspector automatically recorded the entire workflow. The Session Inspector includes a Stagehand tab showing token usage, timing, Zod schemas, and extraction results:
 
-<video src="/articles/assets/browserbase-vs-kernel/browserbase-agent-session.mp4" controls></video>
+![Browserbase Session Inspector Stagehand tab](assets/browserbase-vs-kernel/browserbase-stagehand-tab.png)
 
 ---
 
@@ -369,7 +367,7 @@ console.log(`Session Inspector: https://browserbase.com/sessions/${sessionId}`);
 
 The Session Inspector URL works during and after the session. Video becomes available about 30 seconds after the session ends:
 
-<video src="/articles/assets/browserbase-vs-kernel/browserbase-session-inspector-recording.mp4" controls></video>
+![Browserbase Session Inspector with Network tab open](assets/browserbase-vs-kernel/browserbase-network-tab-open-for-debug.png)
 
 The dashboard includes Console (browser logs), Network (HTTP requests/responses), and Stagehand tabs. The Stagehand tab breaks down token consumption and timing per operation.
 
@@ -399,7 +397,7 @@ The `stealth: true` flag enables residential proxy routing, browser fingerprint 
 
 With stealth enabled, Skyscanner's initial page loaded without showing the bot detection screen. The agent filled the flight search form successfully. When the agent clicked Search, Skyscanner showed the bot detection challenge again. The agent couldn't bypass it.
 
-The agent abandoned Skyscanner and navigated to Google Flights instead. It completed the flight search there and returned results:
+The agent abandoned Skyscanner and navigated to Google Flights instead. It completed the flight search there and returned results (video shown at 4x speed):
 
 <video src="/articles/assets/browserbase-vs-kernel/kernel-agent-abandons-skyscanner.mp4" controls></video>
 

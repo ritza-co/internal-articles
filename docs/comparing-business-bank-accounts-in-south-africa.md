@@ -45,19 +45,37 @@ Additionally, I'd love to have some modern features that have become standard at
 
 ## What I am using at the moment (spoilers)
 
-I haven't found a good option that meets all of the above yet and I'm still looking. The current combination I'm using is a combination of Bidvest and Bank Zero.
-
-- **Bidvest** is more mature and offers good international payments, a web application with bulk payment processing, and a 'banker' -- an actual human who responds to my emails. However its web application is buggy and slow and annoying to use, breaks sometimes, it doesn't offer push payments to SARS, and no virtual cards or mobile application. 
-
-- **Bank Zero** gave me some issues when I was signing up as they couldn't accept the foreign ownership structure. However their customer support on WhatsApp support was excellent and they quickly got management approval for an exception while they figured it out, and got some dev to run some custom SQL against their database to allow my foreign details which didn't match their expected format. This is both good (customer service yay) and terrifying (devs running custom SQL against prod for a company that manages money). They don't offer international payments, but they do have a mobile appilcation and can push to SARS, so I push money across from Bidvest to them for tax payments.
+I eventually switched to Capitec. It is the only bank I found that ticks all my requirements, apart from good UX, and I now use it as my main transactional bank account. I kept the Bank Zero savings account because its interest rate is a bit better.
 
 ## Detailed comparison
 
 I considered, reached out to, or tried the following banks.
 
+## Capitec
+
+Capitec generally meets all my requirements, but opening the account was much harder than it should have been. I tried to open it online and was told to go to a branch. At the branch, I was told I had to open it online. I eventually DM'd Capitec's CTO on LinkedIn. He agreed that it should be possible to open a bank account without using a phone and said he would have someone sort it out right away, after which various people kept trying to call me. Eventually I called Capitec myself, and from that point the process was quite easy.
+
+The main problems are:
+
+- The app's UX is quite horrible. It has a lot of security features that you can't turn off, so there are often delays before you're allowed to log in while it warns you about things. You have to take annoying selfies all the time, and sometimes the selfie verification fails. When that happens, you have to contact support to be let back into your own bank account.
+
+- Incoming international payments take a long time to arrive, and you have to phone Capitec to get them cleared.
+
+In spite of these problems, Capitec is still the only bank that ticks all my boxes, and I use it as my main transactional bank account now.
+
+## Previous setup: Bidvest and Bank Zero (out of date)
+
+*The notes below describe the setup I used before switching to Capitec. They are out of date and no longer reflect my main transactional banking setup.*
+
+- **Bidvest** is more mature and offers good international payments, a web application with bulk payment processing, and a 'banker' -- an actual human who responds to my emails. However its web application is buggy and slow and annoying to use, breaks sometimes, it doesn't offer push payments to SARS, and no virtual cards or mobile application.
+
+- **Bank Zero** gave me some issues when I was signing up as they couldn't accept the foreign ownership structure. However their customer support on WhatsApp support was excellent and they quickly got management approval for an exception while they figured it out, and got some dev to run some custom SQL against their database to allow my foreign details which didn't match their expected format. This is both good (customer service yay) and terrifying (devs running custom SQL against prod for a company that manages money). They don't offer international payments, but they do have a mobile appilcation and can push to SARS, so I push money across from Bidvest to them for tax payments.
+
 ## Bidvest
 
-Currently using, see above. Overall it's OK but very clunky and old fashioned. Nearly everything you do on their web app shows you a loading spinner, even if it's loading a dropdown list of one element that should be static (e.g. 'select from account' where you only have one account). They mix up CSV and XLS formats. They have two separate banking portals that don't have a logical separation. You have to do 2FA via SMS which is not secure. Generally it's a mess, but it has the most features and I was largely happy at first, but soured over time.
+*Out-of-date note: I no longer use Bidvest as my main transactional bank account. The experience below describes my previous setup.*
+
+Overall it's OK but very clunky and old fashioned. Nearly everything you do on their web app shows you a loading spinner, even if it's loading a dropdown list of one element that should be static (e.g. 'select from account' where you only have one account). They mix up CSV and XLS formats. They have two separate banking portals that don't have a logical separation. You have to do 2FA via SMS which is not secure. Generally it's a mess, but it has the most features and I was largely happy at first, but soured over time.
 
 
 - They encouraged me to open a 2-day notice account with a higher interest rate. As we transfer funds from the parent company at the start of the month and pay out contractors at the end, this made sense. They advised up front that there would be a form to fill out to give notice, but that my banker would handle it and all I had to do was email her. I did this and she told me to fill out the forms myself and send them somewhere else. They then ignored this request for nearly a week and only transfered the funds after several followups, which nearly caused issues with meeting payroll. Unacceptaable.
@@ -68,7 +86,9 @@ Currently using, see above. Overall it's OK but very clunky and old fashioned. N
 
 ## Bank Zero
 
-Currently using, see above. The UX is honestly the worst I have seen. Nothing makes sense and you have to push different parts of what looks like a single UI element on the app to get different functionality. Once you've figured out how to use it, it works, and I see fewer `Java.lang.NullPointerExceptions` randomly now, which is promising I guess?  It only has a mobile app, which apparently has a bulk payments feature, but I haven't tried it yet. I will it this month after last month's disaster with Bidvest.
+*Out-of-date note: I kept the Bank Zero savings account because its interest rate is a bit better, but I no longer use Bank Zero as part of my main transactional setup. The experience below describes my previous setup.*
+
+The UX is honestly the worst I have seen. Nothing makes sense and you have to push different parts of what looks like a single UI element on the app to get different functionality. Once you've figured out how to use it, it works, and I see fewer `Java.lang.NullPointerExceptions` randomly now, which is promising I guess?  It only has a mobile app, which apparently has a bulk payments feature, but I haven't tried it yet. I will it this month after last month's disaster with Bidvest.
 
 Overall it has some features that are great, but I would not feel comfortable keeping any meaningful amount of money with them given how brittle and toy-like it feels.
 
@@ -89,7 +109,6 @@ Everyone seems to think that they are the best in terms of features and cutomer 
 
 ## Others
 
-- **Capitec** - responded to my first email, and then ghosted me despite several followups.
 - **Nedbank** - responded to my first email, but needed docs notarized and couriered to South Africa.
 - **Discovery** - only offers personal banking.
 - **Thymebank** - only offers personal banking (even though they offer "for your business, it is only for sole props) and blocks non-SA IP addresses.
@@ -101,7 +120,4 @@ I did not consider the following as I have had awful experiences with them in th
 - **First National Bank (FNB)** - generally awful customer support, no bulk payments, website and app get worse ever year. They are built up of dozens of internal departments and do not try to shield their customers from their convoluted structure at all so every time you try to do anything you will get bounced around between departments, nearly always in some kind of catch-22 loop.
 
 - **ABSA** - this is probably the main player that I have the least experience with and know the least about, so maybe I should give them more serious consideration, but my overall impression is that they are similar to FNB/Standard bank.
-
-
-
 
